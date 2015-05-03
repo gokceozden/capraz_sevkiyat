@@ -5,14 +5,11 @@ __author__ = 'robotes'
 from src.solver import Solver
 
 def main():
+
     print("Capraz sevkiyat project")
 
     solver = Solver()
     print(solver.truck_number)
-
-
-    solver2 = Solver()
-    print(solver2.truck_number)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,7 @@
 __author__ = 'robotes'
 
+from truck import *
+
 class Solver(object):
     """
     Solver class contains everything needed for the solution and simulation.
@@ -27,7 +29,9 @@ class Solver(object):
         :param type: type of the truck
         :return: none
         """
+
         # create a truck with given type
+
         truck = 5
 
         # add the created truck to the dictionary

@@ -1,6 +1,7 @@
 __author__ = 'robotes'
 
-class ShippingDoors(object):
+class ShippingDoor(object):
     """
     Shipping doors of the station
     """
+
