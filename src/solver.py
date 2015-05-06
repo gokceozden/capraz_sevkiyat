@@ -1,6 +1,6 @@
 __author__ = 'robotes'
 
-from truck import *
+from src.truck import *
 
 class Solver(object):
     """
@@ -15,6 +15,7 @@ class Solver(object):
         self.inbound_trucks = []
         self.outbound_trucks = []
         self.compound_trucks = []
+        self.goods = []
 
         self.truck_dictionary = {'inbound': self.inbound_trucks,
                             'outbound': self.outbound_trucks,
@@ -36,3 +37,10 @@ class Solver(object):
 
         # add the created truck to the dictionary
         self.truck_dictionary[type].append(truck)
+
+    def add_good(self, type):
+        """
+        adds a good to the system
+        :return:
+        """
+        self.goods.append(type)
