@@ -7,6 +7,7 @@ class TruckWidget(QWidget):
     """
     Truck Data Widget
     """
+
     def __init__(self, name):
         QWidget.__init__(self)
 
@@ -15,6 +16,7 @@ class TruckWidget(QWidget):
         self.truckName = QLineEdit(name)
         self.truckTypeComboBox = QComboBox(self)
         self.createTable()
+
 
         #combo box for truck type
         self.truckTypeComboBox.addItem('Inbound')
@@ -29,6 +31,10 @@ class TruckWidget(QWidget):
     def createTable(self):
 
         self.goodTable = QTableView()
+        self.goodModel = QStandardItemModel()
+        a = [1,2,3,4]
+        self.goodModel.insertRow(5)
+        self.goodTable.setModel(self.goodModel)
 
 
 

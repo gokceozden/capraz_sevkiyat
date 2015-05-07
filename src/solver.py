@@ -16,6 +16,7 @@ class Solver(object):
         self.outbound_trucks = []
         self.compound_trucks = []
         self.goods = []
+        self.number_of_goods = 0
 
         self.truck_dictionary = {'inbound': self.inbound_trucks,
                             'outbound': self.outbound_trucks,
@@ -32,8 +33,6 @@ class Solver(object):
         """
 
         # create a truck with given type
-
-        truck = 5
 
         # add the created truck to the dictionary
         self.truck_dictionary[type].append(truck)
