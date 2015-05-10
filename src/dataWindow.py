@@ -1,8 +1,8 @@
 __author__ = 'mustafa'
 
-import sys
 from PySide.QtGui import *
-from truck_widget import TruckWidget
+
+from src.truck_widget import TruckWidget
 from src.solver import Solver
 
 
@@ -17,8 +17,6 @@ class DataWindow(QWidget):
         self.setWindowTitle('Data Window')
         self.setupComponents()
         self.setGeometry(300,400,500,500)
-
-
 
 
     def setupComponents(self):
@@ -40,7 +38,9 @@ class DataWindow(QWidget):
 
     def setupButtons(self):
         self.addTruckButton = QPushButton('Add Truck', self)
+        self.addTruckButton.setMaximumWidth(100)
         self.addTruckButton.clicked.connect(self.addTruck)
+
 
 
     def setupLayout(self):
@@ -52,15 +52,19 @@ class DataWindow(QWidget):
         self.hBoxMainData = QHBoxLayout()
         self.vBoxTruckData = QVBoxLayout()
 
+        self.numberGoodLabel = QLabel("Number of good types")
+        self.numberGoodLabel.setMaximumWidth(150)
         self.numberGoodsSpin = QSpinBox()
         self.numberGoodsSpin.setMinimum(1)
+        self.numberGoodsSpin.setMaximumWidth(70)
 
         self.hBoxMainData.addWidget(self.addTruckButton)
+        self.hBoxMainData.addWidget(self.numberGoodLabel)
         self.hBoxMainData.addWidget(self.numberGoodsSpin)
         self.mainVBox.addLayout(self.hBoxMainData)
         self.addTruck()
         self.mainVBox.addLayout(self.vBoxTruckData)
-
+        self.mainVBox.addStretch()
         self.setLayout(self.mainVBox)
 
 
@@ -70,6 +74,10 @@ class DataWindow(QWidget):
 
     def dataChange(self):
         self.model.number_of_goods = self.numberGoodsSpin.value()
+
+        for truckWidget in self.truckList:
+            truckWidget.number_of_goods = self.numberGoodsSpin.value()
+            truckWidget.updateTable()
 
 
 
@@ -84,7 +92,7 @@ class DataWindow(QWidget):
     def addTruck(self):
 
         #self.model.add_truck(0)
-        truck = TruckWidget('truck1')
+        truck = TruckWidget('truck1', self.numberGoodsSpin.value())
         self.truckList.append(truck)
         self.updateTruckList()
 

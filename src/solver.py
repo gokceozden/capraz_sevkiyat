@@ -12,6 +12,7 @@ class Solver(object):
         Initialize trucks, the station and get ready to solve
         :return: nothing
         """
+        self.data_name = 'unnamed'
         self.inbound_trucks = []
         self.outbound_trucks = []
         self.compound_trucks = []

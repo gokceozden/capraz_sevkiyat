@@ -4,6 +4,7 @@ import sys
 from PySide.QtGui import *
 from src.dataWindow import DataWindow
 from src.solver import Solver
+import cPickle
 
 class MainWindow(QMainWindow):
     """
@@ -18,6 +19,14 @@ class MainWindow(QMainWindow):
 
         # remember to add an icon for the application
         # self.setWindowIcon()
+
+    def loadModel(self, file_name = 'deneme'):
+
+        self.model = cPickle.load(file_name, open(file_name, 'rb'))
+
+    def saveModel(self, file_name = 'deneme'):
+
+        cPickle.dump(self.model,  open(file_name, 'wb'))
 
 
     def setupComponents(self):
@@ -36,7 +45,9 @@ class MainWindow(QMainWindow):
         Sets up the layout of the main window
         """
         self.mainGrid = QGridLayout()
-        self.mainGrid.addWidget(self.dataButton, 0, 3)
+        self.mainGrid.addWidget(self.dataButton, 0, 1)
+        self.mainGrid.addWidget(self.loadButton, 0, 2)
+        self.mainGrid.addWidget(self.saveButton, 2, 2)
         self.setLayout(self.mainGrid)
 
 
@@ -50,6 +61,14 @@ class MainWindow(QMainWindow):
         self.dataButton.adjustSize()
         self.dataButton.clicked.connect(self.showDataWindow)
 
+
+        self.loadButton = QPushButton('Load Data', self)
+        #self.loadButton.adjustSize()
+        self.loadButton.clicked.connect(self.loadModel)
+
+        self.saveButton = QPushButton('Save Data', self)
+        #self.saveButton.adjustSize()
+        self.saveButton.clicked.connect(self.saveModel)
 
     def showDataWindow(self):
         self.dataWindow = DataWindow()
