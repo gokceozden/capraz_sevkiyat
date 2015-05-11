@@ -13,7 +13,9 @@ class DataWindow(QWidget):
     def __init__(self, model = Solver()):
         QWidget.__init__(self)
         self.model = model
-        self.truckList = []
+        self.inboundView = []
+        self.outboundView = []
+        self.compoundView = []
         self.setWindowTitle('Data Window')
         self.setupComponents()
         self.setGeometry(300,400,500,500)
@@ -37,10 +39,26 @@ class DataWindow(QWidget):
         pass
 
     def setupButtons(self):
-        self.addTruckButton = QPushButton('Add Truck', self)
-        self.addTruckButton.setMaximumWidth(100)
-        self.addTruckButton.clicked.connect(self.addTruck)
+        self.numberGoodLabel = QLabel("Number of good types")
+        self.numberGoodLabel.setMaximumWidth(150)
+        self.numberGoodsSpin = QSpinBox()
+        self.numberGoodsSpin.setMinimum(1)
+        self.numberGoodsSpin.setMaximumWidth(70)
 
+        self.numberInbound = QLabel("Number of inbound trucks")
+        self.numberInbound.setMaximumWidth(150)
+        self.numberInboundSpin = QSpinBox()
+        self.numberInboundSpin.setMinimum(1)
+
+        self.numberOutbound = QLabel("Number of outbound trucks")
+        self.numberOutbound.setMaximumWidth(150)
+        self.numberOutboundSpin = QSpinBox()
+        self.numberOutboundSpin.setMinimum(1)
+
+        self.numberCompound = QLabel("Number of compound trucks")
+        self.numberCompound.setMaximumWidth(150)
+        self.numberCompoundSpin = QSpinBox()
+        self.numberCompoundSpin.setMinimum(1)
 
 
     def setupLayout(self):
@@ -49,35 +67,84 @@ class DataWindow(QWidget):
         :return:
         """
         self.mainVBox = QVBoxLayout()
+        self.truckForm = QFormLayout()
         self.hBoxMainData = QHBoxLayout()
         self.vBoxTruckData = QVBoxLayout()
+        self.vInboundTruck = QVBoxLayout()
+        self.vOutBoundTruck = QVBoxLayout()
+        self.vCompoundTruck = QVBoxLayout()
+        self.inboundLabel = QLabel('Inbound Trucks')
+        self.outboundLabel = QLabel('Outbound Trucks')
+        self.compoundLabel = QLabel('Compound Trucks')
 
-        self.numberGoodLabel = QLabel("Number of good types")
-        self.numberGoodLabel.setMaximumWidth(150)
-        self.numberGoodsSpin = QSpinBox()
-        self.numberGoodsSpin.setMinimum(1)
-        self.numberGoodsSpin.setMaximumWidth(70)
+        self.vInboundTruck.addWidget(self.inboundLabel)
+        self.vOutBoundTruck.addWidget(self.outboundLabel)
+        self.vCompoundTruck.addWidget(self.compoundLabel)
 
-        self.hBoxMainData.addWidget(self.addTruckButton)
+        self.truckForm.addRow(self.numberInbound, self.numberInboundSpin)
+        self.truckForm.addRow(self.numberOutbound, self.numberOutboundSpin)
+        self.truckForm.addRow(self.numberCompound, self.numberCompoundSpin)
+        self.hBoxMainData.addLayout(self.truckForm)
         self.hBoxMainData.addWidget(self.numberGoodLabel)
         self.hBoxMainData.addWidget(self.numberGoodsSpin)
         self.mainVBox.addLayout(self.hBoxMainData)
         self.addTruck()
-        self.mainVBox.addLayout(self.vBoxTruckData)
+        self.mainVBox.addLayout(self.vInboundTruck)
+        self.mainVBox.addLayout(self.vOutBoundTruck)
+        self.mainVBox.addLayout(self.vCompoundTruck)
         self.mainVBox.addStretch()
         self.setLayout(self.mainVBox)
+        self.dataChange()
 
 
     def setupConnections(self):
         self.numberGoodsSpin.valueChanged.connect(self.dataChange)
+        self.numberInboundSpin.valueChanged.connect(self.dataChange)
+        self.numberOutboundSpin.valueChanged.connect(self.dataChange)
+        self.numberCompoundSpin.valueChanged.connect(self.dataChange)
 
 
     def dataChange(self):
         self.model.number_of_goods = self.numberGoodsSpin.value()
 
-        for truckWidget in self.truckList:
-            truckWidget.number_of_goods = self.numberGoodsSpin.value()
-            truckWidget.updateTable()
+        for i in range(self.numberInboundSpin.value() - len(self.inboundView)):
+            self.inboundView.append(TruckWidget('truck1', self.numberGoodsSpin.value(),0))
+            self.vInboundTruck.addWidget(self.inboundView[-1])
+
+        for i in range(len(self.inboundView) - self.numberInboundSpin.value()):
+            self.inboundView.pop()
+            b = self.vInboundTruck.itemAt(len(self.inboundView))
+            b.widget().deleteLater()
+
+        for i in range(self.numberOutboundSpin.value() - len(self.outboundView)):
+
+            self.outboundView.append(TruckWidget('truck1', self.numberGoodsSpin.value(),1))
+            self.vOutBoundTruck.addWidget(self.outboundView[-1])
+
+
+        for i in range(self.numberCompoundSpin.value() - len(self.compoundView)):
+            truck = TruckWidget('truck1', self.numberGoodsSpin.value(),2)
+            self.compoundView.append(truck)
+            self.vCompoundTruck.addWidget(truck)
+
+
+
+        for trucks in self.inboundView:
+            trucks.number_of_goods = self.numberGoodsSpin.value()
+            trucks.updateTable()
+
+        for trucks in self.outboundView:
+            trucks.number_of_goods = self.numberGoodsSpin.value()
+            trucks.updateTable()
+
+        for trucks in self.compoundView:
+            trucks.number_of_goods = self.numberGoodsSpin.value()
+            trucks.updateTable()
+
+
+        # for truckWidget in self.truckList:
+        #     truckWidget.number_of_goods = self.numberGoodsSpin.value()
+        #     truckWidget.updateTable()
 
 
 
@@ -86,27 +153,13 @@ class DataWindow(QWidget):
         Updates the truck list on gui
         :return:
         """
-        for i in range(self.model.number_of_trucks - len(self.truckList)):
-            truck = TruckWidget('truck1', self.numberGoodsSpin.value())
-            self.truckList.append(truck)
-            self.vBoxTruckData.addWidget(truck)
-
-        k = 0
-        for truck_types, truck_data in self.model.truck_dictionary.items():
-            for truck_name, trucks in truck_data.items():
-                self.truckList[k].truckName.setText(truck_name)
-                k = k +1
-                #self.
-
+        pass
 
 
 
     def addTruck(self):
 
-        self.model.add_truck('inbound')
-        print(self.model.truck_dictionary.values())
-        self.updateTruckList()
-
+        pass
 
 
 
