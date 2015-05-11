@@ -86,14 +86,25 @@ class DataWindow(QWidget):
         Updates the truck list on gui
         :return:
         """
-        for truck in self.truckList:
+        for i in range(self.model.number_of_trucks - len(self.truckList)):
+            truck = TruckWidget('truck1', self.numberGoodsSpin.value())
+            self.truckList.append(truck)
             self.vBoxTruckData.addWidget(truck)
+
+        k = 0
+        for truck_types, truck_data in self.model.truck_dictionary.items():
+            for truck_name, trucks in truck_data.items():
+                self.truckList[k].truckName.setText(truck_name)
+                k = k +1
+                #self.
+
+
+
 
     def addTruck(self):
 
-        #self.model.add_truck(0)
-        truck = TruckWidget('truck1', self.numberGoodsSpin.value())
-        self.truckList.append(truck)
+        self.model.add_truck('inbound')
+        print(self.model.truck_dictionary.values())
         self.updateTruckList()
 
 

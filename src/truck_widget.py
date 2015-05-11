@@ -13,7 +13,7 @@ class TruckWidget(QWidget):
 
         #create the widgets
         self.truckHLayout = QHBoxLayout(self)
-        self.truckName = QLineEdit(name)
+        self.truckName = QLabel(name)
         self.truckTypeComboBox = QComboBox(self)
         self.number_of_goods = number_of_goods
         self.goodTable = QTableWidget(1,number_of_goods,self)

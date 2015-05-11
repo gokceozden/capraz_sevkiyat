@@ -15,7 +15,7 @@ class Truck(object):
         Initialize variables for all trucks types.
         :return:
         """
-        self.truck_number = number_of_trucks
+        self.truck_number = Truck.number_of_trucks
         self.truck_name = name
         Truck.number_of_trucks = Truck.number_of_trucks +1
 

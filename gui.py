@@ -1,3 +1,4 @@
+#!/usr/bin/python
 __author__ = 'Robotes'
 
 import sys
@@ -13,6 +14,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setWindowTitle("Capraz Sevkiyat Projesi")
+        self.setGeometry(400,400,400,400)
+        self.simulation = QGraphicsView()
+        self.setCentralWidget(self.simulation)
         self.setupComponents()
 
         self.model = Solver()
@@ -38,17 +42,19 @@ class MainWindow(QMainWindow):
         self.setupStatusBar()
         self.setupMenuBar()
         self.setupButtons()
+        self.setupToolBar()
         self.setupLayout()
 
     def setupLayout(self):
         """
         Sets up the layout of the main window
         """
+
         self.mainGrid = QGridLayout()
-        self.mainGrid.addWidget(self.dataButton, 0, 1)
-        self.mainGrid.addWidget(self.loadButton, 0, 2)
-        self.mainGrid.addWidget(self.saveButton, 2, 2)
+        self.mainVBox = QVBoxLayout()
+        self.mainGrid.addWidget(self.dataButton)
         self.setLayout(self.mainGrid)
+
 
 
     def setupButtons(self):
@@ -57,16 +63,16 @@ class MainWindow(QMainWindow):
         :return:
         """
 
-        self.dataButton = QPushButton('Set/Inspect Data', self)
+        self.dataButton = QPushButton('Set/Inspect Data')
         self.dataButton.adjustSize()
         self.dataButton.clicked.connect(self.showDataWindow)
 
 
-        self.loadButton = QPushButton('Load Data', self)
+        self.loadButton = QPushButton('Load Data')
         #self.loadButton.adjustSize()
         self.loadButton.clicked.connect(self.loadModel)
 
-        self.saveButton = QPushButton('Save Data', self)
+        self.saveButton = QPushButton('Save Data')
         #self.saveButton.adjustSize()
         self.saveButton.clicked.connect(self.saveModel)
 
@@ -86,13 +92,26 @@ class MainWindow(QMainWindow):
         self.setupMenus()
 
     def setupActions(self):
-        pass
+        self.loadAction = QAction(QIcon('images/load.png'), '&Load', self,
+                                   shortcut=QKeySequence.Open, statusTip = 'Load a saved data set', triggered = self.loadModel)
+
+        self.saveAction = QAction(QIcon('images/save.png'), '&Save', self,
+                                   shortcut=QKeySequence.Save, statusTip = 'Save data set', triggered = self.saveModel)
+
+        self.dataAction = QAction(QIcon('images/save.png'), '&Data', self,
+                                   shortcut=QKeySequence.New, statusTip = 'See data set', triggered = self.showDataWindow)
+
+
+
 
     def setupMenus(self):
         pass
 
     def setupToolBar(self):
-        pass
+        self.mainToolBar = self.addToolBar('Main')
+        self.mainToolBar.addAction(self.loadAction)
+        self.mainToolBar.addAction(self.saveAction)
+        self.mainToolBar.addAction(self.dataAction)
 
 
 if __name__ == '__main__':

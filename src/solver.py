@@ -13,12 +13,12 @@ class Solver(object):
         :return: nothing
         """
         self.data_name = 'unnamed'
-        self.inbound_trucks = []
-        self.outbound_trucks = []
-        self.compound_trucks = []
+        self.inbound_trucks = {}
+        self.outbound_trucks = {}
+        self.compound_trucks = {}
         self.goods = []
         self.number_of_goods = 0
-
+        self.number_of_trucks = 0
         self.truck_dictionary = {'inbound': self.inbound_trucks,
                             'outbound': self.outbound_trucks,
                             'compound': self.compound_trucks
@@ -32,11 +32,21 @@ class Solver(object):
         :param type: type of the truck
         :return: none
         """
-
+        self.number_of_trucks = self.number_of_trucks + 1
+        name_number = 1
+        name_exists = True
+        while name_exists:
+            name = 'truck' + str(name_number)
+            if name in self.truck_dictionary[type].keys():
+                name_number = name_number + 1
+            else:
+                name_exists = False
         # create a truck with given type
 
         # add the created truck to the dictionary
-        self.truck_dictionary[type].append(truck)
+        print(name)
+        truck = Truck(name)
+        self.truck_dictionary[type][name] = truck
 
     def add_good(self, type):
         """
