@@ -35,6 +35,7 @@ class TruckWidget(QWidget):
             self.goodTable.setVerticalHeaderLabels(['Coming'])
             self.goodTable.setMaximumHeight(50)
 
+
             # inbound
 
         elif(self.type == 'outbound'):
