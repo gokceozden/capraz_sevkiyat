@@ -11,10 +11,10 @@ class Station(object):
         """
         Initialize the station by creating doors and types
         :return:
-        """
+      """
 
-        self.receiving_doors = []
-        self.shipping_doors = []
+        self.receiving_doors = {}
+        self.shipping_doors = {}
 
 
     def add_receiving_door(self):
@@ -23,8 +23,9 @@ class Station(object):
         :return:
         """
 
+
         door = ReceivingDoor()
-        self.receiving_doors.append(door)
+
 
 
     def add_shipping_door(self):
@@ -34,4 +35,4 @@ class Station(object):
         """
 
         door = ShippingDoor()
-        self.shipping_doors.append(door)
+

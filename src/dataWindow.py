@@ -49,6 +49,18 @@ class DataWindow(QWidget):
         self.numberGoodsSpin.setMinimum(1)
         self.numberGoodsSpin.setMaximumWidth(70)
 
+        self.numberReceiveDoorLabel = QLabel("Number of receiver doors")
+        self.numberReceiveDoorLabel.setMaximumWidth(150)
+        self.numberReceiveDoorSpin = QSpinBox()
+        self.numberReceiveDoorSpin.setMinimum(1)
+        self.numberReceiveDoorSpin.setMaximumWidth(70)
+
+        self.numberShippingDoorLabel = QLabel("Number of shipping doors")
+        self.numberShippingDoorLabel.setMaximumWidth(150)
+        self.numberShippingDoorSpin = QSpinBox()
+        self.numberShippingDoorSpin.setMinimum(1)
+        self.numberShippingDoorSpin.setMaximumWidth(70)
+
         self.numberInbound = QLabel("Number of inbound trucks")
         self.numberInbound.setMaximumWidth(150)
         self.numberInboundSpin = QSpinBox()
@@ -75,6 +87,7 @@ class DataWindow(QWidget):
         """
         self.mainVBox = QVBoxLayout()
         self.truckForm = QFormLayout()
+        self.doorForm = QFormLayout()
         self.hBoxMainData = QHBoxLayout()
         self.vBoxTruckData = QVBoxLayout()
         self.vInboundTruck = QVBoxLayout()
@@ -91,9 +104,12 @@ class DataWindow(QWidget):
         self.truckForm.addRow(self.numberInbound, self.numberInboundSpin)
         self.truckForm.addRow(self.numberOutbound, self.numberOutboundSpin)
         self.truckForm.addRow(self.numberCompound, self.numberCompoundSpin)
+        self.doorForm.addRow(self.numberReceiveDoorLabel, self.numberReceiveDoorSpin)
+        self.doorForm.addRow(self.numberShippingDoorLabel, self.numberShippingDoorSpin)
+        self.doorForm.addRow(self.numberGoodLabel, self.numberGoodsSpin)
+
         self.hBoxMainData.addLayout(self.truckForm)
-        self.hBoxMainData.addWidget(self.numberGoodLabel)
-        self.hBoxMainData.addWidget(self.numberGoodsSpin)
+        self.hBoxMainData.addLayout(self.doorForm)
         self.hBoxMainData.addWidget(self.doneButton)
         self.mainVBox.addLayout(self.hBoxMainData)
 
