@@ -40,6 +40,7 @@ class DataWindow(QWidget):
         pass
 
     def setupButtons(self):
+
         self.numberGoodLabel = QLabel("Number of good types")
         self.numberGoodLabel.setMaximumWidth(150)
         self.numberGoodsSpin = QSpinBox()
@@ -60,6 +61,9 @@ class DataWindow(QWidget):
         self.numberCompound.setMaximumWidth(150)
         self.numberCompoundSpin = QSpinBox()
         self.numberCompoundSpin.setMinimum(0)
+
+        self.doneButton = QPushButton("Done")
+
 
 
     def setupLayout(self):
@@ -88,6 +92,7 @@ class DataWindow(QWidget):
         self.hBoxMainData.addLayout(self.truckForm)
         self.hBoxMainData.addWidget(self.numberGoodLabel)
         self.hBoxMainData.addWidget(self.numberGoodsSpin)
+        self.hBoxMainData.addWidget(self.doneButton)
         self.mainVBox.addLayout(self.hBoxMainData)
 
         self.mainVBox.addLayout(self.vInboundTruck)
@@ -99,10 +104,51 @@ class DataWindow(QWidget):
 
 
     def setupConnections(self):
+
         self.numberGoodsSpin.valueChanged.connect(self.dataChange)
         self.numberInboundSpin.valueChanged.connect(self.dataChange)
         self.numberOutboundSpin.valueChanged.connect(self.dataChange)
         self.numberCompoundSpin.valueChanged.connect(self.dataChange)
+        self.doneButton.clicked.connect(self.save_data)
+
+    def save_data(self):
+
+        missing_data = False
+        for i in range(self.numberGoodsSpin.value()):
+            for inbound_truck in self.inboundView:
+                data = inbound_truck.goodTable.item(0,i)
+                if data:
+                    new_good = Good(i, data.text())
+                    self.model.inbound_trucks[inbound_truck.truck_name].coming_goods[i] = new_good
+                else:
+                    missing_data = True
+
+            for outbound_truck in self.outboundView:
+                data = outbound_truck.goodTable.item(0,i)
+                if data:
+                    new_good = Good(i, data.text())
+                    self.model.outbound_trucks[outbound_truck.truck_name].going_goods[i] = new_good
+                else:
+                    missing_data = True
+
+            for compound_truck in self.compoundView:
+                data = compound_truck.goodTable.item(0,i)
+                if data:
+                    new_good = Good(i, data.text())
+                    self.model.compound_trucks[outbound_truck.truck_name].coming_goods[i] = new_good
+                else:
+                    missing_data = True
+
+                data = compound_truck.goodTable.item(1,i)
+                if data:
+                    new_good = Good(i, data.text())
+                    self.model.compound_trucks[outbound_truck.truck_name].going_goods[i] = new_good
+
+                else:
+                    missing_data = True
+
+
+
 
 
     def prev_data(self):
@@ -137,15 +183,6 @@ class DataWindow(QWidget):
             name = self.model.add_truck('inbound')
             self.inboundView.append(TruckWidget(name, self.numberGoodsSpin.value(), 'inbound'))
             self.vInboundTruck.addWidget(self.inboundView[-1])
-
-        for val in self.inboundView:
-            for i in range(self.numberGoodsSpin.value()):
-                data = val.goodTable.item(0,i)
-                if data:
-                    print(data.text())
-                    new_good = Good(i, data.text())
-                    self.model.inbound_trucks[val.truck_name].coming_goods[i] = new_good
-
 
 
         if (self.numberInboundSpin.value() < len(self.inboundView)):

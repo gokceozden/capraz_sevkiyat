@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
         self.model = cPickle.load(file_name, open(file_name, 'rb'))
 
     def saveModel(self, file_name = 'deneme'):
-        print(self.model.truck_dictionary)
+        print(self.model.truck_dictionary['inbound']['inbound0'].coming_goods[0].amount)
         #cPickle.dump(self.model,  open(file_name, 'wb'))
 
 
