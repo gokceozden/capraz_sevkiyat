@@ -7,22 +7,69 @@ from src.dataWindow import DataWindow
 from src.solver import Solver
 import cPickle
 
+class GraphView(QGraphicsView):
+    def __init__(self, scn, model = Solver()):
+        QGraphicsView.__init__(self, scn)
+        self.model = model
+
+    def mouseDoubleClickEvent(self, *args, **kwargs):
+        
+        print(self.model.truck_dictionary['inbound']['inbound0'].coming_goods[0].amount)
+
+
 class MainWindow(QMainWindow):
     """
     Main window class for capraz_sevkiyat project
     """
     def __init__(self):
         QMainWindow.__init__(self)
+        self.model = Solver()
         self.setWindowTitle("Capraz Sevkiyat Projesi")
         self.setGeometry(400,400,400,400)
-        self.simulation = QGraphicsView()
+
+        self.scn = QGraphicsScene()
+        self.simulation = GraphView(self.scn, self.model)
         self.setCentralWidget(self.simulation)
         self.setupComponents()
 
-        self.model = Solver()
+
+        self.setup_simulation()
+        self.truck_image_list = {}
 
         # remember to add an icon for the application
         # self.setWindowIcon()
+
+
+    def setup_simulation(self):
+
+        self.truckPixmap = QPixmap("images/truck.png")
+        # self.truck1 = self.scn.addPixmap(self.truckPixmap)
+        # self.truck2 = self.scn.addPixmap(self.truckPixmap)
+        # self.truck1.scale(0.2,0.2)
+        # self.truck1.setPos(100,800)
+        # self.truck2.scale(0.2,0.2)
+        # self.truck2.setPos(800,800)
+
+        self.scn.addRect(0,250,500,500)
+        self.scn.addLine(-400,0,-400,900)
+        self.scn.addLine(800,0,800,900)
+
+        self.simulation.show()
+
+
+
+
+
+
+    def simulation_cycle(self):
+        i = 0
+        for inbound_trucks in self.model.inbound_trucks.values():
+            truck_name = inbound_trucks.truck_name
+            self.truck_image_list[truck_name] = self.scn.addPixmap(self.truckPixmap)
+            self.truck_image_list[truck_name].scale(0.2,0.2)
+            self.truck_image_list[truck_name].setPos(-600,i*100)
+            i = i +1
+        self.simulation.show()
 
     def loadModel(self, file_name = 'deneme'):
 
@@ -30,6 +77,7 @@ class MainWindow(QMainWindow):
 
     def saveModel(self, file_name = 'deneme'):
         print(self.model.truck_dictionary['inbound']['inbound0'].coming_goods[0].amount)
+        self.simulation_cycle()
         #cPickle.dump(self.model,  open(file_name, 'wb'))
 
 
@@ -76,6 +124,9 @@ class MainWindow(QMainWindow):
         #self.saveButton.adjustSize()
         self.saveButton.clicked.connect(self.saveModel)
 
+
+
+
     def showDataWindow(self):
         self.dataWindow = DataWindow(self.model)
         self.dataWindow.show()
@@ -121,8 +172,8 @@ if __name__ == '__main__':
     mainWindow = MainWindow()
 
 
-    mainWindow.show()
-    #mainWindow.showMaximized()
+    #mainWindow.show()
+    mainWindow.showMaximized()
 
 
     myApp.exec_()
