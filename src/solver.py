@@ -33,20 +33,43 @@ class Solver(object):
         :return: none
         """
         self.number_of_trucks = self.number_of_trucks + 1
-        name_number = 1
-        name_exists = True
-        while name_exists:
-            name = 'truck' + str(name_number)
-            if name in self.truck_dictionary[type].keys():
-                name_number = name_number + 1
-            else:
-                name_exists = False
+        if(type == 'inbound'):
+            name = 'inbound' + str(len(self.inbound_trucks))
+            new_truck = InboundTruck(name, type)
+
+        if(type == 'outbound'):
+            name = 'outbound' + str(len(self.outbound_trucks))
+            new_truck = OutboundTruck(name, type)
+
+        if(type == 'compound'):
+            name = 'compound' + str(len(self.compound_trucks))
+            new_truck = CompoundTruck(name, type)
+
+
         # create a truck with given type
 
         # add the created truck to the dictionary
-        print(name)
-        truck = Truck(name)
-        self.truck_dictionary[type][name] = truck
+
+
+        self.truck_dictionary[type][name] = new_truck
+        return name
+
+    def remove_truck(self, type):
+        if(type == 'inbound'):
+            name = 'inbound' + str(len(self.inbound_trucks) - 1)
+            del self.truck_dictionary[type][name]
+
+        if(type == 'outbound'):
+            name = 'outbound' + str(len(self.outbound_trucks) - 1)
+            del self.truck_dictionary[type][name]
+
+        if(type == 'compound'):
+            name = 'compound' + str(len(self.compound_trucks) - 1)
+            del self.truck_dictionary[type][name]
+
+
+        self.number_of_trucks = self.number_of_trucks - 1
+
 
     def add_good(self, type):
         """

@@ -4,7 +4,7 @@ from PySide.QtGui import *
 
 from src.truck_widget import TruckWidget
 from src.solver import Solver
-
+from src.good import Good
 
 class DataWindow(QWidget):
     """
@@ -19,6 +19,7 @@ class DataWindow(QWidget):
         self.setWindowTitle('Data Window')
         self.setupComponents()
         self.setGeometry(300,400,500,500)
+        self.prev_data()
 
 
     def setupComponents(self):
@@ -48,17 +49,17 @@ class DataWindow(QWidget):
         self.numberInbound = QLabel("Number of inbound trucks")
         self.numberInbound.setMaximumWidth(150)
         self.numberInboundSpin = QSpinBox()
-        self.numberInboundSpin.setMinimum(1)
+        self.numberInboundSpin.setMinimum(0)
 
         self.numberOutbound = QLabel("Number of outbound trucks")
         self.numberOutbound.setMaximumWidth(150)
         self.numberOutboundSpin = QSpinBox()
-        self.numberOutboundSpin.setMinimum(1)
+        self.numberOutboundSpin.setMinimum(0)
 
         self.numberCompound = QLabel("Number of compound trucks")
         self.numberCompound.setMaximumWidth(150)
         self.numberCompoundSpin = QSpinBox()
-        self.numberCompoundSpin.setMinimum(1)
+        self.numberCompoundSpin.setMinimum(0)
 
 
     def setupLayout(self):
@@ -88,7 +89,7 @@ class DataWindow(QWidget):
         self.hBoxMainData.addWidget(self.numberGoodLabel)
         self.hBoxMainData.addWidget(self.numberGoodsSpin)
         self.mainVBox.addLayout(self.hBoxMainData)
-        self.addTruck()
+
         self.mainVBox.addLayout(self.vInboundTruck)
         self.mainVBox.addLayout(self.vOutBoundTruck)
         self.mainVBox.addLayout(self.vCompoundTruck)
@@ -104,65 +105,87 @@ class DataWindow(QWidget):
         self.numberCompoundSpin.valueChanged.connect(self.dataChange)
 
 
-    def dataChange(self):
-        self.model.number_of_goods = self.numberGoodsSpin.value()
+    def prev_data(self):
 
-        for i in range(self.numberInboundSpin.value() - len(self.inboundView)):
-            self.inboundView.append(TruckWidget('truck1', self.numberGoodsSpin.value(),0))
+        self.numberGoodsSpin.setValue(self.model.number_of_goods)
+        for i in range(len(self.model.inbound_trucks)):
+            name = 'inbound' + str(i)
+            self.inboundView.append(TruckWidget(name, self.numberGoodsSpin.value(), 'inbound'))
             self.vInboundTruck.addWidget(self.inboundView[-1])
 
-        for i in range(len(self.inboundView) - self.numberInboundSpin.value()):
-            self.inboundView.pop()
-            b = self.vInboundTruck.itemAt(len(self.inboundView))
-            b.widget().deleteLater()
 
-        for i in range(self.numberOutboundSpin.value() - len(self.outboundView)):
+        for i in range(len(self.model.outbound_trucks)):
+            name = 'outbound' + str(i)
+            self.inboundView.append(TruckWidget(name, self.numberGoodsSpin.value(), 'outbound'))
+            self.vOutBoundTruck.addWidget(self.inboundView[-1])
 
-            self.outboundView.append(TruckWidget('truck1', self.numberGoodsSpin.value(),1))
+        for i in range(len(self.model.compound_trucks)):
+            name = 'compound' + str(i)
+            self.inboundView.append(TruckWidget(name, self.numberGoodsSpin.value(), 'compound'))
+            self.vCompoundTruck.addWidget(self.inboundView[-1])
+
+
+        #for view in
+
+
+
+    def dataChange(self):
+
+        self.model.number_of_goods = self.numberGoodsSpin.value()
+
+        if (self.numberInboundSpin.value() > len(self.inboundView)):
+            name = self.model.add_truck('inbound')
+            self.inboundView.append(TruckWidget(name, self.numberGoodsSpin.value(), 'inbound'))
+            self.vInboundTruck.addWidget(self.inboundView[-1])
+
+        for val in self.inboundView:
+            for i in range(self.numberGoodsSpin.value()):
+                data = val.goodTable.item(0,i)
+                if data:
+                    print(data.text())
+                    new_good = Good(i, data.text())
+                    self.model.inbound_trucks[val.truck_name].coming_goods[i] = new_good
+
+
+
+        if (self.numberInboundSpin.value() < len(self.inboundView)):
+
+            self.model.remove_truck('inbound')
+            delete_widget = self.inboundView.pop()
+            delete_widget.deleteLater()
+
+        if (self.numberOutboundSpin.value() > len(self.outboundView)):
+            name = self.model.add_truck('outbound')
+            self.outboundView.append(TruckWidget(name, self.numberGoodsSpin.value(), 'outbound'))
             self.vOutBoundTruck.addWidget(self.outboundView[-1])
 
+        if (self.numberOutboundSpin.value() < len(self.outboundView)):
 
-        for i in range(self.numberCompoundSpin.value() - len(self.compoundView)):
-            truck = TruckWidget('truck1', self.numberGoodsSpin.value(),2)
-            self.compoundView.append(truck)
-            self.vCompoundTruck.addWidget(truck)
+            self.model.remove_truck('outbound')
+            delete_widget = self.outboundView.pop()
+            delete_widget.deleteLater()
 
+        if (self.numberCompoundSpin.value() > len(self.compoundView)):
+             name = self.model.add_truck('compound')
+             self.compoundView.append(TruckWidget(name, self.numberGoodsSpin.value(),'compound'))
+             self.vCompoundTruck.addWidget(self.compoundView[-1])
 
+        if (self.numberCompoundSpin.value() < len(self.compoundView)):
 
-        for trucks in self.inboundView:
-            trucks.number_of_goods = self.numberGoodsSpin.value()
-            trucks.updateTable()
+            self.model.remove_truck('compound')
+            delete_widget = self.compoundView.pop()
+            delete_widget.deleteLater()
 
-        for trucks in self.outboundView:
-            trucks.number_of_goods = self.numberGoodsSpin.value()
-            trucks.updateTable()
+        for truck_widget in self.inboundView:
+            truck_widget.number_of_goods = self.numberGoodsSpin.value()
+            truck_widget.updateTable()
 
-        for trucks in self.compoundView:
-            trucks.number_of_goods = self.numberGoodsSpin.value()
-            trucks.updateTable()
+        for truck_widget in self.outboundView:
+            truck_widget.number_of_goods = self.numberGoodsSpin.value()
+            truck_widget.updateTable()
 
-
-        # for truckWidget in self.truckList:
-        #     truckWidget.number_of_goods = self.numberGoodsSpin.value()
-        #     truckWidget.updateTable()
-
-
-
-    def updateTruckList(self):
-        """
-        Updates the truck list on gui
-        :return:
-        """
-        pass
-
-
-
-    def addTruck(self):
-
-        pass
-
-
-
-
+        for truck_widget in self.compoundView:
+            truck_widget.number_of_goods = self.numberGoodsSpin.value()
+            truck_widget.updateTable()
 
 

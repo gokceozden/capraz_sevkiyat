@@ -29,8 +29,8 @@ class MainWindow(QMainWindow):
         self.model = cPickle.load(file_name, open(file_name, 'rb'))
 
     def saveModel(self, file_name = 'deneme'):
-
-        cPickle.dump(self.model,  open(file_name, 'wb'))
+        print(self.model.truck_dictionary)
+        #cPickle.dump(self.model,  open(file_name, 'wb'))
 
 
     def setupComponents(self):
@@ -77,8 +77,9 @@ class MainWindow(QMainWindow):
         self.saveButton.clicked.connect(self.saveModel)
 
     def showDataWindow(self):
-        self.dataWindow = DataWindow()
+        self.dataWindow = DataWindow(self.model)
         self.dataWindow.show()
+
 
 
     def setupStatusBar(self):

@@ -11,20 +11,17 @@ class TruckWidget(QWidget):
     def __init__(self, name, number_of_goods, type):
         QWidget.__init__(self)
         self.type = type
+        self.truck_name = name
         #create the widgets
         self.truckHLayout = QHBoxLayout(self)
-        self.truckName = QLabel(name)
+        self.truckNameLabel = QLabel(name)
         self.number_of_goods = number_of_goods
         self.goodTable = QTableWidget(1,number_of_goods,self)
 
-
-
-
         #combo box for truck type
 
-
         # add the widget elements to the layout
-        self.truckHLayout.addWidget(self.truckName,0)
+        self.truckHLayout.addWidget(self.truckNameLabel,0)
         self.truckHLayout.addWidget(self.goodTable,2)
 
         self.updateTable()
@@ -34,21 +31,21 @@ class TruckWidget(QWidget):
         self.goodTable.setColumnCount(self.number_of_goods)
 
         self.goodTable.setSizePolicy(QSizePolicy.MinimumExpanding,QSizePolicy.MinimumExpanding)
-        if(self.type == 0):
+        if(self.type == 'inbound'):
             self.goodTable.setVerticalHeaderLabels(['Coming'])
             self.goodTable.setMaximumHeight(50)
 
             # inbound
 
-        elif(self.type == 1):
+        elif(self.type == 'outbound'):
             # outbound
 
             self.goodTable.setVerticalHeaderLabels(['Going'])
             self.goodTable.setMaximumHeight(52)
 
-        elif(self.type == 2):
+        elif(self.type == 'compound'):
             self.goodTable.setRowCount(2)
-            self.goodTable.setVerticalHeaderLabels(['Coming','Going'])
+            self.goodTable.setVerticalHeaderLabels(['Coming', 'Going'])
             self.goodTable.setMaximumHeight(88)
 
             # compound

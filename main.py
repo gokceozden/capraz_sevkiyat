@@ -9,7 +9,7 @@ def main():
     print("Capraz sevkiyat project")
 
     solver = Solver()
-    print(solver.truck_number)
+
 
 
 if __name__ == "__main__":
