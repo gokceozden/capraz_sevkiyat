@@ -5,7 +5,8 @@ import sys
 from PySide.QtGui import *
 from src.dataWindow import DataWindow
 from src.solver import Solver
-import cPickle
+from src.data_set_window import *
+import pickle
 
 class GraphView(QGraphicsView):
     def __init__(self, scn, model = Solver()):
@@ -14,7 +15,7 @@ class GraphView(QGraphicsView):
 
     def mouseDoubleClickEvent(self, *args, **kwargs):
         
-        print(self.model.truck_dictionary['inbound']['inbound0'].coming_goods[0].amount)
+        self.model.calculate_product_per_truck()
 
 
 class MainWindow(QMainWindow):
@@ -59,8 +60,6 @@ class MainWindow(QMainWindow):
 
 
 
-
-
     def simulation_cycle(self):
         i = 0
         for inbound_trucks in self.model.inbound_trucks.values():
@@ -70,6 +69,7 @@ class MainWindow(QMainWindow):
             self.truck_image_list[truck_name].setPos(-600,i*100)
             i = i +1
         self.simulation.show()
+
 
     def loadModel(self, file_name = 'deneme'):
 
@@ -113,8 +113,8 @@ class MainWindow(QMainWindow):
 
         self.dataButton = QPushButton('Set/Inspect Data')
         self.dataButton.adjustSize()
-        self.dataButton.clicked.connect(self.showDataWindow)
-
+        self.dataButton.clicked.connect(self.showTruckDataWindow)
+        
 
         self.loadButton = QPushButton('Load Data')
         #self.loadButton.adjustSize()
@@ -126,12 +126,17 @@ class MainWindow(QMainWindow):
 
 
 
+    def showTruckDataWindow(self):
+        self.truckDataWindow = DataWindow(self.model)
+        self.truckDataWindow.show()
+
 
     def showDataWindow(self):
-        self.dataWindow = DataWindow(self.model)
-        self.dataWindow.show()
+        self.dataWindow = DataSetWindow(self.model)
+        self.dataWindow.show(
 
 
+        )
 
     def setupStatusBar(self):
 
@@ -143,6 +148,8 @@ class MainWindow(QMainWindow):
         self.setupActions()
         self.setupMenus()
 
+
+
     def setupActions(self):
         self.loadAction = QAction(QIcon('images/load.png'), '&Load', self,
                                    shortcut=QKeySequence.Open, statusTip = 'Load a saved data set', triggered = self.loadModel)
@@ -150,9 +157,10 @@ class MainWindow(QMainWindow):
         self.saveAction = QAction(QIcon('images/save.png'), '&Save', self,
                                    shortcut=QKeySequence.Save, statusTip = 'Save data set', triggered = self.saveModel)
 
-        self.dataAction = QAction(QIcon('images/save.png'), '&Data', self,
-                                   shortcut=QKeySequence.New, statusTip = 'See data set', triggered = self.showDataWindow)
+        self.truckDataAction = QAction(QIcon('images/truck.png'), '&Truck Data', self,
+                                   shortcut=QKeySequence.New, statusTip = 'See truck data set', triggered = self.showTruckDataWindow)
 
+        self.dataAction = QAction(QIcon('images/data.png'), '&Data', self, shortcut=QKeySequence.New, statusTip = 'See data set', triggered = self.showDataWindow)
 
 
 
@@ -163,6 +171,7 @@ class MainWindow(QMainWindow):
         self.mainToolBar = self.addToolBar('Main')
         self.mainToolBar.addAction(self.loadAction)
         self.mainToolBar.addAction(self.saveAction)
+        self.mainToolBar.addAction(self.truckDataAction)
         self.mainToolBar.addAction(self.dataAction)
 
 

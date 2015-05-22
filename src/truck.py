@@ -20,6 +20,7 @@ class Truck(object):
         self.truck_name = name
         Truck.number_of_trucks = Truck.number_of_trucks +1
         self.current_state = 0
+        
 
     def next_state(self):
         self.current_state = self.current_state + 1

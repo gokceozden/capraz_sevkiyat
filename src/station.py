@@ -1,7 +1,7 @@
 __author__ = 'robotes'
 
-from receiving_door import ReceivingDoor
-from shipping_doors import ShippingDoor
+from src.receiving_door import ReceivingDoor
+from src.shipping_doors import ShippingDoor
 
 class Station(object):
     """
@@ -22,10 +22,10 @@ class Station(object):
         creates a receiving door
         :return:
         """
-
-
+        
+        name = 'recv' + str(len(self.receiving_doors))
         door = ReceivingDoor()
-
+        self.receiving_doors[name] = door
 
 
     def add_shipping_door(self):
@@ -34,5 +34,7 @@ class Station(object):
         :return:
         """
 
-        door = ShippingDoor()
 
+        name = 'ship' + str(len(self.shipping_doors))
+        door = ShippingDoor()
+        self.shipping_doors[name] = door

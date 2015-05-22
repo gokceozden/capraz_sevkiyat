@@ -1,6 +1,8 @@
 __author__ = 'robotes'
 
 from src.truck import *
+import itertools
+from src.station import *
 
 class Solver(object):
     """
@@ -22,10 +24,54 @@ class Solver(object):
         self.truck_dictionary = {'inbound': self.inbound_trucks,
                             'outbound': self.outbound_trucks,
                             'compound': self.compound_trucks
-        }
+                             }
+        
+        self.alpha = [0]
+        self.gamma = [0]
+        self.loading_time = 0
+        self.changeover_time = 0
+        self.makespan_factor = 0
 
 
+        self.inbound_mu = 0
+        self.outbound_mu = 0
+        
+        self.number_of_shipping_doors = 0
+        self.number_of_receiving_doors = 0
 
+        self.product_per_inbound_truck = 0
+        self.product_per_outbound_truck = 0
+
+        self.station = Station()
+
+
+    def calculate_mu(self):
+            
+        self.inbound_mu = (len(self.inbound_truck) + len(self.compound_truck)) / self.number_of_receiving_doors
+        self.outbound_mu = (len(self.outbound_truck) + len(self.compound_truck)) / self.number_of_shipping_doors
+        
+        
+    def calculate_product_per_truck(self):
+
+        total_coming_goods = 0
+        total_going_goods = 0
+        
+        for truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
+            for good in truck.coming_goods.values():
+                total_coming_goods = total_coming_goods + good.amount
+                
+                
+        for truck in itertools.chain(self.outbound_trucks.values(), self.compound_trucks.values()):
+            for good in truck.going_goods.values():
+                total_going_goods = total_going_goods + good.amount
+
+
+        self.product_per_inbound_truck = total_coming_goods / (len(self.inbound_trucks) + len(self.compound_trucks))
+        self.product_per_outbound_truck = total_going_goods / (len(self.outbound_trucks) + len(self.compound_trucks))
+
+        
+        
+        
     def add_truck(self, type):
         """
         add a truck with given type

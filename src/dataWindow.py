@@ -16,7 +16,7 @@ class DataWindow(QWidget):
         self.inboundView = []
         self.outboundView = []
         self.compoundView = []
-        self.setWindowTitle('Data Window')
+        self.setWindowTitle('Truck Data Window')
         self.setupComponents()
         self.setGeometry(300,400,500,500)
 
@@ -127,6 +127,9 @@ class DataWindow(QWidget):
         self.numberInboundSpin.valueChanged.connect(self.dataChange)
         self.numberOutboundSpin.valueChanged.connect(self.dataChange)
         self.numberCompoundSpin.valueChanged.connect(self.dataChange)
+        self.numberShippingDoorSpin.valueChanged.connect(self.dataChange)
+        self.numberReceiveDoorSpin.valueChanged.connect(self.dataChange)
+        
         self.doneButton.clicked.connect(self.save_data)
 
 
@@ -134,11 +137,13 @@ class DataWindow(QWidget):
     def save_data(self):
 
         missing_data = False
+        
+        
         for i in range(self.numberGoodsSpin.value()):
             for inbound_truck in self.inboundView:
                 data = inbound_truck.goodTable.item(0,i)
                 if data:
-                    new_good = Good(i, data.text())
+                    new_good = Good(i, int(data.text()))
                     self.model.inbound_trucks[inbound_truck.truck_name].coming_goods[i] = new_good
                 else:
                     missing_data = True
@@ -146,7 +151,7 @@ class DataWindow(QWidget):
             for outbound_truck in self.outboundView:
                 data = outbound_truck.goodTable.item(0,i)
                 if data:
-                    new_good = Good(i, data.text())
+                    new_good = Good(i, int(data.text()))
                     self.model.outbound_trucks[outbound_truck.truck_name].going_goods[i] = new_good
                 else:
                     missing_data = True
@@ -154,14 +159,14 @@ class DataWindow(QWidget):
             for compound_truck in self.compoundView:
                 data = compound_truck.goodTable.item(0, i)
                 if data:
-                    new_good = Good(i, data.text())
+                    new_good = Good(i, int(data.text()))
                     self.model.compound_trucks[compound_truck.truck_name].coming_goods[i] = new_good
                 else:
                     missing_data = True
 
                 data = compound_truck.goodTable.item(1,i)
                 if data:
-                    new_good = Good(i, data.text())
+                    new_good = Good(i, int(data.text()))
                     self.model.compound_trucks[compound_truck.truck_name].going_goods[i] = new_good
 
                 else:
@@ -176,6 +181,9 @@ class DataWindow(QWidget):
         self.numberInboundSpin.setValue(len(self.model.inbound_trucks))
         self.numberOutboundSpin.setValue(len(self.model.outbound_trucks))
         self.numberCompoundSpin.setValue(len(self.model.compound_trucks))
+        self.numberShippingDoorSpin.setValue(self.model.number_of_shipping_doors)
+        self.numberReceiveDoorSpin.setValue(self.model.number_of_receiving_doors)
+        
         self.update_good_table()
 
 
@@ -186,7 +194,7 @@ class DataWindow(QWidget):
             self.update_good_table()
             for k in range(self.numberGoodsSpin.value()):
                 new_item = QTableWidgetItem()
-                new_item.setText(self.model.inbound_trucks[name].coming_goods[k].amount)
+                new_item.setText(str(self.model.inbound_trucks[name].coming_goods[k].amount))
                 self.inboundView[-1].goodTable.setItem(0,k,new_item)
 
 
@@ -197,7 +205,7 @@ class DataWindow(QWidget):
             self.update_good_table()
             for k in range(self.numberGoodsSpin.value()):
                 new_item = QTableWidgetItem()
-                new_item.setText(self.model.outbound_trucks[name].going_goods[k].amount)
+                new_item.setText(str(self.model.outbound_trucks[name].going_goods[k].amount))
                 self.outboundView[-1].goodTable.setItem(0,k,new_item)
 
         for i in range(len(self.model.compound_trucks)):
@@ -207,10 +215,10 @@ class DataWindow(QWidget):
             self.update_good_table()
             for k in range(self.numberGoodsSpin.value()):
                 new_coming_item = QTableWidgetItem()
-                new_coming_item.setText(self.model.compound_trucks[name].coming_goods[k].amount)
+                new_coming_item.setText(str(self.model.compound_trucks[name].coming_goods[k].amount))
                 self.compoundView[-1].goodTable.setItem(0, k, new_coming_item)
                 new_going_item = QTableWidgetItem()
-                new_going_item.setText(self.model.compound_trucks[name].going_goods[k].amount)
+                new_going_item.setText(str(self.model.compound_trucks[name].going_goods[k].amount))
                 self.compoundView[-1].goodTable.setItem(1, k, new_going_item)
 
 
@@ -221,6 +229,10 @@ class DataWindow(QWidget):
     def dataChange(self):
 
         self.model.number_of_goods = self.numberGoodsSpin.value()
+        self.model.number_of_shipping_doors = self.numberShippingDoorSpin.value()
+        self.model.number_of_receiving_doors = self.numberReceiveDoorSpin.value()
+
+        
         print('goods:', self.model.number_of_goods)
         if (self.numberInboundSpin.value() > len(self.inboundView)):
             name = self.model.add_truck('inbound')
