@@ -22,14 +22,11 @@ class Truck(object):
         self.truck_name = name
         Truck.number_of_trucks = Truck.number_of_trucks +1
         self.current_state = 0
-
-
-
-        
+        self.state_change_times = [5,10,30]
         
     def next_state(self):
         self.current_state = self.current_state + 1
-
+    
 
 class InboundTruck(Truck):
     """
@@ -63,7 +60,7 @@ class OutboundTruck(Truck):
         
     def calculate_gdj(self, two_gdj, loading_time, alpha, gamma, tightness, arrival):
         
-        self.outbound_gdj = uniform(arrival[1], two_gdj)
+        self.outbound_gdj = uniform(arrival[1], arrival[1] + two_gdj)
         print('outbound ', self.outbound_gdj)
 
 
@@ -84,7 +81,7 @@ class CompoundTruck(Truck):
     def calculate_gdj(self, two_gdj, loading_time, alpha, gamma, tightness, arrival):
         
         print('arrival', two_gdj )
-        self.outbound_gdj = uniform(arrival[1], two_gdj)
+        self.outbound_gdj = uniform(arrival[1], arrival[1] + two_gdj)
         self.inbound_gdj = uniform(arrival[0], two_gdj)
         
         print('cinbound ', self.inbound_gdj)

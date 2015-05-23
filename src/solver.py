@@ -52,6 +52,9 @@ class Solver(object):
 
         self.station = Station()
 
+        self.current_time = 0
+
+        self.time_step = 1
 
     def create_data_set(self):
             
@@ -73,7 +76,7 @@ class Solver(object):
 
         
         self.data_set = data_set
-        
+        self.end_time = 50
 
         
     def init_simulation(self):
@@ -86,9 +89,28 @@ class Solver(object):
         for data_set in self.data_set:
             for trucks in itertools.chain(self.inbound_trucks.values(), self.outbound_trucks.values(), self.compound_trucks.values()):
                 trucks.calculate_gdj(data_set.outbound_twoGD, self.loading_time, data_set.alpha, data_set.gamma, data_set.tightnessFactor, self.arrival_time)
-                
-        
 
+        while(self.current_time < self.end_time):
+            self.step()
+
+
+    def calculate(self):
+
+        pass
+                
+    def step(self):
+
+        self.current_time = self.current_time + self.time_step
+        self.check_state_changers()
+
+    def check_state_changers(self):
+            
+        for truck_types in self.truck_dictionary.values():
+            for truck in truck_types.values():
+                if self.current_time in truck.state_change_times:
+                    print('next state', self.current_time)
+                    truck.next_state()
+        
     def calculate_mu(self):
 
         self.inbound_mu = (len(self.inbound_trucks) + len(self.compound_trucks)) / self.number_of_receiving_doors
