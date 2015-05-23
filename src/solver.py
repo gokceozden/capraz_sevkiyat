@@ -3,6 +3,7 @@ __author__ = 'robotes'
 from src.truck import *
 import itertools
 from src.station import *
+from src.data_set import DataSet
 
 class Solver(object):
     """
@@ -25,13 +26,20 @@ class Solver(object):
                             'outbound': self.outbound_trucks,
                             'compound': self.compound_trucks
                              }
+
+        self.arrival_time = [0,0]
+
+
         
         self.alpha = [0]
         self.gamma = [0]
+        self.tightness_factor = [0]
+        
         self.loading_time = 0
         self.changeover_time = 0
         self.makespan_factor = 0
 
+        self.data_set = []
 
         self.inbound_mu = 0
         self.outbound_mu = 0
@@ -45,10 +53,46 @@ class Solver(object):
         self.station = Station()
 
 
-    def calculate_mu(self):
+    def create_data_set(self):
             
-        self.inbound_mu = (len(self.inbound_truck) + len(self.compound_truck)) / self.number_of_receiving_doors
-        self.outbound_mu = (len(self.outbound_truck) + len(self.compound_truck)) / self.number_of_shipping_doors
+        self.calculate_mu()
+        
+        DataSet.inbound_mu = self.inbound_mu
+        DataSet.outbound_mu = self.outbound_mu
+        DataSet.product_per_inbound_truck = self.product_per_inbound_truck
+        DataSet.product_per_outbound_truck = self.product_per_outbound_truck
+
+        
+        data_set = []
+        for alpha in self.alpha:
+            for gamma in self.gamma:
+                for tightness in self.tightness_factor:
+                    new_data_set = DataSet(alpha,gamma,tightness)
+                    new_data_set.calculate_twoDG()
+                    data_set.append(new_data_set)
+
+        
+        self.data_set = data_set
+        
+
+        
+    def init_simulation(self):
+
+
+        self.calculate_product_per_truck()
+        self.calculate_mu()
+        self.create_data_set()
+        
+        for data_set in self.data_set:
+            for trucks in itertools.chain(self.inbound_trucks.values(), self.outbound_trucks.values(), self.compound_trucks.values()):
+                trucks.calculate_gdj(data_set.outbound_twoGD, self.loading_time, data_set.alpha, data_set.gamma, data_set.tightnessFactor, self.arrival_time)
+                
+        
+
+    def calculate_mu(self):
+
+        self.inbound_mu = (len(self.inbound_trucks) + len(self.compound_trucks)) / self.number_of_receiving_doors
+        self.outbound_mu = (len(self.outbound_trucks) + len(self.compound_trucks)) / self.number_of_shipping_doors
         
         
     def calculate_product_per_truck(self):
@@ -69,7 +113,7 @@ class Solver(object):
         self.product_per_inbound_truck = total_coming_goods / (len(self.inbound_trucks) + len(self.compound_trucks))
         self.product_per_outbound_truck = total_going_goods / (len(self.outbound_trucks) + len(self.compound_trucks))
 
-        
+        print('productpertruck', self.product_per_outbound_truck)
         
         
     def add_truck(self, type):
@@ -90,11 +134,6 @@ class Solver(object):
         if(type == 'compound'):
             name = 'compound' + str(len(self.compound_trucks))
             new_truck = CompoundTruck(name, type)
-
-
-        # create a truck with given type
-
-        # add the created truck to the dictionary
 
 
         self.truck_dictionary[type][name] = new_truck

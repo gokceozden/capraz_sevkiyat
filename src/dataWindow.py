@@ -1,6 +1,7 @@
 __author__ = 'mustafa'
 
 from PySide.QtGui import *
+from PySide.QtCore import * 
 
 from src.truck_widget import TruckWidget
 from src.solver import Solver
@@ -19,7 +20,7 @@ class DataWindow(QWidget):
         self.setWindowTitle('Truck Data Window')
         self.setupComponents()
         self.setGeometry(300,400,500,500)
-
+        self.setWindowModality(Qt.ApplicationModal)
 
 
     def setupComponents(self):
@@ -177,7 +178,7 @@ class DataWindow(QWidget):
     def prev_data(self):
 
         self.numberGoodsSpin.setValue(self.model.number_of_goods)
-        print(self.model.number_of_goods)
+
         self.numberInboundSpin.setValue(len(self.model.inbound_trucks))
         self.numberOutboundSpin.setValue(len(self.model.outbound_trucks))
         self.numberCompoundSpin.setValue(len(self.model.compound_trucks))
@@ -233,7 +234,7 @@ class DataWindow(QWidget):
         self.model.number_of_receiving_doors = self.numberReceiveDoorSpin.value()
 
         
-        print('goods:', self.model.number_of_goods)
+
         if (self.numberInboundSpin.value() > len(self.inboundView)):
             name = self.model.add_truck('inbound')
             self.inboundView.append(TruckWidget(name, self.numberGoodsSpin.value(), 'inbound'))

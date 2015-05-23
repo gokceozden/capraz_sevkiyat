@@ -37,6 +37,7 @@ class MainWindow(QMainWindow):
         self.setup_simulation()
         self.truck_image_list = {}
 
+
         # remember to add an icon for the application
         # self.setWindowIcon()
 
@@ -71,14 +72,19 @@ class MainWindow(QMainWindow):
         self.simulation.show()
 
 
-    def loadModel(self, file_name = 'deneme'):
+    def loadModel(self):
+        file_name, _ = QFileDialog.getOpenFileName(self, 'Open file',
+                                                     '/home')
+        
+        self.model = pickle.load(open(file_name, 'rb'))
+        self.model.init_simulation()
 
-        self.model = cPickle.load(file_name, open(file_name, 'rb'))
-
-    def saveModel(self, file_name = 'deneme'):
-        print(self.model.truck_dictionary['inbound']['inbound0'].coming_goods[0].amount)
-        self.simulation_cycle()
-        #cPickle.dump(self.model,  open(file_name, 'wb'))
+    def saveModel(self):
+            
+        file_name, _ = QFileDialog.getSaveFileName(self, 'Save file',
+                                                     '/home')
+            
+        pickle.dump(self.model,  open(file_name, 'wb'))
 
 
     def setupComponents(self):
@@ -133,10 +139,10 @@ class MainWindow(QMainWindow):
 
     def showDataWindow(self):
         self.dataWindow = DataSetWindow(self.model)
-        self.dataWindow.show(
+        self.dataWindow.show()
 
 
-        )
+        
 
     def setupStatusBar(self):
 
@@ -149,8 +155,24 @@ class MainWindow(QMainWindow):
         self.setupMenus()
 
 
+    def newModel(self):
+        msgBox = QMessageBox()
+        msgBox.setText('Would you like to save the old data')
+        msgBox.setStandardButtons(QMessageBox.Save | QMessageBox.Cancel)
+        msgBox.setDefaultButton(QMessageBox.Save)
+        ret = msgBox.exec_()
+
+        if ret == QMessageBox.Save:
+            self.saveModel()
+        elif ret == QMessageBox.Cancel:
+            pass
+        self.model = Solver()                        
+
+        
 
     def setupActions(self):
+        
+        self.newAction = QAction(QIcon('images/new.png'), '&New', self, shortcut = QKeySequence.New, statusTip = "New data set", triggered = self.newModel)
         self.loadAction = QAction(QIcon('images/load.png'), '&Load', self,
                                    shortcut=QKeySequence.Open, statusTip = 'Load a saved data set', triggered = self.loadModel)
 
@@ -160,8 +182,14 @@ class MainWindow(QMainWindow):
         self.truckDataAction = QAction(QIcon('images/truck.png'), '&Truck Data', self,
                                    shortcut=QKeySequence.New, statusTip = 'See truck data set', triggered = self.showTruckDataWindow)
 
-        self.dataAction = QAction(QIcon('images/data.png'), '&Data', self, shortcut=QKeySequence.New, statusTip = 'See data set', triggered = self.showDataWindow)
+        self.dataAction = QAction(QIcon('images/data.png'), '&Data', self, shortcut=QKeySequence.New, statusTip = 'Set data set', triggered = self.showDataWindow)
 
+        self.showDataAction = QAction(QIcon('images/data.png'), '&Show Data', self, statusTip = "See Data Set", triggered = self.showDataSet)
+
+
+    def showDataSet(self):
+
+        self.model.init_simulation()
 
 
     def setupMenus(self):
@@ -169,11 +197,12 @@ class MainWindow(QMainWindow):
 
     def setupToolBar(self):
         self.mainToolBar = self.addToolBar('Main')
+        self.mainToolBar.addAction(self.newAction)
         self.mainToolBar.addAction(self.loadAction)
         self.mainToolBar.addAction(self.saveAction)
         self.mainToolBar.addAction(self.truckDataAction)
         self.mainToolBar.addAction(self.dataAction)
-
+        self.mainToolBar.addAction(self.showDataAction)
 
 if __name__ == '__main__':
 
