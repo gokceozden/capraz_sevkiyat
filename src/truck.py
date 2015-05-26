@@ -37,15 +37,33 @@ class InboundTruck(Truck):
         self.state_list = ('coming', 'waiting', 'dumping', 'done')
 
         Truck.number_of_inbound_trucks = Truck.number_of_inbound_trucks + 1
-        self.coming_goods = {}
+        self.coming_goods = []
 
         self.inbound_gdj = 0
-
+        self.door_number = 0
+        self.item_loading_counter = 0
+        
+    def current_action(self):
+        if (self.current_state == 2):
+            self.deploy_goods
+        
     def calculate_gdj(self, two_gdj, loading_time, alpha, gamma, tightness, arrival):
         
         self.inbound_gdj = uniform(arrival[0], two_gdj)
         print('inbound ', self.inbound_gdj)
 
+    def deploy_goods(self, loading_time, time_step):
+        self.item_loading_counter = self.item_loading_counter
+        if self.item_loading_counter == loading_time:
+            self.item_loading_counter = 0
+            self.coming_goods[-1].amount = self.coming_goods[-1].amount - 1
+            if self.coming_goods[-1].amount == 0:
+                print(self.coming_goods.pop())
+
+        
+        
+
+    
 class OutboundTruck(Truck):
     """
     outbound truck class
