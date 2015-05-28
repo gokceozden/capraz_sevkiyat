@@ -145,7 +145,8 @@ class DataWindow(QWidget):
                 data = inbound_truck.goodTable.item(0,i)
                 if data:
                     new_good = Good(i, int(data.text()))
-                    self.model.inbound_trucks[inbound_truck.truck_name].coming_goods[i] = new_good
+                    new_good.coming_truck_name = inbound_truck.truck_name
+                    self.model.inbound_trucks[inbound_truck.truck_name].coming_goods.append(new_good)
                 else:
                     missing_data = True
 
@@ -153,7 +154,7 @@ class DataWindow(QWidget):
                 data = outbound_truck.goodTable.item(0,i)
                 if data:
                     new_good = Good(i, int(data.text()))
-                    self.model.outbound_trucks[outbound_truck.truck_name].going_goods[i] = new_good
+                    self.model.outbound_trucks[outbound_truck.truck_name].going_goods.append(new_good)
                 else:
                     missing_data = True
 
@@ -161,14 +162,15 @@ class DataWindow(QWidget):
                 data = compound_truck.goodTable.item(0, i)
                 if data:
                     new_good = Good(i, int(data.text()))
-                    self.model.compound_trucks[compound_truck.truck_name].coming_goods[i] = new_good
+                    new_good.coming_truck_name = compound_truck.truck_name
+                    self.model.compound_trucks[compound_truck.truck_name].coming_goods.append(new_good)))
                 else:
                     missing_data = True
 
                 data = compound_truck.goodTable.item(1,i)
                 if data:
                     new_good = Good(i, int(data.text()))
-                    self.model.compound_trucks[compound_truck.truck_name].going_goods[i] = new_good
+                    self.model.compound_trucks[compound_truck.truck_name].going_goods.append(new_good)
 
                 else:
                     missing_data = True
@@ -269,7 +271,13 @@ class DataWindow(QWidget):
             delete_widget = self.compoundView.pop()
             delete_widget.deleteLater()
 
+        if (self.numberShippingDoorSpin.value() < len(self.model.station.shipping_doors)):
+            self.model.station.add_shipping_door()
 
+        if (self.numberReceiveDoorSpin.value() < len(self.model.station.receiving_doors)):
+            self.model.station.add_receiving_door()
+
+            
         self.update_good_table()
 
     def update_good_table(self):

@@ -11,8 +11,5 @@ class Good(object):
         """
         self.type = type
         self.amount = amount
-        #self.inbound_truck =
-        #self.outbound_truck
-        #self.arrival_time = 0
-        #self.leaving_time = 0
+
 

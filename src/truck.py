@@ -44,8 +44,14 @@ class InboundTruck(Truck):
         self.item_loading_counter = 0
         
     def current_action(self):
+        if (self.current_state == 0):
+            self.coming()
+        if (self.current_state == 1):
+            self.waiting()
         if (self.current_state == 2):
-            self.deploy_goods
+            self.deploy_goods()
+        if (self.current_state == 3):
+            self.leaving()
         
     def calculate_gdj(self, two_gdj, loading_time, alpha, gamma, tightness, arrival):
         
@@ -60,7 +66,14 @@ class InboundTruck(Truck):
             if self.coming_goods[-1].amount == 0:
                 print(self.coming_goods.pop())
 
+    def coming(self):
+        pass
+
+    def leaving(self):
+        pass
         
+    def waiting(self):
+        pass
         
 
     
@@ -80,6 +93,30 @@ class OutboundTruck(Truck):
         
         self.outbound_gdj = uniform(arrival[1], arrival[1] + two_gdj)
         print('outbound ', self.outbound_gdj)
+
+    def current_action(self):
+        if (self.current_state == 0):
+            self.coming()
+        if (self.current_state == 1):
+            self.waiting()
+        if (self.current_state == 2):
+            self.loading_goods()
+        if (self.current_state == 3):
+            self.leaving()
+            
+
+        
+    def loading_goods(self):
+        pass
+
+    def coming(self):
+        pass
+
+    def waiting(self):
+        pass
+
+    def leaving(self):
+        pass
 
 
 class CompoundTruck(Truck):
@@ -104,3 +141,42 @@ class CompoundTruck(Truck):
         
         print('cinbound ', self.inbound_gdj)
         print('coutbound ', self.outbound_gdj)
+
+
+    def current_action(self):
+        if (self.current_state == 0):
+            self.coming()
+        if (self.current_state == 1):
+            self.waiting_deploying()
+        if (self.current_state == 2):
+            self.deploy_goods()
+        if (self.current_state == 3):
+            self.transfering()
+        if (self.current_state == 4):
+            self.waiting_loading()
+        if (self.current_state == 5):
+            self.loading_goods()
+        if (self.current_state == 6):
+            self.leaving()
+
+    def deploy_goods(self):
+        pass
+
+    def waiting_deploying(self):
+        pass
+
+    
+    def loading_goods(self):
+        pass
+
+    def coming(self):
+        pass
+
+    def waiting_loading(self):
+        pass
+
+    def transfering(self):
+        pass
+
+    def leaving(self):
+        pass
