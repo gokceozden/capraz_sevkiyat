@@ -56,6 +56,22 @@ class Solver(object):
 
         self.time_step = 1
 
+
+    def create_sequence(self):
+        i = 0
+        name = 'recv'
+        self.station.clear_door_sequences()
+
+        for coming_truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
+            door_name = name + str(i)
+            i = i + 1
+            self.station.receiving_doors[door_name].sequence.append(coming_truck.truck_name)
+            if i == len(self.station.receiving_doors):
+                i = 0
+        #print(self.station.receiving_doors)
+        for name,doors in self.station.receiving_doors.items():
+         #   print(name, doors.sequence)
+
     def create_data_set(self):
             
         self.calculate_mu()
@@ -85,13 +101,14 @@ class Solver(object):
         self.calculate_product_per_truck()
         self.calculate_mu()
         self.create_data_set()
-        
-        for data_set in self.data_set:
-            for trucks in itertools.chain(self.inbound_trucks.values(), self.outbound_trucks.values(), self.compound_trucks.values()):
-                trucks.calculate_gdj(data_set.outbound_twoGD, self.loading_time, data_set.alpha, data_set.gamma, data_set.tightnessFactor, self.arrival_time)
 
-        while(self.current_time < self.end_time):
-            self.step()
+        self.create_sequence()
+        # for data_set in self.data_set:
+        #     for trucks in itertools.chain(self.inbound_trucks.values(), self.outbound_trucks.values(), self.compound_trucks.values()):
+        #         trucks.calculate_gdj(data_set.outbound_twoGD, self.loading_time, data_set.alpha, data_set.gamma, data_set.tightnessFactor, self.arrival_time)
+        #
+        # while(self.current_time < self.end_time):
+        #     self.step()
 
 
     def calculate(self):
@@ -123,12 +140,12 @@ class Solver(object):
         total_going_goods = 0
         
         for truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
-            for good in truck.coming_goods.values():
+            for good in truck.coming_goods:
                 total_coming_goods = total_coming_goods + good.amount
                 
                 
         for truck in itertools.chain(self.outbound_trucks.values(), self.compound_trucks.values()):
-            for good in truck.going_goods.values():
+            for good in truck.going_goods:
                 total_going_goods = total_going_goods + good.amount
 
 

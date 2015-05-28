@@ -53,13 +53,13 @@ class DataWindow(QWidget):
         self.numberReceiveDoorLabel = QLabel("Number of receiver doors")
         self.numberReceiveDoorLabel.setMaximumWidth(150)
         self.numberReceiveDoorSpin = QSpinBox()
-        self.numberReceiveDoorSpin.setMinimum(1)
+        self.numberReceiveDoorSpin.setMinimum(0)
         self.numberReceiveDoorSpin.setMaximumWidth(70)
 
         self.numberShippingDoorLabel = QLabel("Number of shipping doors")
         self.numberShippingDoorLabel.setMaximumWidth(150)
         self.numberShippingDoorSpin = QSpinBox()
-        self.numberShippingDoorSpin.setMinimum(1)
+        self.numberShippingDoorSpin.setMinimum(0)
         self.numberShippingDoorSpin.setMaximumWidth(70)
 
         self.numberInbound = QLabel("Number of inbound trucks")
@@ -67,15 +67,18 @@ class DataWindow(QWidget):
         self.numberInboundSpin = QSpinBox()
         self.numberInboundSpin.setMinimum(0)
 
+
         self.numberOutbound = QLabel("Number of outbound trucks")
         self.numberOutbound.setMaximumWidth(150)
         self.numberOutboundSpin = QSpinBox()
         self.numberOutboundSpin.setMinimum(0)
 
+
         self.numberCompound = QLabel("Number of compound trucks")
         self.numberCompound.setMaximumWidth(150)
         self.numberCompoundSpin = QSpinBox()
         self.numberCompoundSpin.setMinimum(0)
+
 
         self.doneButton = QPushButton("Done")
 
@@ -163,7 +166,7 @@ class DataWindow(QWidget):
                 if data:
                     new_good = Good(i, int(data.text()))
                     new_good.coming_truck_name = compound_truck.truck_name
-                    self.model.compound_trucks[compound_truck.truck_name].coming_goods.append(new_good)))
+                    self.model.compound_trucks[compound_truck.truck_name].coming_goods.append(new_good)
                 else:
                     missing_data = True
 
@@ -271,12 +274,20 @@ class DataWindow(QWidget):
             delete_widget = self.compoundView.pop()
             delete_widget.deleteLater()
 
-        if (self.numberShippingDoorSpin.value() < len(self.model.station.shipping_doors)):
+        if (self.numberShippingDoorSpin.value() > len(self.model.station.shipping_doors)):
             self.model.station.add_shipping_door()
 
-        if (self.numberReceiveDoorSpin.value() < len(self.model.station.receiving_doors)):
+
+        if (self.numberReceiveDoorSpin.value() > len(self.model.station.receiving_doors)):
             self.model.station.add_receiving_door()
 
+
+        if (self.numberShippingDoorSpin.value() < len(self.model.station.shipping_doors)):
+            self.model.station.remove_shipping_door()
+
+
+        if (self.numberReceiveDoorSpin.value() < len(self.model.station.receiving_doors)):
+            self.model.station.remove_receiving_door()
             
         self.update_good_table()
 

@@ -59,24 +59,19 @@ class InboundTruck(Truck):
         print('inbound ', self.inbound_gdj)
 
     def deploy_goods(self, loading_time, time_step):
-        self.item_loading_counter = self.item_loading_counter
-        if self.item_loading_counter == loading_time:
-            self.item_loading_counter = 0
-            self.coming_goods[-1].amount = self.coming_goods[-1].amount - 1
-            if self.coming_goods[-1].amount == 0:
-                print(self.coming_goods.pop())
+        print("deploying")
 
     def coming(self):
-        pass
+        print('waiting')
 
     def leaving(self):
-        pass
+        print("leaving")
         
     def waiting(self):
-        pass
+        print("waiting")
         
 
-    
+
 class OutboundTruck(Truck):
     """
     outbound truck class
@@ -85,7 +80,7 @@ class OutboundTruck(Truck):
         Truck.__init__(self, name, type)
         self.state_list = ('coming', 'waiting', 'filling', 'going')
         Truck.number_of_outbound_trucks = Truck.number_of_outbound_trucks + 1
-        self.going_goods = {}
+        self.going_goods = []
 
         self.outbound_gdj = 0
         
@@ -103,7 +98,6 @@ class OutboundTruck(Truck):
             self.loading_goods()
         if (self.current_state == 3):
             self.leaving()
-            
 
         
     def loading_goods(self):
@@ -127,8 +121,8 @@ class CompoundTruck(Truck):
         Truck.__init__(self, name, type)
         self.state_list = ('coming', 'waiting', 'dumping', 'transfering', 'waiting', 'fillinf', 'done')
         Truck.number_of_compound_trucks = Truck.number_of_compound_trucks + 1
-        self.coming_goods = {}
-        self.going_goods = {}
+        self.coming_goods = []
+        self.going_goods = []
         
         self.inbound_gdj = 0                
         self.outbound_gdj = 0
@@ -165,7 +159,6 @@ class CompoundTruck(Truck):
     def waiting_deploying(self):
         pass
 
-    
     def loading_goods(self):
         pass
 
