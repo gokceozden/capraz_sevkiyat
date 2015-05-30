@@ -19,4 +19,7 @@ class DataSet(object):
     def calculate_twoDG(self):
 
         self.outbound_twoGD = (2 * DataSet.outbound_mu * self.tightnessFactor * DataSet.product_per_outbound_truck)\
-                              / (2 - self.tightnessFactor * DataSet.outbound_mu * self.makespan_factor)
+        / (2 - self.tightnessFactor * DataSet.outbound_mu * self.makespan_factor)
+
+        self.inbound_twoGD = (2 * DataSet.inbound_mu * self.tightnessFactor * DataSet.product_per_inbound_truck)\
+        / (2 - self.tightnessFactor * DataSet.inbound_mu * self.makespan_factor)

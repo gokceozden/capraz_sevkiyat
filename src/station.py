@@ -17,7 +17,6 @@ class Station(object):
         self.receiving_doors = {}
         self.shipping_doors = {}
 
-
     def add_receiving_door(self):
         """
         creates a receiving door
@@ -39,7 +38,6 @@ class Station(object):
         """
         name = 'recv' + str(len(self.receiving_doors)-1)
         del self.receiving_doors[name]
-
 
     def add_shipping_door(self):
         """

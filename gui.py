@@ -8,6 +8,7 @@ from src.solver import Solver
 from src.data_set_window import *
 import pickle
 
+
 class GraphView(QGraphicsView):
     def __init__(self, scn, model = Solver()):
         QGraphicsView.__init__(self, scn)
@@ -33,14 +34,11 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.simulation)
         self.setupComponents()
 
-
         self.setup_simulation()
         self.truck_image_list = {}
 
-
         # remember to add an icon for the application
         # self.setWindowIcon()
-
 
     def setup_simulation(self):
 
@@ -58,9 +56,6 @@ class MainWindow(QMainWindow):
 
         self.simulation.show()
 
-
-
-
     def simulation_cycle(self):
         i = 0
         for inbound_trucks in self.model.inbound_trucks.values():
@@ -71,13 +66,12 @@ class MainWindow(QMainWindow):
             i = i +1
         self.simulation.show()
 
-
     def loadModel(self):
         file_name, _ = QFileDialog.getOpenFileName(self, 'Open file',
                                                      '/home')
         
         self.model = pickle.load(open(file_name, 'rb'))
-        self.model.init_simulation()
+        self.model.init_data()
 
     def saveModel(self):
             
@@ -85,7 +79,6 @@ class MainWindow(QMainWindow):
                                                      '/home')
             
         pickle.dump(self.model,  open(file_name, 'wb'))
-
 
     def setupComponents(self):
         """
@@ -109,8 +102,6 @@ class MainWindow(QMainWindow):
         self.mainGrid.addWidget(self.dataButton)
         self.setLayout(self.mainGrid)
 
-
-
     def setupButtons(self):
         """
         Setting the buttons for the main windows
@@ -120,8 +111,6 @@ class MainWindow(QMainWindow):
         self.dataButton = QPushButton('Set/Inspect Data')
         self.dataButton.adjustSize()
         self.dataButton.clicked.connect(self.showTruckDataWindow)
-        
-
         self.loadButton = QPushButton('Load Data')
         #self.loadButton.adjustSize()
         self.loadButton.clicked.connect(self.loadModel)
@@ -130,19 +119,13 @@ class MainWindow(QMainWindow):
         #self.saveButton.adjustSize()
         self.saveButton.clicked.connect(self.saveModel)
 
-
-
     def showTruckDataWindow(self):
         self.truckDataWindow = DataWindow(self.model)
         self.truckDataWindow.show()
 
-
     def showDataWindow(self):
         self.dataWindow = DataSetWindow(self.model)
         self.dataWindow.show()
-
-
-        
 
     def setupStatusBar(self):
 
@@ -153,7 +136,6 @@ class MainWindow(QMainWindow):
     def setupMenuBar(self):
         self.setupActions()
         self.setupMenus()
-
 
     def newModel(self):
         msgBox = QMessageBox()
@@ -166,9 +148,7 @@ class MainWindow(QMainWindow):
             self.saveModel()
         elif ret == QMessageBox.Cancel:
             pass
-        self.model = Solver()                        
-
-        
+        self.model = Solver()
 
     def setupActions(self):
         
@@ -186,10 +166,14 @@ class MainWindow(QMainWindow):
 
         self.showDataAction = QAction(QIcon('images/data.png'), '&Show Data', self, statusTip = "See Data Set", triggered = self.showDataSet)
 
+        self.stepAction = QAction(QIcon('images/step.png'), 'Step forward', self, statusTip = 'One step in simulation', triggered = self.stepForward)
+
+    def stepForward(self):
+        pass
 
     def showDataSet(self):
-
-        self.model.init_simulation()
+        pass
+        #self.model.init_simulation()
 
 
     def setupMenus(self):
