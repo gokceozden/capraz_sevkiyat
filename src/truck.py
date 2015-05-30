@@ -44,7 +44,9 @@ class InboundTruck(Truck):
         self.item_loading_counter = 0
         
     def current_action(self, current_time):
+
         self.current_time = current_time
+        print('truck name: ', self.truck_name, ' current_state: ' , self.state_list[self.current_state])
         if (self.current_state == 0):
             self.coming()
         if (self.current_state == 1):
@@ -56,21 +58,20 @@ class InboundTruck(Truck):
         
     def calculate_gdj(self, two_gdj, loading_time, changeover_time, alpha, gamma, tightness, arrival, outbound_mu):
         
-        self.inbound_gdj = uniform(arrival[0], two_gdj)
+        self.inbound_gdj = int(uniform(arrival[0], two_gdj))
 
     def deploy_goods(self):
-        print(self.truck_name, ": deploying")
+        pass
 
     def coming(self):
-        print(self.truck_name , ': coming')
         if (self.current_time == self.inbound_gdj):
             self.next_state()
 
     def leaving(self):
-        print(self.truck_name, ": leaving")
+        pass
         
     def waiting(self):
-        print(self.truck_name, ": waiting")
+        pass
 
 class OutboundTruck(Truck):
     """
@@ -132,7 +133,7 @@ class CompoundTruck(Truck):
         
         print('arrival', two_gdj )
         self.outbound_gdj = uniform(arrival[1], arrival[1] + two_gdj)
-        self.inbound_gdj = uniform(arrival[0], two_gdj)
+        self.inbound_gdj = int(uniform(arrival[0], two_gdj))
         self.A = self.outbound_gdj + (outbound_mu - 1) * loading_time + outbound_mu * changeover_time
         self.bounds = [self.A * alpha, self.A*(alpha + gamma)]
 
@@ -140,6 +141,8 @@ class CompoundTruck(Truck):
         print('coutbound ', self.outbound_gdj)
 
     def current_action(self, current_time):
+        print('truck name: ', self.truck_name, ' current_state: ' , self.state_list[self.current_state])
+
         self.current_time = current_time
         if (self.current_state == 0):
             self.coming()
@@ -166,7 +169,7 @@ class CompoundTruck(Truck):
         pass
 
     def coming(self):
-        print(self.truck_name , ': coming')
+        pass
 
     def waiting_loading(self):
         pass

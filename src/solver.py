@@ -63,10 +63,13 @@ class Solver(object):
         for coming_truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
             door_name = name + str(i)
             i = i + 1
-            self.station.receiving_doors[door_name].sequence.append(coming_truck.truck_name)
+            self.station.receiving_doors[door_name].sequence.append(coming_truck)
             coming_truck.deploy_door = door_name
             if i == len(self.station.receiving_doors):
                 i = 0
+
+        for door in self.station.receiving_doors.values():
+            print("number: ", door.door_number, "secuence: ", door.sequence)
 
     def create_data_set(self):
 
@@ -108,6 +111,7 @@ class Solver(object):
     def step(self):
 
         self.current_time = self.current_time + self.time_step
+        print('current time: ' , self.current_time)
         self.check_state_changers()
 
     def check_state_changers(self):
@@ -115,6 +119,9 @@ class Solver(object):
         for truck_types in self.truck_dictionary.values():
             for truck in truck_types.values():
                     truck.current_action(self.current_time)
+
+        for doors in self.station.receiving_doors.values():
+            doors.current_action()
 
     def calculate_mu(self):
 

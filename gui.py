@@ -169,12 +169,10 @@ class MainWindow(QMainWindow):
         self.stepAction = QAction(QIcon('images/step.png'), 'Step forward', self, statusTip = 'One step in simulation', triggered = self.stepForward)
 
     def stepForward(self):
-        pass
+        self.model.step()
 
     def showDataSet(self):
-        pass
-        #self.model.init_simulation()
-
+        self.model.init_iteration(0)
 
     def setupMenus(self):
         pass
@@ -187,6 +185,7 @@ class MainWindow(QMainWindow):
         self.mainToolBar.addAction(self.truckDataAction)
         self.mainToolBar.addAction(self.dataAction)
         self.mainToolBar.addAction(self.showDataAction)
+        self.mainToolBar.addAction(self.stepAction)
 
 if __name__ == '__main__':
 
