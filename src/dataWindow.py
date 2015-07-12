@@ -136,13 +136,17 @@ class DataWindow(QWidget):
         
         self.doneButton.clicked.connect(self.save_data)
 
-
-
     def save_data(self):
-
         missing_data = False
-        
-        
+        for inbound_trucks in self.model.inbound_trucks.values():
+            inbound_trucks.coming_goods = []
+        for outbound_trucks in self.model.outbound_trucks.values():
+            outbound_trucks.going_goods = []
+        for compound_trucks in self.model.compound_trucks.values():
+            compound_trucks.coming_goods = []
+            compound_trucks.going_goods = []
+
+
         for i in range(self.numberGoodsSpin.value()):
             for inbound_truck in self.inboundView:
                 data = inbound_truck.goodTable.item(0,i)
@@ -155,6 +159,7 @@ class DataWindow(QWidget):
 
             for outbound_truck in self.outboundView:
                 data = outbound_truck.goodTable.item(0,i)
+
                 if data:
                     new_good = Good(i, int(data.text()))
                     self.model.outbound_trucks[outbound_truck.truck_name].going_goods.append(new_good)
@@ -163,6 +168,7 @@ class DataWindow(QWidget):
 
             for compound_truck in self.compoundView:
                 data = compound_truck.goodTable.item(0, i)
+
                 if data:
                     new_good = Good(i, int(data.text()))
                     new_good.coming_truck_name = compound_truck.truck_name
@@ -227,18 +233,10 @@ class DataWindow(QWidget):
                 new_going_item.setText(str(self.model.compound_trucks[name].going_goods[k].amount))
                 self.compoundView[-1].goodTable.setItem(1, k, new_going_item)
 
-
-        #for view in
-
-
-
     def dataChange(self):
-
         self.model.number_of_goods = self.numberGoodsSpin.value()
         self.model.number_of_shipping_doors = self.numberShippingDoorSpin.value()
         self.model.number_of_receiving_doors = self.numberReceiveDoorSpin.value()
-
-        
 
         if (self.numberInboundSpin.value() > len(self.inboundView)):
             name = self.model.add_truck('inbound')

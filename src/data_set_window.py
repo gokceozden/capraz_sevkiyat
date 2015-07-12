@@ -139,8 +139,6 @@ class DataSetWindow(QWidget):
 
         
         self.close()
-        
-
 
     def loadData(self):
 
@@ -170,5 +168,3 @@ class DataSetWindow(QWidget):
             new_item = QTableWidgetItem()
             new_item.setText(str(self.model.tightness_factor[i]))
             self.tightnessFactorTable.setItem(0,i,new_item)
-
-        

@@ -4,6 +4,7 @@ from src.truck import *
 import itertools
 from src.station import *
 from src.data_set import DataSet
+from src.tavlama import Tavlama
 
 
 class Solver(object):
@@ -29,50 +30,72 @@ class Solver(object):
                                  }
 
         self.arrival_time = [0, 0]
-
         self.alpha = [0]
         self.gamma = [0]
         self.tightness_factor = [0]
-
         self.loading_time = 0
         self.changeover_time = 0
         self.makespan_factor = 0
-
         self.data_set = []
-
         self.inbound_mu = 0
         self.outbound_mu = 0
-
         self.number_of_shipping_doors = 0
         self.number_of_receiving_doors = 0
-
         self.product_per_inbound_truck = 0
         self.product_per_outbound_truck = 0
-
         self.station = Station()
-
         self.current_time = 0
-
+        self.set_size = 0
+        self.current_set = 0
         self.time_step = 1
+        self.end_time = 10
+        self.tavlama = None
+
+    def init_data(self):
+        self.calculate_product_per_truck()
+        self.calculate_mu()
+        self.create_data_set()
+        self.calculate()
+        self.create_sequence()
 
     def create_sequence(self):
-        i = 0
-        name = 'recv'
-        self.station.clear_door_sequences()
+        # i = 0
+        # name = 'recv'
 
-        for coming_truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
-            door_name = name + str(i)
-            i = i + 1
-            self.station.receiving_doors[door_name].sequence.append(coming_truck)
-            coming_truck.deploy_door = door_name
-            if i == len(self.station.receiving_doors):
+        self.station.clear_door_sequences()  # delete previous sequences
+
+        self.tavlama = Tavlama(self)
+        sequence = self.tavlama.initialize_sequence()
+
+        # for coming_truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
+        #     door_name = name + str(i)
+        #     i += 1
+        #     self.station.receiving_doors[door_name].sequence.append(coming_truck)
+        #     if i == len(self.station.receiving_doors):
+        #         i = 0
+        #
+
+        for door_name, truck_names in sequence.iteritems():
+            trucks = dict(self.inbound_trucks.items() + self.compound_trucks.items())
+            for truck_name in truck_names:
+                self.station.receiving_doors[door_name].sequence.append(trucks[truck_name])
+
+        for doors in self.station.receiving_doors.values():
+            doors.set_truck_doors()
+
+        i = 0
+        for going_trucks in itertools.chain(self.outbound_trucks.values(), self.compound_trucks.values()):
+            door_name = 'ship' + str(i)
+            i += 1
+            self.station.shipping_doors[door_name].sequence.append(going_trucks)
+            if i == len(self.station.shipping_doors):
                 i = 0
 
-        for door in self.station.receiving_doors.values():
-            print("number: ", door.door_number, "secuence: ", door.sequence)
+        for doors in self.station.shipping_doors.values():
+            doors.set_truck_doors()
+
 
     def create_data_set(self):
-
         self.calculate_mu()
 
         DataSet.inbound_mu = self.inbound_mu
@@ -89,47 +112,50 @@ class Solver(object):
                     data_set.append(new_data_set)
 
         self.data_set = data_set
-        self.end_time = 50
-
-    def init_data(self):
-
-        self.calculate_product_per_truck()
-        self.calculate_mu()
-        self.create_data_set()
-        self.create_sequence()
-
-    def init_iteration(self, set_number):
-        for coming_trucks in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
-            current_set = self.data_set[set_number]
-            coming_trucks.calculate_gdj(current_set.inbound_twoGD, self.loading_time, self.changeover_time, current_set.alpha, current_set.gamma, self.tightness_factor, self.arrival_time, self.inbound_mu)
-
+        self.set_size = len(self.data_set)
 
     def calculate(self):
+        for coming_trucks in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
+            current_set = self.data_set[self.current_set]
+            coming_trucks.calculate_gdj(current_set.inbound_twoGD, self.loading_time, self.changeover_time,
+                                        current_set.alpha, current_set.gamma, self.tightness_factor, self.arrival_time,
+                                        self.inbound_mu)
+            coming_trucks.loading_time = self.loading_time
 
-        pass
+        for leaving_trucks in itertools.chain(self.outbound_trucks.values(), self.compound_trucks.values()):
+            current_set = self.data_set[self.current_set]
+            leaving_trucks.calculate_gdj(current_set.outbound_twoGD, self.loading_time, self.changeover_time,
+                                        current_set.alpha, current_set.gamma, self.tightness_factor, self.arrival_time,
+                                        self.outbound_mu)
+            leaving_trucks.loading_time = self.loading_time
 
     def step(self):
-
-        self.current_time = self.current_time + self.time_step
-        print('current time: ' , self.current_time)
+        self.current_time += self.time_step
+        print('current time: ', self.current_time)
         self.check_state_changers()
 
     def check_state_changers(self):
 
         for truck_types in self.truck_dictionary.values():
             for truck in truck_types.values():
-                    truck.current_action(self.current_time)
+                truck.current_action(self.current_time)
 
-        for doors in self.station.receiving_doors.values():
+        for doors in itertools.chain(self.station.receiving_doors.values(), self.station.shipping_doors.values()):
             doors.current_action()
 
+        self.station.check_states()
+
+    # below are to set the system
     def calculate_mu(self):
 
         self.inbound_mu = (len(self.inbound_trucks) + len(self.compound_trucks)) / self.number_of_receiving_doors
         self.outbound_mu = (len(self.outbound_trucks) + len(self.compound_trucks)) / self.number_of_shipping_doors
 
-    def calculate_product_per_truck(self):
+        # changeover time
+        for trucks in self.compound_trucks.values():
+            trucks.changeover_time = self.changeover_time
 
+    def calculate_product_per_truck(self):
         total_coming_goods = 0
         total_going_goods = 0
 
@@ -147,39 +173,41 @@ class Solver(object):
     def add_truck(self, type):
         """
         add a truck with given type
+        :type self: object
         :param type: type of the truck
         :return: none
         """
-        self.number_of_trucks = self.number_of_trucks + 1
-        if (type == 'inbound'):
+        self.number_of_trucks += self.number_of_trucks
+        if type == 'inbound':
             name = 'inbound' + str(len(self.inbound_trucks))
             new_truck = InboundTruck(name, type)
 
-        if (type == 'outbound'):
+        if type == 'outbound':
             name = 'outbound' + str(len(self.outbound_trucks))
             new_truck = OutboundTruck(name, type)
 
-        if (type == 'compound'):
+        if type == 'compound':
             name = 'compound' + str(len(self.compound_trucks))
             new_truck = CompoundTruck(name, type)
 
         self.truck_dictionary[type][name] = new_truck
+
         return name
 
     def remove_truck(self, type):
-        if (type == 'inbound'):
+        if type == 'inbound':
             name = 'inbound' + str(len(self.inbound_trucks) - 1)
             del self.truck_dictionary[type][name]
 
-        if (type == 'outbound'):
+        if type == 'outbound':
             name = 'outbound' + str(len(self.outbound_trucks) - 1)
             del self.truck_dictionary[type][name]
 
-        if (type == 'compound'):
+        if type == 'compound':
             name = 'compound' + str(len(self.compound_trucks) - 1)
             del self.truck_dictionary[type][name]
 
-        self.number_of_trucks = self.number_of_trucks - 1
+        self.number_of_trucks -= self.number_of_trucks
 
     def add_good(self, type):
         """

@@ -16,6 +16,7 @@ class Station(object):
 
         self.receiving_doors = {}
         self.shipping_doors = {}
+        self.station_goods = {}
 
     def add_receiving_door(self):
         """
@@ -24,7 +25,7 @@ class Station(object):
         """
         
         name = 'recv' + str(len(self.receiving_doors))
-        door = ReceivingDoor()
+        door = ReceivingDoor(self, name)
         self.receiving_doors[name] = door
 
     def clear_door_sequences(self):
@@ -45,7 +46,7 @@ class Station(object):
         :return:
         """
         name = 'ship' + str(len(self.shipping_doors))
-        door = ShippingDoor()
+        door = ShippingDoor(self, name)
         self.shipping_doors[name] = door
 
     def remove_shipping_door(self):
@@ -55,3 +56,35 @@ class Station(object):
         """
         name = 'ship' + str(len(self.shipping_doors)-1)
         del self.shipping_doors[name]
+
+    def check_states(self):
+        for doors in itertools.chain(self.receiving_doors.values()):
+            if doors.good_list:
+                self.add_goods(doors.good_list)
+
+    def add_goods(self, goods):
+        for good in goods:
+            if good.type in self.station_goods.keys():
+                self.station_goods[good.type].append(good)
+            else:
+                self.station_goods[good.type] = []
+                self.station_goods[good.type].append(good)
+        print(self.station_goods)
+
+    def remove_goods(self, goods):
+        for good in goods:
+            max_item = None
+            moved_good = 0
+            error = good.amount - moved_good
+            while error > 0 :
+                for items in self.station_goods[good.type]:
+                    next_item = items
+                    if max_item is None or max_item.amount < next_item.amount:
+                        max_item = next_item
+                if max_item < error:
+                    moved_good += max_item
+                    max_item.amount = 0
+                elif max_item >= error:
+                    moved_good += error
+                    max_item.amount -= error
+                error = good.amount - moved_good

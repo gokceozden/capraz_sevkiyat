@@ -7,17 +7,153 @@ from src.dataWindow import DataWindow
 from src.solver import Solver
 from src.data_set_window import *
 import pickle
-
+from src.truck_info import TruckInfo
+from src.door_info import DoorInfo
+from src.station_info import StationInfo
 
 class GraphView(QGraphicsView):
     def __init__(self, scn, model = Solver()):
         QGraphicsView.__init__(self, scn)
+        self.scn = scn
         self.model = model
+        self.inbound_truck_images = {}
+        self.outbound_truck_images = {}
+        self.compound_truck_images = {}
+        self.coming_door_images = {}
+        self.shipping_door_images = {}
+        self.doors = []
+        self.goods = []
+        self.truckPixmap = QPixmap("images/truck.png")
+        self.doorPixmap = QPixmap("images/door_icon.png")
+        self.storagePixmap = QPixmap("images/storage.png")
 
-    def mouseDoubleClickEvent(self, *args, **kwargs):
-        
-        self.model.calculate_product_per_truck()
+    def mousePressEvent(self, event):
+        item = self.itemAt(event.pos())
+        for truck_name, truck_item in self.inbound_truck_images.iteritems():
+            if truck_item == item:
+                truck_info = TruckInfo(self.model.inbound_trucks[truck_name])
+                truck_info.exec_()
 
+        for truck_name, truck_item in self.outbound_truck_images.iteritems():
+            if truck_item == item:
+                truck_info = TruckInfo(self.model.outbound_trucks[truck_name])
+                truck_info.exec_()
+
+        for truck_name, truck_item in self.compound_truck_images.iteritems():
+            if truck_item == item:
+                truck_info = TruckInfo(self.model.compound_trucks[truck_name])
+                truck_info.exec_()
+
+        for door_name, door_item in self.coming_door_images.iteritems():
+            if door_item == item:
+                door_info = DoorInfo(self.model.station.receiving_doors[door_name])
+                door_info.setWindowTitle(door_name)
+                door_info.exec_()
+
+        for door_name, door_item in self.shipping_door_images.iteritems():
+            if door_item == item:
+                door_info = DoorInfo(self.model.station.shipping_doors[door_name])
+                door_info.setWindowTitle(door_name)
+                door_info.exec_()
+
+        if self.storage_image == item:
+            station_info = StationInfo(self.model.station)
+            station_info.exec_()
+
+    def init_image(self):
+        self.storage_image = self.scn.addPixmap(self.storagePixmap)
+        self.storage_image.scale(0.7,0.7)
+        self.storage_image.setPos(150,300)
+
+        self.inbound_truck_images = {}
+        self.outbound_truck_images = {}
+        self.compound_truck_images = {}
+
+        for trucks in self.model.inbound_trucks.values():
+            truck_image = self.scn.addPixmap(self.truckPixmap)
+            truck_image.scale(0.2,0.2)
+            self.inbound_truck_images[trucks.truck_name] = truck_image
+
+        for trucks in self.model.outbound_trucks.values():
+            truck_image = self.scn.addPixmap(self.truckPixmap)
+            truck_image.scale(0.2,0.2)
+            self.outbound_truck_images[trucks.truck_name] = truck_image
+
+        for trucks in self.model.compound_trucks.values():
+            truck_image = self.scn.addPixmap(self.truckPixmap)
+            truck_image.scale(0.2,0.2)
+            self.compound_truck_images[trucks.truck_name] = truck_image
+
+        i = 0
+        for door_name, doors in self.model.station.receiving_doors.iteritems():
+            door_image = self.scn.addPixmap(self.doorPixmap)
+            door_image.scale(0.4, 0.4)
+            self.coming_door_images[door_name] = door_image
+            door_image.setPos(20, 280 + i*100)
+            i += 1
+
+        i = 0
+        for door_name, doors in self.model.station.shipping_doors.iteritems():
+            door_image = self.scn.addPixmap(self.doorPixmap)
+            door_image.scale(0.4, 0.4)
+            self.shipping_door_images[door_name] = door_image
+            door_image.setPos(380, 280 + i*100)
+            i += 1
+
+        self.update_image()
+
+    def update_image(self):
+        self.calculate_trucks()
+        self.show()
+
+
+    def calculate_trucks(self):
+        i = 0
+        for truck_name, truck_image in self.inbound_truck_images.items():
+            if self.model.inbound_trucks[truck_name].current_state == 0:
+                truck_image.setPos(-600, 100*i)
+            if self.model.inbound_trucks[truck_name].current_state == 1:
+                y = self.coming_door_images[self.model.inbound_trucks[truck_name].receiving_door_name].pos().y()
+                truck_image.setPos(-200, y)
+            if self.model.inbound_trucks[truck_name].current_state == 2:
+                y = self.coming_door_images[self.model.inbound_trucks[truck_name].receiving_door_name].pos().y()
+                truck_image.setPos(-100, y)
+            if self.model.inbound_trucks[truck_name].current_state == 4:
+                truck_image.setPos(100, 800)
+            i += 1
+
+        i = 0
+        for truck_name, truck_image in self.compound_truck_images.items():
+            if self.model.compound_trucks[truck_name].current_state == 0:
+                truck_image.setPos(-600, 800 - 100*i)
+            if self.model.compound_trucks[truck_name].current_state == 1:
+                y = self.coming_door_images[self.model.compound_trucks[truck_name].receiving_door_name].pos().y()
+                truck_image.setPos(-200, y)
+            if self.model.compound_trucks[truck_name].current_state == 2:
+                y = self.coming_door_images[self.model.compound_trucks[truck_name].receiving_door_name].pos().y()
+                truck_image.setPos(-100, y)
+            if self.model.compound_trucks[truck_name].current_state == 4:
+                truck_image.setPos(100, 0)
+            if self.model.compound_trucks[truck_name].current_state == 6:
+                y = self.shipping_door_images[self.model.compound_trucks[truck_name].shipping_door_name].pos().y()
+                truck_image.setPos(500, y)
+            if self.model.compound_trucks[truck_name].current_state == 7:
+                truck_image.setPos(300, 800)
+            i += 1
+
+        i = 0
+        for truck_name, truck_image in self.outbound_truck_images.items():
+            if self.model.outbound_trucks[truck_name].current_state == 0:
+                truck_image.setPos(900, 100*i)
+            if self.model.outbound_trucks[truck_name].current_state == 1:
+                y = self.shipping_door_images[self.model.outbound_trucks[truck_name].shipping_door_name].pos().y()
+                truck_image.setPos(500, y)
+            if self.model.outbound_trucks[truck_name].current_state == 2:
+                y = self.shipping_door_images[self.model.outbound_trucks[truck_name].shipping_door_name].pos().y()
+                truck_image.setPos(500, y)
+            if self.model.outbound_trucks[truck_name].current_state == 4:
+                truck_image.setPos(300, 800)
+            i += 1
 
 class MainWindow(QMainWindow):
     """
@@ -29,10 +165,15 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Capraz Sevkiyat Projesi")
         self.setGeometry(400,400,400,400)
 
+
+        self.setupComponents()
+        self.init_simulation()
+
+    def init_simulation(self):
         self.scn = QGraphicsScene()
         self.simulation = GraphView(self.scn, self.model)
         self.setCentralWidget(self.simulation)
-        self.setupComponents()
+
 
         self.setup_simulation()
         self.truck_image_list = {}
@@ -42,18 +183,14 @@ class MainWindow(QMainWindow):
 
     def setup_simulation(self):
 
-        self.truckPixmap = QPixmap("images/truck.png")
+        # self.truckPixmap = QPixmap("images/truck.png")
         # self.truck1 = self.scn.addPixmap(self.truckPixmap)
         # self.truck2 = self.scn.addPixmap(self.truckPixmap)
         # self.truck1.scale(0.2,0.2)
         # self.truck1.setPos(100,800)
         # self.truck2.scale(0.2,0.2)
         # self.truck2.setPos(800,800)
-
-        self.scn.addRect(0,250,500,500)
-        self.scn.addLine(-400,0,-400,900)
-        self.scn.addLine(800,0,800,900)
-
+        self.simulation.init_image()
         self.simulation.show()
 
     def simulation_cycle(self):
@@ -71,7 +208,10 @@ class MainWindow(QMainWindow):
                                                      '/home')
         
         self.model = pickle.load(open(file_name, 'rb'))
+        self.simulation.model = self.model
+        self.scn.clear()
         self.model.init_data()
+        self.simulation.init_image()
 
     def saveModel(self):
             
@@ -122,10 +262,13 @@ class MainWindow(QMainWindow):
     def showTruckDataWindow(self):
         self.truckDataWindow = DataWindow(self.model)
         self.truckDataWindow.show()
+        self.scn.clear()
+        self.simulation.init_image()
 
     def showDataWindow(self):
         self.dataWindow = DataSetWindow(self.model)
         self.dataWindow.show()
+        self.simulation.init_image()
 
     def setupStatusBar(self):
 
@@ -149,6 +292,7 @@ class MainWindow(QMainWindow):
         elif ret == QMessageBox.Cancel:
             pass
         self.model = Solver()
+        self.scn.clear()
 
     def setupActions(self):
         
@@ -170,9 +314,12 @@ class MainWindow(QMainWindow):
 
     def stepForward(self):
         self.model.step()
+        self.statusBar().showMessage(str(self.model.current_time))
+        self.simulation.update_image()
 
     def showDataSet(self):
         self.model.init_iteration(0)
+        self.simulation.update_image()
 
     def setupMenus(self):
         pass
@@ -191,13 +338,7 @@ if __name__ == '__main__':
 
     myApp = QApplication(sys.argv)
     mainWindow = MainWindow()
-
-
     #mainWindow.show()
     mainWindow.showMaximized()
-
-
     myApp.exec_()
     sys.exit(0)
-
-

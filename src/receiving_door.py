@@ -4,36 +4,54 @@ class ReceivingDoor(object):
     """
     Receiving doors of the station
     """
-    def __init__(self):
+    def __init__(self,station, name):
+        self.door_name = name
+        self.trpe = 'Receiving'
         self.door_number = 0
-        self.truck_sequuence = 0
-        self.status = ['empty', 'deploying', 'waiting']
+        self.truck = 0
+        self.truck_sequence = 0
+        self.status = ['empty', 'deploying']
         self.status_number = 0
         self.good_list = []
         self.sequence = []
+        self.station = station
+        self.waiting_trucks = 0
+        self.deploying_truck = None
+
+    def set_truck_doors(self):
+        for truck in self.sequence:
+            truck.receiving_door = self
+            truck.receiving_door_name = self.door_name
 
     def current_action(self):
-        print('door number: ', self.door_number, 'state: ', self.status[self.status_number])
+        self.print_state()
         if self.status_number == 0:
             self.no_truck()
         if self.status_number == 1:
-            self.deploy_goods()
-        if self.status_number == 2:
-            self.wait()
+            self.deploying()
 
     def next_state(self):
-        self.status_number = self.status_number + 1
-
+        self.status_number += 1
 
     def wait(self):
         pass
 
     def no_truck(self):
-        next_truck = self.sequence[0]
-        if (next_truck.state_list[next_truck.current_state] == 'waiting'):
-            print('door number:' , self.door_number, '  deploying')
-            self.sequence[0].next_state()
-            self.next_state()
+        if len(self.sequence) != 0:
+            next_truck = self.sequence[0]
+            self.deploying_truck = next_truck
+            if next_truck.state_list[next_truck.current_state] == 'waiting':
+                self.sequence[0].next_state()
+                self.next_state()
 
-    def deploy_goods(self):
-        pass
+    def deploy_goods(self, goods):
+        self.station.add_goods(goods)
+        self.status_number = 0
+        self.sequence.pop(0)
+
+    def deploying(self):
+        #self.print_state()
+        pass # wait for truck
+
+    def print_state(self):
+        print('door number: ', self.door_number, 'state: ', self.status[self.status_number])
