@@ -8,20 +8,17 @@ class TruckWidget(QWidget):
     Truck Data Widget
     """
 
-    def __init__(self, name, number_of_goods, type):
+    def __init__(self, number_of_goods, type):
         QWidget.__init__(self)
         self.type = type
-        self.truck_name = name
         #create the widgets
         self.truckHLayout = QHBoxLayout(self)
-        self.truckNameLabel = QLabel(name)
         self.number_of_goods = number_of_goods
         self.goodTable = QTableWidget(1,number_of_goods,self)
 
         #combo box for truck type
 
         # add the widget elements to the layout
-        self.truckHLayout.addWidget(self.truckNameLabel,0)
         self.truckHLayout.addWidget(self.goodTable,2)
 
         self.updateTable()

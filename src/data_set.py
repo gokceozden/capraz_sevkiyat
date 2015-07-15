@@ -1,10 +1,15 @@
+__author__ = 'robotes'
+
+
 class DataSet(object):
+    """
+    stores the data setXS
+    """
     inbound_mu = 0
     outbound_mu = 0
     product_per_inbound_truck = 0
     product_per_outbound_truck = 0
 
-    
     def __init__(self, alpha, gamma, tightness_factor):
         self.alpha = alpha
         self.gamma = gamma
@@ -14,7 +19,6 @@ class DataSet(object):
         self.outbound_twoGD = 0
         self.inbound_twoGD = 0
         self.calculate_twoDG()
-        
 
     def calculate_twoDG(self):
 

@@ -1,53 +1,56 @@
 __author__ = 'robotes'
 
-
 from random import uniform
+
 
 class Truck(object):
     """
     Base class for trucks. Inbound, outbound and compound trucks will be generated from this base class
     """
-    number_of_trucks = 0
-    number_of_inbound_trucks = 0
-    number_of_outbound_trucks = 0
-    number_of_compound_trucks = 0
-
-    def __init__(self, name, type):
+    def __init__(self, truck_data):
         """
         Initialize variables for all trucks types.
         :return:
         """
-        self.truck_type = type
-        self.truck_number = Truck.number_of_trucks
-        self.truck_name = name
-        Truck.number_of_trucks += Truck.number_of_trucks
+        self.loading_time = truck_data['loading_time']
+        self.changeover_time = truck_data['changeover_time']
+        self.alpha = truck_data['alpha']
+        self.gamma = truck_data['gamma']
+        self.tightness_factor = truck_data['tightness_factor']
+        self.truck_number = truck_data['number']
+
         self.current_state = 0
-        self.state_change_times = [5,10,30]
-        self.loading_time = 0
+        self.current_time = 0
+        self.finisg_time = 0
+        self.next_action_time = 0
 
     def next_state(self):
-        self.current_state = self.current_state + 1
+        self.current_state += 1
 
 
 class InboundTruck(Truck):
     """
     inbound truck class
     """
-    def __init__(self, name, type):
-        Truck.__init__(self, name, type)
+    def __init__(self, truck_data, inbound_data):
+        Truck.__init__(self, truck_data)
+        self.truck_type = 0
         self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'done')
 
-        Truck.number_of_inbound_trucks += 1
-        self.coming_goods = []
+        self.arrival_time = inbound_data['arrival_time']
+        self.arrival_time = inbound_data['arrival_time']
+        self.inbound_mu = inbound_data['inbound_mu']
+
         self.inbound_gdj = 0
         self.door_number = 0
-        self.current_time = 0
-        self.finish_time = 0
         self.receive_door = 0
-        self.receive_door_name = ''
-        
-    def current_action(self, current_time):
+        self.coming_goods = []
 
+    def calculate_gdj(self):
+        self.inbound_gdj = int(uniform(self.arrival_time, self.inbound_mu))
+        self.next_action_time = self.inbound_gdj
+
+    def current_action(self, current_time):
         self.current_time = current_time
         #self.print_state()
         if self.current_state == 0:
@@ -60,10 +63,6 @@ class InboundTruck(Truck):
             self.deploy_goods()
         if self.current_state == 4:
             self.leaving()
-        
-    def calculate_gdj(self, two_gdj, loading_time, changeover_time, alpha, gamma, tightness, arrival, outbound_mu):
-        self.inbound_gdj = int(uniform(arrival[0], two_gdj))
-        self.finish_time = self.inbound_gdj
 
     def start_deploy(self):
         total = 0
@@ -90,14 +89,15 @@ class InboundTruck(Truck):
     def print_state(self):
         print('truck name: ', self.truck_name, ' current_state: ' , self.state_list[self.current_state])
 
+
 class OutboundTruck(Truck):
     """
     outbound truck class
     """
-    def __init__(self, name, type):
-        Truck.__init__(self, name, type)
+    def __init__(self, truck_data, outboun_data):
+        Truck.__init__(self, truck_data)
+        self.truck_type = 1
         self.state_list = ('coming', 'waiting', 'start_loading', 'loading', 'going')
-        Truck.number_of_outbound_trucks += 1
         self.going_goods = []
         self.finish_time = 0
         self.outbound_gdj = 0
@@ -151,10 +151,10 @@ class CompoundTruck(Truck):
     """
     compound truck class
     """
-    def __init__(self, name, type):
-        Truck.__init__(self, name, type)
+    def __init__(self, truck_data, compound_data):
+        Truck.__init__(self, truck_data)
+        self.truck_type = 2
         self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'transfering', 'waiting', 'start_loading', 'loading', 'going')
-        Truck.number_of_compound_trucks = Truck.number_of_compound_trucks + 1
         self.coming_goods = []
         self.going_goods = []
         

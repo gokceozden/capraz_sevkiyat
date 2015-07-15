@@ -4,14 +4,15 @@ from PySide.QtGui import *
 from PySide.QtCore import *
 
 from src.solver import Solver
+from src.data_store import DataStore
 
 class DataSetWindow(QWidget):
     """
     Data set window widget
     """
-    def __init__(self, model = Solver()):
+    def __init__(self, data=DataStore()):
         QWidget.__init__(self)
-        self.model = model
+        self.data = data
         self.setWindowTitle('Data Set Window')
         self.setWindowModality(Qt.ApplicationModal)        
         self.setupComponents()
@@ -19,15 +20,15 @@ class DataSetWindow(QWidget):
         self.setupButtons()
         self.setupComponents()
         self.setupConnections()
-        self.setupLayout()
-        self.loadData()
+        self.setup_layout()
+        self.load_data()
 
 
     def setupConnections(self):
 
-        self.numberOfGammaSpin.valueChanged.connect(self.updateTables)
-        self.numberOfAlphaSpin.valueChanged.connect(self.updateTables)
-        self.numberofTightnessSpin.valueChanged.connect(self.updateTables)
+        self.numberOfGammaSpin.valueChanged.connect(self.update_tables)
+        self.numberOfAlphaSpin.valueChanged.connect(self.update_tables)
+        self.numberofTightnessSpin.valueChanged.connect(self.update_tables)
 
         
     def setupComponents(self):
@@ -53,7 +54,7 @@ class DataSetWindow(QWidget):
         self.outboundArrivalTimeEdit = QLineEdit()
         
         self.doneButton = QPushButton('Done')
-        self.doneButton.clicked.connect(self.saveData)
+        self.doneButton.clicked.connect(self.save_data)
 
 
         self.numberOfGammaLabel = QLabel("Number of gamma values")
@@ -68,9 +69,7 @@ class DataSetWindow(QWidget):
         self.numberofTightnessSpin = QSpinBox()
         self.numberofTightnessSpin.setMinimum(1)
 
-        
-        
-    def setupLayout(self):
+    def setup_layout(self):
 
         self.dataSetForm = QFormLayout()
         self.vTableLayout = QVBoxLayout()
@@ -94,22 +93,20 @@ class DataSetWindow(QWidget):
         self.mainLayout.addLayout(self.vTableLayout)
         
         self.setLayout(self.mainLayout)
-        
 
-    def updateTables(self):
+    def update_tables(self):
 
         self.gammaTable.setColumnCount(self.numberOfGammaSpin.value())
         self.alphaTable.setColumnCount(self.numberOfAlphaSpin.value())
         self.tightnessFactorTable.setColumnCount(self.numberofTightnessSpin.value())
-        
-        
-    def saveData(self):
 
-        self.model.changeover_time = float(self.changeoverTimeEdit.text())
-        self.model.loading_time = float(self.loadingTimeEdit.text())
-        self.model.makespan_factor = float(self.makespanFactorEdit.text())
-        self.model.arrival_time[0] = float(self.inboundArrivalTimeEdit.text())
-        self.model.arrival_time[1] = float(self.outboundArrivalTimeEdit.text())
+    def save_data(self):
+
+        self.data.changeover_time = float(self.changeoverTimeEdit.text())
+        self.data.loading_time = float(self.loadingTimeEdit.text())
+        self.data.makespan_factor = float(self.makespanFactorEdit.text())
+        self.data.inbound_arrival_time = float(self.inboundArrivalTimeEdit.text())
+        self.data.outbound_arrival_time = float(self.outboundArrivalTimeEdit.text())
         
         alpha = []
         gamma = []
@@ -130,41 +127,38 @@ class DataSetWindow(QWidget):
             if data:
                 tightness.append(float(data.text()))
 
-                
-        self.model.alpha = alpha
-        self.model.gamma = gamma
-        self.model.tightness_factor = tightness
+        self.data.alpha_values = alpha
+        self.data.gamma_values = gamma
+        self.data.tightness_factor = tightness
 
-        self.model.create_data_set()
-
-        
+        self.data.create_data_set()
         self.close()
 
-    def loadData(self):
+    def load_data(self):
 
-        self.loadingTimeEdit.setText(str(self.model.loading_time))
-        self.changeoverTimeEdit.setText(str(self.model.changeover_time))
-        self.makespanFactorEdit.setText(str(self.model.makespan_factor))
-        self.inboundArrivalTimeEdit.setText(str(self.model.arrival_time[0]))
-        self.outboundArrivalTimeEdit.setText(str(self.model.arrival_time[1]))
+        self.loadingTimeEdit.setText(str(self.data.loading_time))
+        self.changeoverTimeEdit.setText(str(self.data.changeover_time))
+        self.makespanFactorEdit.setText(str(self.data.makespan_factor))
+        self.inboundArrivalTimeEdit.setText(str(self.data.inbound_arrival_time))
+        self.outboundArrivalTimeEdit.setText(str(self.data.outbound_arrival_time))
 
-        self.numberOfGammaSpin.setValue(len(self.model.gamma))
-        self.numberOfAlphaSpin.setValue(len(self.model.alpha))
-        self.numberofTightnessSpin.setValue(len(self.model.tightness_factor))
+        self.numberOfGammaSpin.setValue(len(self.data.gamma_values))
+        self.numberOfAlphaSpin.setValue(len(self.data.alpha_values))
+        self.numberofTightnessSpin.setValue(len(self.data.tightness_factors))
         
-        self.updateTables()
+        self.update_tables()
 
         for i in range(self.numberOfGammaSpin.value()):
             new_item = QTableWidgetItem()
-            new_item.setText(str(self.model.gamma[i]))
-            self.gammaTable.setItem(0,i,new_item)
+            new_item.setText(str(self.data.gamma_values[i]))
+            self.gammaTable.setItem(0, i, new_item)
 
         for i in range(self.numberOfAlphaSpin.value()):
             new_item = QTableWidgetItem()
-            new_item.setText(str(self.model.alpha[i]))
-            self.alphaTable.setItem(0,i,new_item)
+            new_item.setText(str(self.data.alpha_values[i]))
+            self.alphaTable.setItem(0, i, new_item)
 
         for i in range(self.numberofTightnessSpin.value()):
             new_item = QTableWidgetItem()
-            new_item.setText(str(self.model.tightness_factor[i]))
-            self.tightnessFactorTable.setItem(0,i,new_item)
+            new_item.setText(str(self.data.tightness_factors[i]))
+            self.tightnessFactorTable.setItem(0, i, new_item)
