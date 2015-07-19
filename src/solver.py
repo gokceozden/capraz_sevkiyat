@@ -11,7 +11,7 @@ class Solver(object):
     Solver class contains everything needed for the solution and simulation.
     """
 
-    def __init__(self, data = DataStore()):
+    def __init__(self, data=DataStore()):
         """
         Initialize trucks, the station and get ready to solve
         :return: nothing
