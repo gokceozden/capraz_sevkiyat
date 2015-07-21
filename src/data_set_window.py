@@ -47,12 +47,18 @@ class DataSetWindow(QDialog):
         self.makespanFactorLabel = QLabel("Makespan Factor")
         self.makespanFactorEdit = QLineEdit()
 
+        self.transferTimeLabel = QLabel("Truck Transfer Time")
+        self.transferTimeEdit = QLineEdit()
+
         self.inboundArrivalTimeLabel = QLabel("Inbound Arrival Time")
         self.inboundArrivalTimeEdit = QLineEdit()
 
         self.outboundArrivalTimeLabel = QLabel("Outbound Arrival Time")
         self.outboundArrivalTimeEdit = QLineEdit()
-        
+
+        self.goodTransferTimeLabel = QLabel("Good Transfer Time")
+        self.goodTransferTimeEdit = QLineEdit()
+
         self.doneButton = QPushButton('Done')
         self.doneButton.clicked.connect(self.save_data)
 
@@ -78,8 +84,10 @@ class DataSetWindow(QDialog):
         self.dataSetForm.addRow(self.loadingTimeLabel, self.loadingTimeEdit)
         self.dataSetForm.addRow(self.changeoverTimeLabel, self.changeoverTimeEdit)
         self.dataSetForm.addRow(self.makespanFactorLabel, self.makespanFactorEdit)
+        self.dataSetForm.addRow(self.transferTimeLabel, self.transferTimeEdit)
         self.dataSetForm.addRow(self.inboundArrivalTimeLabel, self.inboundArrivalTimeEdit)
         self.dataSetForm.addRow(self.outboundArrivalTimeLabel, self.outboundArrivalTimeEdit)
+        self.dataSetForm.addRow(self.goodTransferTimeLabel, self.goodTransferTimeEdit)
         self.dataSetForm.addRow(self.numberOfGammaLabel, self.numberOfGammaSpin)
         self.dataSetForm.addRow(self.numberOfAlphaLabel, self.numberOfAlphaSpin)
         self.dataSetForm.addRow(self.numberofTightnessLabel, self.numberofTightnessSpin)
@@ -105,6 +113,8 @@ class DataSetWindow(QDialog):
         self.data.changeover_time = float(self.changeoverTimeEdit.text())
         self.data.loading_time = float(self.loadingTimeEdit.text())
         self.data.makespan_factor = float(self.makespanFactorEdit.text())
+        self.data.transfer_time = float(self.transferTimeEdit.text())
+        self.data.good_transfer_time = float(self.goodTransferTimeEdit.text())
         self.data.inbound_arrival_time = float(self.inboundArrivalTimeEdit.text())
         self.data.outbound_arrival_time = float(self.outboundArrivalTimeEdit.text())
         
@@ -139,6 +149,8 @@ class DataSetWindow(QDialog):
         self.loadingTimeEdit.setText(str(self.data.loading_time))
         self.changeoverTimeEdit.setText(str(self.data.changeover_time))
         self.makespanFactorEdit.setText(str(self.data.makespan_factor))
+        self.transferTimeEdit.setText(str(self.data.transfer_time))
+        self.goodTransferTimeEdit.setText(str(self.data.good_transfer_time))
         self.inboundArrivalTimeEdit.setText(str(self.data.inbound_arrival_time))
         self.outboundArrivalTimeEdit.setText(str(self.data.outbound_arrival_time))
 

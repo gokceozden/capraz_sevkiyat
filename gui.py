@@ -38,7 +38,6 @@ class MainWindow(QMainWindow):
 
         # setup buttons
 
-
         # setup toolbar
         self.mainToolBar = self.addToolBar('Main')
         self.mainToolBar.addAction(self.newAction)
@@ -82,7 +81,7 @@ class MainWindow(QMainWindow):
         self.data = DataStore()
         self.show_truck_data()
         self.show_data()
-        self.general_info.data = self.data
+        self.general_info.start_solution(self.data)
 
     def load_data(self):
         """
@@ -93,7 +92,7 @@ class MainWindow(QMainWindow):
         self.data = pickle.load(open(file_name, 'rb'))
         self.show_truck_data()
         self.show_data()
-        self.general_info.data = self.data
+        self.general_info.start_solution(self.data)
 
     def save_model(self):
         """
@@ -117,7 +116,7 @@ class MainWindow(QMainWindow):
         :return:
         """
         self.dataWindow = DataSetWindow(self.data)
-        self.dataWindow.show()
+        self.dataWindow.exec_()
 
     def init_simulation(self):
         self.scn = QGraphicsScene()
@@ -125,12 +124,6 @@ class MainWindow(QMainWindow):
         # self.setCentralWidget(self.simulation)
 
         #self.setup_simulation()
-
-    def create_data_set(self):
-        for alpha in self.data.alpha_values:
-            for gamma in self.data.gamma_values:
-                for tightness in self.data.inbound_goods:
-                    self.data_set.append((alpha, gamma, tightness))
 
     def showDataSet(self):
         self.model.init_iteration(0)

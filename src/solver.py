@@ -44,10 +44,7 @@ class Solver(object):
         self.product_per_inbound_truck = 0
         self.product_per_outbound_truck = 0
 
-        # calculate data
-        self.calculate_mu()
-        self.calculate_product_per_truck()
-
+        # create trucks
         self.inbound_data['arrival_time'] = self.data.inbound_arrival_time
         self.inbound_data['inbound_mu'] = self.inbound_mu
 
@@ -66,8 +63,12 @@ class Solver(object):
         self.truck_data['tightness_factor'] = self.tightness_factor
 
         self.create_trucks()
+
+        # calculate data
+        self.calculate_mu()
+        self.calculate_product_per_truck()
+
         # init model solution
-        #self.station = Station()
         self.current_time = 0
         self.time_step = 1
 
@@ -87,7 +88,7 @@ class Solver(object):
         total_coming_goods = 0
         total_going_goods = 0
 
-        for amount in  itertools.chain(self.data.inbound_goods, self.data.compound_coming_goods):
+        for amount in itertools.chain(self.data.inbound_goods, self.data.compound_coming_goods):
             total_coming_goods += sum(amount)
 
         for amount in itertools.chain(self.data.outbound_goods, self.data.compound_going_goods):
@@ -95,15 +96,6 @@ class Solver(object):
 
         self.product_per_inbound_truck = total_coming_goods / self.number_of_coming_trucks
         self.product_per_outbound_truck = total_going_goods / self.number_of_going_trucks
-
-    def set_data(self, data_set):
-        """
-        sets alpha gamma and tightness factor values
-        :return:
-        """
-        self.alpha = data_set[0]
-        self.gamma = data_set[1]
-        self.tightness_factor = data_set[2]
 
     def create_trucks(self):
         """
@@ -115,40 +107,59 @@ class Solver(object):
             name = 'inbound' + str(i)
             self.inbound_trucks[name] = InboundTruck(self.truck_data, self.inbound_data)
 
+        for i in range(self.data.number_of_outbound_trucks):
+            self.truck_data['number'] = i
+            name = 'outbound' + str(i)
+            self.outbound_trucks[name] = OutboundTruck(self.truck_data, self.outbound_data)
+
+        for i in range(self.data.number_of_compound_trucks):
+            self.truck_data['number'] = i
+            name = 'compound' + str(i)
+            self.compound_trucks[name] = CompoundTruck(self.truck_data, self.compound_data)
+
+    def set_data(self, data_set_number):
+        """
+        sets alpha gamma and tightness factor values
+        :return:
+        """
+        pass
+
     def create_sequence(self):
+        pass
         # i = 0
         # name = 'recv'
 
-        self.station.clear_door_sequences()  # delete previous sequences
-
-        self.tavlama = Tavlama(self)
-        sequence = self.tavlama.initialize_sequence()
-
-        # for coming_truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
-        #     door_name = name + str(i)
+        # self.station.clear_door_sequences()  # delete previous sequences
+        #
+        # self.tavlama = Tavlama(self)
+        # sequence = self.tavlama.initialize_sequence()
+        #
+        # # for coming_truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
+        # #     door_name = name + str(i)
+        # #     i += 1
+        # #     self.station.receiving_doors[door_name].sequence.append(coming_truck)
+        # #     if i == len(self.station.receiving_doors):
+        # #         i = 0
+        # #
+        # for door_name, truck_names in sequence.iteritems():
+        #     trucks = dict(self.inbound_trucks.items() + self.compound_trucks.items())
+        #     for truck_name in truck_names:
+        #         self.station.receiving_doors[door_name].sequence.append(trucks[truck_name])
+        #
+        # for doors in self.station.receiving_doors.values():
+        #     doors.set_truck_doors()
+        #
+        # i = 0
+        # for going_trucks in itertools.chain(self.outbound_trucks.values(), self.compound_trucks.values()):
+        #     door_name = 'ship' + str(i)
         #     i += 1
-        #     self.station.receiving_doors[door_name].sequence.append(coming_truck)
-        #     if i == len(self.station.receiving_doors):
+        #     self.station.shipping_doors[door_name].sequence.append(going_trucks)
+        #     if i == len(self.station.shipping_doors):
         #         i = 0
         #
-        for door_name, truck_names in sequence.iteritems():
-            trucks = dict(self.inbound_trucks.items() + self.compound_trucks.items())
-            for truck_name in truck_names:
-                self.station.receiving_doors[door_name].sequence.append(trucks[truck_name])
+        # for doors in self.station.shipping_doors.values():
+        #     doors.set_truck_doors()
 
-        for doors in self.station.receiving_doors.values():
-            doors.set_truck_doors()
-
-        i = 0
-        for going_trucks in itertools.chain(self.outbound_trucks.values(), self.compound_trucks.values()):
-            door_name = 'ship' + str(i)
-            i += 1
-            self.station.shipping_doors[door_name].sequence.append(going_trucks)
-            if i == len(self.station.shipping_doors):
-                i = 0
-
-        for doors in self.station.shipping_doors.values():
-            doors.set_truck_doors()
 
     def next_step(self):
         self.current_time += self.time_step
@@ -166,26 +177,3 @@ class Solver(object):
 
         self.station.check_states()
 
-    def add_truck(self, type):
-        """
-        add a truck with given type
-        :type self: object
-        :param type: type of the truck
-        :return: none
-        """
-        self.number_of_trucks += self.number_of_trucks
-        if type == 'inbound':
-            name = 'inbound' + str(len(self.inbound_trucks))
-            new_truck = InboundTruck(name, type)
-
-        if type == 'outbound':
-            name = 'outbound' + str(len(self.outbound_trucks))
-            new_truck = OutboundTruck(name, type)
-
-        if type == 'compound':
-            name = 'compound' + str(len(self.compound_trucks))
-            new_truck = CompoundTruck(name, type)
-
-        self.truck_dictionary[type][name] = new_truck
-
-        return name
