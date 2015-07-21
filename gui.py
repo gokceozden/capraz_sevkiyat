@@ -10,6 +10,8 @@ import pickle
 from src.data_store import DataStore
 from src.graphview import GraphView
 from src.tavlama import Tavlama
+from src.greeting_screen import Greeting
+from src.general_info import GeneralInfo
 
 class MainWindow(QMainWindow):
     """
@@ -28,93 +30,94 @@ class MainWindow(QMainWindow):
 
         ### setup menu bar
         # setup actions
-        self.newAction = QAction(QIcon('images/new.png'), '&New', self, shortcut = QKeySequence.New, statusTip = "New data set", triggered = self.new_model)
+        self.newAction = QAction(QIcon('images/new.png'), '&New', self, shortcut = QKeySequence.New, statusTip = "New data set", triggered = self.newModel)
         self.loadAction = QAction(QIcon('images/load.png'), '&Load', self,
                                    shortcut=QKeySequence.Open, statusTip = 'Load a saved data set', triggered = self.load_data)
 
         self.saveAction = QAction(QIcon('images/save.png'), '&Save', self, shortcut=QKeySequence.Save, statusTip = 'Save data set', triggered = self.save_model)
 
-        self.truckDataAction = QAction(QIcon('images/truck.png'), '&Truck Data', self,
-                                   shortcut=QKeySequence.New, statusTip = 'See truck data set', triggered = self.show_truck_data)
-
-        self.dataAction = QAction(QIcon('images/data.png'), '&Data', self, shortcut=QKeySequence.New, statusTip = 'Set data set', triggered = self.show_data)
-
-        self.showDataAction = QAction(QIcon('images/data.png'), '&Show Data', self, statusTip = "See Data Set", triggered = self.showDataSet)
-
-        self.stepAction = QAction(QIcon('images/step.png'), 'Step forward', self, statusTip = 'One step in simulation', triggered = self.stepForward)
-
         # setup buttons
-        self.dataButton = QPushButton('Set/Inspect Data')
-        self.dataButton.adjustSize()
-        self.dataButton.clicked.connect(self.show_truck_data)
-        self.loadButton = QPushButton('Load Data')
-        self.loadButton.clicked.connect(self.load_data)
 
-        self.saveButton = QPushButton('Save Data')
-        self.saveButton.clicked.connect(self.save_model)
 
         # setup toolbar
         self.mainToolBar = self.addToolBar('Main')
         self.mainToolBar.addAction(self.newAction)
         self.mainToolBar.addAction(self.loadAction)
         self.mainToolBar.addAction(self.saveAction)
-        self.mainToolBar.addAction(self.truckDataAction)
-        self.mainToolBar.addAction(self.dataAction)
-        self.mainToolBar.addAction(self.showDataAction)
-        self.mainToolBar.addAction(self.stepAction)
 
         # setup layout
-        self.mainGrid = QGridLayout()
-        self.mainVBox = QVBoxLayout()
-        self.mainGrid.addWidget(self.dataButton)
-        self.setLayout(self.mainGrid)
+        self.general_info = GeneralInfo()
+        self.setCentralWidget(self.general_info)
 
         # empty objects
-        self.scn = None
-        self.simulation = None
         self.truck_image_list = {}
         self.truckDataWindow = None
 
         # set algoruthms
-#        self.tavlama = Tavlama()
+        # self.tavlama = Tavlama()
         self.data_set_number = 0
         self.data_set = []
 
         self.simulation_on = False
         self.data = DataStore()
+        self.greeting = Greeting()
+        self.data_screen = None
+
+    def greet(self):
+        """
+        starts a new window sequence to gather information about the system and solution
+        :return:
+        """
+        i = self.greeting.exec_()
+        if i == 1:
+            self.new_model()
+        elif i == 0:
+            self.load_data()
+
+    def newModel(self):
+        """
+
+        :return:
+        """
+        self.data = DataStore()
+        self.show_truck_data()
+        self.show_data()
+        self.general_info.data = self.data
 
     def load_data(self):
+        """
+        loads prev saved data
+        :return:
+        """
         file_name, _ = QFileDialog.getOpenFileName(self, 'Open file', '/home')
         self.data = pickle.load(open(file_name, 'rb'))
+        self.show_truck_data()
+        self.show_data()
+        self.general_info.data = self.data
 
     def save_model(self):
+        """
+        saves current data
+        :return:
+        """
         file_name, _ = QFileDialog.getSaveFileName(self, 'Save file', '/home')
         pickle.dump(self.data,  open(file_name, 'wb'))
 
     def show_truck_data(self):
+        """
+        shows data about the trucks
+        :return:
+        """
         self.truckDataWindow = TruckDataWindow(self.data)
-        self.truckDataWindow.show()
-#        self.scn.clear()
-#        self.simulation.init_image()
+        self.truckDataWindow.exec_()
 
     def show_data(self):
+        """
+        shows data set
+        :return:
+        """
         self.dataWindow = DataSetWindow(self.data)
         self.dataWindow.show()
-
-    def new_model(self):
-        msgBox = QMessageBox()
-        msgBox.setText('Would you like to save the old data')
-        msgBox.setStandardButtons(QMessageBox.Save | QMessageBox.Cancel)
-        msgBox.setDefaultButton(QMessageBox.Save)
-        ret = msgBox.exec_()
-
-        if ret == QMessageBox.Save:
-            self.save_model()
-        elif ret == QMessageBox.Cancel:
-            pass
-
-        self.data = DataStore()
-        self.scn.clear()
 
     def init_simulation(self):
         self.scn = QGraphicsScene()
@@ -122,6 +125,16 @@ class MainWindow(QMainWindow):
         # self.setCentralWidget(self.simulation)
 
         #self.setup_simulation()
+
+    def create_data_set(self):
+        for alpha in self.data.alpha_values:
+            for gamma in self.data.gamma_values:
+                for tightness in self.data.inbound_goods:
+                    self.data_set.append((alpha, gamma, tightness))
+
+    def showDataSet(self):
+        self.model.init_iteration(0)
+        self.simulation.update_image()
 
     def setup_simulation(self):
 
@@ -144,17 +157,6 @@ class MainWindow(QMainWindow):
         # self.model.step()
         # self.statusBar().showMessage(str(self.model.current_time))
         # self.simulation.update_image()
-
-    def create_data_set(self):
-        for alpha in self.data.alpha_values:
-            for gamma in self.data.gamma_values:
-                for tightness in self.data.inbound_goods:
-                    self.data_set.append((alpha, gamma, tightness))
-
-
-    def showDataSet(self):
-        self.model.init_iteration(0)
-        self.simulation.update_image()
 
 if __name__ == '__main__':
     myApp = QApplication(sys.argv)

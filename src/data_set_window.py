@@ -6,12 +6,12 @@ from PySide.QtCore import *
 from src.solver import Solver
 from src.data_store import DataStore
 
-class DataSetWindow(QWidget):
+class DataSetWindow(QDialog):
     """
     Data set window widget
     """
     def __init__(self, data=DataStore()):
-        QWidget.__init__(self)
+        QDialog.__init__(self)
         self.data = data
         self.setWindowTitle('Data Set Window')
         self.setWindowModality(Qt.ApplicationModal)        

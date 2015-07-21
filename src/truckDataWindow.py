@@ -8,12 +8,12 @@ from src.solver import Solver
 from src.good import Good
 from src.data_store import DataStore
 
-class TruckDataWindow(QWidget):
+class TruckDataWindow(QDialog):
     """
     Data window widget
     """
     def __init__(self, data=DataStore()):
-        QWidget.__init__(self)
+        QDialog.__init__(self)
         self.data = data
         self.inboundView = []
         self.outboundView = []
@@ -29,19 +29,12 @@ class TruckDataWindow(QWidget):
         Setup all the components, statusbar, menubar, toolbar
         :return:
         """
-        self.setupStatusBar()
-        self.setupMenuBar()
+
         self.setupButtons()
         self.setupLayout()
         self.prev_data()
         self.setup_connections()
         self.data_change()
-
-    def setupStatusBar(self):
-        pass
-
-    def setupMenuBar(self):
-        pass
 
     def setupButtons(self):
 
@@ -79,8 +72,6 @@ class TruckDataWindow(QWidget):
         self.numberCompoundSpin.setMinimum(0)
 
         self.doneButton = QPushButton("Done")
-
-
 
     def setupLayout(self):
         """
@@ -128,11 +119,11 @@ class TruckDataWindow(QWidget):
         self.numberCompoundSpin.valueChanged.connect(self.data_change)
         self.numberShippingDoorSpin.valueChanged.connect(self.data_change)
         self.numberReceiveDoorSpin.valueChanged.connect(self.data_change)
-        self.doneButton.clicked.connect(self.done)
+        self.doneButton.clicked.connect(self.truck_done)
 
-    def done(self):
+    def truck_done(self):
         self.save_data()
-        self.close()
+        self.accept()
 
     def save_data(self):
         self.data.calculate_truck_data()
