@@ -55,8 +55,13 @@ class GeneralInfo(QWidget):
         self.print_start_data()
 
     def choose_algorithm(self):
+        """
+        choose and algorithm
+        :return:
+        """
         self.algo_screen.exec_()
         self.iteration_limit = self.algo_screen.iteration_number
+        #get algorithm
 
     def solve(self):
         """

@@ -24,7 +24,6 @@ class Greeting(QDialog):
         self.newButton.clicked.connect(self.new_data)
         self.loadButton.clicked.connect(self.load_data)
 
-
         # layout
         self.vlayout = QVBoxLayout()
         self.vlayout.addWidget(self.newButton)

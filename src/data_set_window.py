@@ -32,9 +32,9 @@ class DataSetWindow(QDialog):
 
         
     def setupComponents(self):
-        self.gammaTable = QTableWidget(1,1)
-        self.alphaTable = QTableWidget(1,1)
-        self.tightnessFactorTable = QTableWidget(1,1)
+        self.gammaTable = QTableWidget(1, 1)
+        self.alphaTable = QTableWidget(1, 1)
+        self.tightnessFactorTable = QTableWidget(1, 1)
 
 
     def setupButtons(self):

@@ -19,6 +19,8 @@ class Truck(object):
         self.tightness_factor = truck_data['tightness_factor']
         self.truck_number = truck_data['number']
 
+        self.two_gdj = 0
+
         self.current_state = 0
         self.current_time = 0
         self.finisg_time = 0
@@ -47,7 +49,7 @@ class InboundTruck(Truck):
         self.coming_goods = []
 
     def calculate_gdj(self):
-        self.inbound_gdj = int(uniform(self.arrival_time, self.inbound_mu))
+        self.inbound_gdj = int(uniform(self.arrival_time, self.two_gdj))
         self.next_action_time = self.inbound_gdj
 
     def current_action(self, current_time):
@@ -94,7 +96,7 @@ class OutboundTruck(Truck):
     """
     outbound truck class
     """
-    def __init__(self, truck_data, outboun_data):
+    def __init__(self, truck_data, outbound_data):
         Truck.__init__(self, truck_data)
         self.truck_type = 1
         self.state_list = ('coming', 'waiting', 'start_loading', 'loading', 'going')
@@ -103,12 +105,14 @@ class OutboundTruck(Truck):
         self.outbound_gdj = 0
         self.shipping_door = 0
         self.shipping_door_name = None
+        self.arrival_time = outbound_data['arrival_time']
+        self.outbound_mu = outbound_data['outbound_mu']
 
-    def calculate_gdj(self, two_gdj, loading_time, changeover_time, alpha, gamma, tightness, arrival, outbound_mu):
+    def calculate_gdj(self):
         
-        self.outbound_gdj = uniform(arrival[1], arrival[1] + two_gdj)
-        self.A = self.outbound_gdj + (outbound_mu - 1) * loading_time + outbound_mu * changeover_time
-        self.bounds = [self.A * alpha, self.A*(alpha + gamma)]
+        self.outbound_gdj = uniform(self.arrival_time, self.two_gdj)
+        self.A = self.outbound_gdj + (self.outbound_mu - 1) * self.loading_time + self.outbound_mu * self.changeover_time
+        self.bounds = [self.A * self.alpha, self.A*(self.alpha + self.gamma)]
         self.finish_time = self.outbound_gdj
 
     def current_action(self, current_time):
@@ -161,18 +165,21 @@ class CompoundTruck(Truck):
         self.inbound_gdj = 0                
         self.outbound_gdj = 0
         self.finish_time = 0
-        self.receiviving_door = 0
+        self.receiving_door = 0
         self.shipping_door = 0
-        self.receiviving_door_name = None
+        self.receiving_door_name = None
         self.shipping_door_name = None
 
-        self.changeover_time = 0
+        # compound truck data
+        self.arrival_time = compound_data['arrival_time']
+        self.inbound_mu = compound_data['inbound_mu']
+        self.outbound_mu = compound_data['outbound_mu']
+        self.transfer_time = compound_data['transfer_time']
 
-    def calculate_gdj(self, two_gdj, loading_time,  changeover_time, alpha, gamma, tightness, arrival, outbound_mu):
-        self.outbound_gdj = uniform(arrival[1], arrival[1] + two_gdj)
-        self.inbound_gdj = int(uniform(arrival[0], two_gdj))
-        self.A = self.outbound_gdj + (outbound_mu - 1) * loading_time + outbound_mu * changeover_time
-        self.bounds = [self.A * alpha, self.A*(alpha + gamma)]
+    def calculate_gdj(self):
+        self.inbound_gdj = int(uniform(self.arrival_time, self.two_gdj))
+        A = self.inbound_gdj + (self.inbound_mu - 1) * self.loading_time + self.inbound_mu * self.changeover_time + (self.outbound_mu - 1) * self.loading_time + self.outbound_mu * self.changeover_time
+        self.bounds = [A * self.alpha, A*(self.alpha + self.gamma)]
         self.finish_time = self.inbound_gdj
 
     def current_action(self, current_time):
@@ -224,7 +231,7 @@ class CompoundTruck(Truck):
         if self.current_time == self.finish_time:
             self.receiving_door.deploy_goods(self.coming_goods)
             self.next_state()
-            self.finish_time = self.current_time + self.changeover_time
+            self.finish_time = self.current_time + self.transfer_time
 
     def waiting_deploying(self):
         pass

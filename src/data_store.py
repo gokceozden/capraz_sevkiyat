@@ -54,6 +54,11 @@ class DataStore(object):
         self.sequence_shipping_doors = []
         self.sequence = [self.sequence_receiving_doors, self.sequence_shipping_doors]
         self.create_data_set()
+        self.data_set_number = 0
+
+        # gdj values
+        self.inbound_twogdj = 0
+        self.outbound_twogdj = 0
 
     def calculate_truck_data(self):
         """
@@ -78,13 +83,17 @@ class DataStore(object):
         :param data_set_number:
         :return:
         """
+        self.data_set_number = data_set_number
         self.alpha, self.gamma, self.tightnessFactor = self.data_set_list[data_set_number]
-        self.calculate_twoDG()
+        self.calculate_twogd()
 
-    def calculate_twoDG(self):
-
-        self.outbound_twoGD = (2 * DataSet.outbound_mu * self.tightnessFactor * DataSet.product_per_outbound_truck)\
+    def calculate_twogd(self):
+        """
+        calculates upper limit for coming times
+        :return:
+        """
+        self.outbound_twogdj = (2 * DataSet.outbound_mu * self.tightnessFactor * DataSet.product_per_outbound_truck)\
         / (2 - self.tightnessFactor * DataSet.outbound_mu * self.makespan_factor)
 
-        self.inbound_twoGD = (2 * DataSet.inbound_mu * self.tightnessFactor * DataSet.product_per_inbound_truck)\
+        self.inbound_twogdj = (2 * DataSet.inbound_mu * self.tightnessFactor * DataSet.product_per_inbound_truck)\
         / (2 - self.tightnessFactor * DataSet.inbound_mu * self.makespan_factor)

@@ -4,12 +4,12 @@ class Good(object):
     """
     good object
     """
-    def __init__(self, type, amount):
+    def __init__(self, good_type, amount):
         """
         initialize type, number and truck numbers
         :return:
         """
-        self.type = str(type)
+        self.good_type = str(good_type)
         self.amount = amount
 
 

@@ -54,6 +54,7 @@ class Solver(object):
         self.compound_data['arrival_time'] = self.data.inbound_arrival_time
         self.compound_data['inbound_mu'] = self.inbound_mu
         self.compound_data['outbound_mu'] = self.outbound_mu
+        self.compound_data['transfer_time'] = self.data.transfer_time
 
         self.truck_data['loading_time'] = self.data.loading_time
         self.truck_data['changeover_time'] = self.data.changeover_time
@@ -119,9 +120,13 @@ class Solver(object):
 
     def set_data(self, data_set_number):
         """
-        sets alpha gamma and tightness factor values
+        sets alpha gamma, tightness factor and twogd values
         :return:
         """
+        for truck in self.inbound_trucks.values():
+            truck.alpha = self.data.alpha
+            truck.gamma = self.data.gamma
+            truck.two_gdj = self.data.inbound_twogdj
         pass
 
     def create_sequence(self):
@@ -159,7 +164,6 @@ class Solver(object):
         #
         # for doors in self.station.shipping_doors.values():
         #     doors.set_truck_doors()
-
 
     def next_step(self):
         self.current_time += self.time_step
