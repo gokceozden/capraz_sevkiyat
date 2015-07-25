@@ -25,6 +25,9 @@ class Solver(object):
         self.compound_data = {}
         self.truck_data = {}
         self.number_of_goods = self.data.number_of_goods
+        self.number_of_inbound_trucks = self.data.number_of_inbound_trucks
+        self.number_of_outbound_trucks = self.data.number_of_outbound_trucks
+        self.number_of_compound_trucks = self.data.number_of_compound_trucks
         self.number_of_trucks = self.data.number_of_inbound_trucks + self.data.number_of_outbound_trucks + self.data.number_of_compound_trucks
         self.number_of_coming_trucks = self.data.number_of_inbound_trucks + self.data.number_of_compound_trucks
         self.number_of_going_trucks = self.data.number_of_outbound_trucks + self.data.number_of_compound_trucks
@@ -44,17 +47,23 @@ class Solver(object):
         self.product_per_inbound_truck = 0
         self.product_per_outbound_truck = 0
 
+        # calculate data
+        self.calculate_mu()
+        self.calculate_product_per_truck()
+
         # create trucks
         self.inbound_data['arrival_time'] = self.data.inbound_arrival_time
-        self.inbound_data['inbound_mu'] = self.inbound_mu
+        self.inbound_data['mu'] = self.inbound_mu
+        self.inbound_data['product_per_truck'] = self.product_per_inbound_truck
 
         self.outbound_data['arrival_time'] = self.data.outbound_arrival_time
-        self.outbound_data['outbound_mu'] = self.outbound_mu
+        self.outbound_data['mu'] = self.outbound_mu
+        self.outbound_data['product_per_truck'] = self.product_per_outbound_truck
 
         self.compound_data['arrival_time'] = self.data.inbound_arrival_time
-        self.compound_data['inbound_mu'] = self.inbound_mu
-        self.compound_data['outbound_mu'] = self.outbound_mu
+        self.compound_data['mu'] = self.inbound_mu
         self.compound_data['transfer_time'] = self.data.transfer_time
+        self.compound_data['product_per_truck'] = self.product_per_inbound_truck
 
         self.truck_data['loading_time'] = self.data.loading_time
         self.truck_data['changeover_time'] = self.data.changeover_time
@@ -63,11 +72,8 @@ class Solver(object):
         self.truck_data['gamma'] = self.gamma
         self.truck_data['tightness_factor'] = self.tightness_factor
 
+        self.station = Station()
         self.create_trucks()
-
-        # calculate data
-        self.calculate_mu()
-        self.calculate_product_per_truck()
 
         # init model solution
         self.current_time = 0
@@ -78,8 +84,8 @@ class Solver(object):
         calculates the mu values for coming and going trucks
         :return:
         """
-        self.inbound_mu = self.number_of_coming_trucks / self.data.number_of_receiving_doors
-        self.outbound_mu = self.number_of_going_trucks / self.data.number_of_shipping_doors
+        self.inbound_mu = float(self.number_of_coming_trucks / self.data.number_of_receiving_doors)
+        self.outbound_mu = float(self.number_of_going_trucks / self.data.number_of_shipping_doors)
 
     def calculate_product_per_truck(self):
         """
@@ -106,16 +112,19 @@ class Solver(object):
         for i in range(self.data.number_of_inbound_trucks):
             self.truck_data['number'] = i
             name = 'inbound' + str(i)
+            self.truck_data['name'] = name
             self.inbound_trucks[name] = InboundTruck(self.truck_data, self.inbound_data)
 
         for i in range(self.data.number_of_outbound_trucks):
             self.truck_data['number'] = i
             name = 'outbound' + str(i)
+            self.truck_data['name'] = name
             self.outbound_trucks[name] = OutboundTruck(self.truck_data, self.outbound_data)
 
         for i in range(self.data.number_of_compound_trucks):
             self.truck_data['number'] = i
             name = 'compound' + str(i)
+            self.truck_data['name'] = name
             self.compound_trucks[name] = CompoundTruck(self.truck_data, self.compound_data)
 
     def set_data(self, data_set_number):
@@ -123,11 +132,13 @@ class Solver(object):
         sets alpha gamma, tightness factor and twogd values
         :return:
         """
+        self.data.setup_data_set(data_set_number)
+
         for truck in self.inbound_trucks.values():
             truck.alpha = self.data.alpha
             truck.gamma = self.data.gamma
-            truck.two_gdj = self.data.inbound_twogdj
-        pass
+            truck.tightness_factor = float(self.data.tightness_factor)
+            truck.calculate_gdj()
 
     def create_sequence(self):
         pass

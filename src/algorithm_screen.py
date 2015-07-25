@@ -8,7 +8,7 @@ class ChooseAlgo(QDialog):
     """
     screen to choose algorithms
     """
-    def __init__(self, algorithms=Algorithms()):
+    def __init__(self):
         """
         choose solution algorithms and set configurations
         :param algorithms:
@@ -21,7 +21,7 @@ class ChooseAlgo(QDialog):
         self.start_algo = ''
         self.next_algo = ''
         self.calculate_algo = ''
-        self.algo = algorithms
+        self.algo = Algorithms()
         self.iteration_number = 0
 
         # cobo boxes

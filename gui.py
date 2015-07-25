@@ -81,7 +81,8 @@ class MainWindow(QMainWindow):
         self.data = DataStore()
         self.show_truck_data()
         self.show_data()
-        self.general_info.start_solution(self.data)
+        self.general_info.print_start_data()
+        self.general_info.init_solution(self.data)
 
     def load_data(self):
         """
@@ -92,7 +93,8 @@ class MainWindow(QMainWindow):
         self.data = pickle.load(open(file_name, 'rb'))
         self.show_truck_data()
         self.show_data()
-        self.general_info.start_solution(self.data)
+        self.general_info.init_solution(self.data)
+        self.general_info.print_start_data()
 
     def save_model(self):
         """

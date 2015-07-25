@@ -45,7 +45,7 @@ class DataStore(object):
         self.inbound_twoGD = 0
         self.alpha = 0
         self.gamma = 0
-        self.tightnessFactor = 0
+        self.tightness_factor = 0
 
         self.data_set_list = []
 
@@ -53,7 +53,6 @@ class DataStore(object):
         self.sequence_receiving_doors = []
         self.sequence_shipping_doors = []
         self.sequence = [self.sequence_receiving_doors, self.sequence_shipping_doors]
-        self.create_data_set()
         self.data_set_number = 0
 
         # gdj values
@@ -74,7 +73,7 @@ class DataStore(object):
         """
         for alpha in self.alpha_values:
             for gamma in self.gamma_values:
-                for tightness in self.inbound_goods:
+                for tightness in self.tightness_factors:
                     self.data_set_list.append((alpha, gamma, tightness))
 
     def setup_data_set(self, data_set_number):
@@ -84,16 +83,4 @@ class DataStore(object):
         :return:
         """
         self.data_set_number = data_set_number
-        self.alpha, self.gamma, self.tightnessFactor = self.data_set_list[data_set_number]
-        self.calculate_twogd()
-
-    def calculate_twogd(self):
-        """
-        calculates upper limit for coming times
-        :return:
-        """
-        self.outbound_twogdj = (2 * DataSet.outbound_mu * self.tightnessFactor * DataSet.product_per_outbound_truck)\
-        / (2 - self.tightnessFactor * DataSet.outbound_mu * self.makespan_factor)
-
-        self.inbound_twogdj = (2 * DataSet.inbound_mu * self.tightnessFactor * DataSet.product_per_inbound_truck)\
-        / (2 - self.tightnessFactor * DataSet.inbound_mu * self.makespan_factor)
+        self.alpha, self.gamma, self.tightness_factor = self.data_set_list[data_set_number]

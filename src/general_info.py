@@ -21,17 +21,49 @@ class GeneralInfo(QWidget):
         self.data = None
         self.infoText = QTextEdit()
         self.infoText.setReadOnly(True)
-        # self.scn = QGraphicsScene()
-        # self.simulation = GraphView(self.scn, self.data)
+        self.scn = QGraphicsScene()
+        self.simulation = GraphView(self.scn)
 
-        self.layout = QGridLayout()
-        self.layout.addWidget(self.infoText, 1, 1)
+        # solution types
+        self.solution_list = {}
+        self.solution_list['iteration'] = self.solve_iteration
+        self.solution_list['step'] = self.solve_step
+        self.solution_list['data_set'] = self.solve_dataset
+        self.solution_list['solve'] = self.solve
+
+        self.solution_type = 'step'
 
         # cycle booleans
         self.time_bool = False
         self.iteration_bool = False
         self.data_set_bool = False
         self.pause_bool = False
+
+        # buttons
+        self.play_button = QPushButton("Play")
+        self.play_button.setIcon(self.style().standardIcon(QStyle.SP_MediaPlay))
+
+        self.stop_button = QPushButton("Stop")
+        self.stop_button.setIcon(self.style().standardIcon(QStyle.SP_MediaStop))
+
+        self.pause_button = QPushButton("Pause")
+        self.pause_button.setIcon(self.style().standardIcon(QStyle.SP_MediaPause))
+
+        self.play_button.setDisabled(True)
+        self.stop_button.setDisabled(True)
+        self.pause_button.setDisabled(True)
+
+        self.play_button.clicked.connect(self.start_solution)
+
+        # setup layout
+        self.layout = QGridLayout()
+        self.layout.addWidget(self.infoText, 1, 1, 1)
+        self.layout.addWidget(self.simulation, 1, 2)
+        self.h_layout = QHBoxLayout()
+        self.h_layout.addWidget(self.play_button)
+        self.h_layout.addWidget(self.stop_button)
+        self.h_layout.addWidget(self.pause_button)
+        self.layout.addLayout(self.h_layout, 2, 1)
 
         # self.layout.addWidget(self.simulation, 1, 2)
         self.setLayout(self.layout)
@@ -44,15 +76,26 @@ class GeneralInfo(QWidget):
         self.algorithms = Algorithms()
         self.algo_screen = ChooseAlgo()
 
-    def start_solution(self, data=DataStore()):
+    def init_solution(self, data=DataStore()):
         """
         Starts solution for a data set
         :param data: data store
         :return:
         """
+        self.play_button.setDisabled(False)
+        self.stop_button.setDisabled(False)
+        self.pause_button.setDisabled(False)
+
         self.data = data
         self.model = Solver(self.data)
+        self.simulation.init_image(self.model)
         self.print_start_data()
+        numbers = {'inbound': self.data.number_of_inbound_trucks, 'outbound': self.data.number_of_outbound_trucks,
+                   'compound': self.data.number_of_compound_trucks, 'receive': self.data.number_of_receiving_doors,
+                   'shipping': self.data.number_of_shipping_doors}
+        self.algorithms.set_algorithms(self.model)
+        self.model.set_data(0)
+        # self.simulation.init_image(self.model)
 
     def choose_algorithm(self):
         """
@@ -89,7 +132,15 @@ class GeneralInfo(QWidget):
         goes one time step forward
         :return:
         """
-        pass
+        if self.model.current_time == 0:
+            self.algorithms.start()
+
+    def start_solution(self):
+        """
+        does a solution depending and the solution type
+        :return:
+        """
+        self.solution_list[self.solution_type]()
 
     def print_start_data(self):
         """

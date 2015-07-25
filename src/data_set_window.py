@@ -23,19 +23,16 @@ class DataSetWindow(QDialog):
         self.setup_layout()
         self.load_data()
 
-
     def setupConnections(self):
 
         self.numberOfGammaSpin.valueChanged.connect(self.update_tables)
         self.numberOfAlphaSpin.valueChanged.connect(self.update_tables)
         self.numberofTightnessSpin.valueChanged.connect(self.update_tables)
 
-        
     def setupComponents(self):
         self.gammaTable = QTableWidget(1, 1)
         self.alphaTable = QTableWidget(1, 1)
         self.tightnessFactorTable = QTableWidget(1, 1)
-
 
     def setupButtons(self):
         self.loadingTimeLabel = QLabel("Loading Time")
@@ -61,7 +58,6 @@ class DataSetWindow(QDialog):
 
         self.doneButton = QPushButton('Done')
         self.doneButton.clicked.connect(self.save_data)
-
 
         self.numberOfGammaLabel = QLabel("Number of gamma values")
         self.numberOfGammaSpin = QSpinBox()
@@ -128,18 +124,18 @@ class DataSetWindow(QDialog):
                 alpha.append(float(data.text()))
 
         for value in range(self.numberOfGammaSpin.value()):
-            data = self.gammaTable.item(0,value)
+            data = self.gammaTable.item(0, value)
             if data:
                 gamma.append(float(data.text()))
 
         for value in range(self.numberofTightnessSpin.value()):
-            data = self.tightnessFactorTable.item(0,value)
+            data = self.tightnessFactorTable.item(0, value)
             if data:
                 tightness.append(float(data.text()))
 
         self.data.alpha_values = alpha
         self.data.gamma_values = gamma
-        self.data.tightness_factor = tightness
+        self.data.tightness_factors = tightness
 
         self.data.create_data_set()
         self.close()

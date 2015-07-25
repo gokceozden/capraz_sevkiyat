@@ -8,10 +8,10 @@ from PySide.QtGui import *
 from src.solver import Solver
 
 class GraphView(QGraphicsView):
-    def __init__(self, scn, model):
+    def __init__(self, scn):
         QGraphicsView.__init__(self, scn)
         self.scn = scn
-        self.model = model
+        self.model = None
         self.inbound_truck_images = {}
         self.outbound_truck_images = {}
         self.compound_truck_images = {}
@@ -56,7 +56,8 @@ class GraphView(QGraphicsView):
             station_info = StationInfo(self.model.station)
             station_info.exec_()
 
-    def init_image(self):
+    def init_image(self, model):
+        self.model = model
         self.storage_image = self.scn.addPixmap(self.storagePixmap)
         self.storage_image.scale(0.7,0.7)
         self.storage_image.setPos(150,300)
