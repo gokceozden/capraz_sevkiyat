@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         self.mainToolBar.addAction(self.saveAction)
 
         # setup layout
-        self.general_info = GeneralInfo()
+        self.general_info = GeneralInfo(self.mainStatusBar)
         self.setCentralWidget(self.general_info)
 
         # empty objects

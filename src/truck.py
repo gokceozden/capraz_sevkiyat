@@ -126,8 +126,8 @@ class OutboundTruck(Truck):
         self.calculate_twogd()
         self.outbound_gdj = uniform(self.arrival_time, self.two_gdj)
         # hatali formul
-        self.A = self.outbound_gdj + (self.outbound_mu - 1) * self.loading_time + self.outbound_mu * self.changeover_time
-        self.bounds = [self.A * self.alpha, self.A*(self.alpha + self.gamma)]
+        self.A = self.outbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.product_per_truck * self.loading_time
+        self.bounds = [self.A * self.alpha, self.A * self.gamma]
         self.finish_time = self.outbound_gdj
 
     def current_action(self, current_time):
@@ -189,12 +189,13 @@ class CompoundTruck(Truck):
         self.arrival_time = compound_data['arrival_time']
         self.mu = compound_data['mu']
         self.transfer_time = compound_data['transfer_time']
-        self.product_per_truck = compound_data['product_per_truck']
+        self.inbound_product_per_truck = compound_data['inbound_product_per_truck']
+        self.outbound_product_per_truck = compound_data['outbound_product_per_truck']
 
     def calculate_gdj(self):
         self.calculate_twogd()
         self.inbound_gdj = int(uniform(self.arrival_time, self.two_gdj))
-        A = self.inbound_gdj + (self.inbound_mu - 1) * self.loading_time + self.inbound_mu * self.changeover_time + (self.outbound_mu - 1) * self.loading_time + self.outbound_mu * self.changeover_time
+        A = self.inbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.inbound_product_per_truck * self.loading_time + self.transfer_time +(self.mu - 1) * self.changeover_time + self.mu * self.outbound_product_per_truck * self.loading_time
         self.bounds = [A * self.alpha, A*(self.alpha + self.gamma)]
         self.finish_time = self.inbound_gdj
 

@@ -13,6 +13,8 @@ class Algorithms(object):
         self.next_sequence_algorithms = {}
         self.calculate_algorithms = {}
 
+        self.model = None
+
         self.start_sequence_algorithms['start1'] = self.start1
 
         self.next_sequence_algorithms['random1'] = self.random1
@@ -73,19 +75,19 @@ class Algorithms(object):
             i += 1
 
         self.current_sequence.pop()
-        print(self.current_sequence)
         self.previous_sequence = self.current_sequence
         self.best_sequence = self.current_sequence
-        self.random1()
 
     def random1(self):
-        for i in range(50):
-            a,b = self.generate_random()
-            indexA = self.current_sequence.index(a)
-            indexB = self.current_sequence.index(b)
-            self.current_sequence[indexA] = b
-            self.current_sequence[indexB] = a
-            print(self.current_sequence)
+        """
+        generates a random next sequence
+        :return:
+        """
+        a, b = self.generate_random()
+        indexA = self.current_sequence.index(a)
+        indexB = self.current_sequence.index(b)
+        self.current_sequence[indexA] = b
+        self.current_sequence[indexB] = a
 
     def generate_random(self):
         a = random.choice(self.current_sequence)

@@ -63,7 +63,8 @@ class Solver(object):
         self.compound_data['arrival_time'] = self.data.inbound_arrival_time
         self.compound_data['mu'] = self.inbound_mu
         self.compound_data['transfer_time'] = self.data.transfer_time
-        self.compound_data['product_per_truck'] = self.product_per_inbound_truck
+        self.compound_data['inbound_product_per_truck'] = self.product_per_inbound_truck
+        self.compound_data['outbound_product_per_truck'] = self.product_per_outbound_truck
 
         self.truck_data['loading_time'] = self.data.loading_time
         self.truck_data['changeover_time'] = self.data.changeover_time
@@ -127,6 +128,13 @@ class Solver(object):
             self.truck_data['name'] = name
             self.compound_trucks[name] = CompoundTruck(self.truck_data, self.compound_data)
 
+        for i in range(self.data.number_of_receiving_doors):
+            self.station.add_receiving_door()
+
+        for i in range(self.data.number_of_shipping_doors):
+            self.station.add_shipping_door()
+
+
     def set_data(self, data_set_number):
         """
         sets alpha gamma, tightness factor and twogd values
@@ -140,7 +148,39 @@ class Solver(object):
             truck.tightness_factor = float(self.data.tightness_factor)
             truck.calculate_gdj()
 
-    def create_sequence(self):
+        for truck in self.outbound_trucks.values():
+            truck.alpha = self.data.alpha
+            truck.gamma = self.data.gamma
+            truck.tightness_factor = float(self.data.tightness_factor)
+            truck.calculate_gdj()
+
+        for truck in self.compound_trucks.values():
+            truck.alpha = self.data.alpha
+            truck.gamma = self.data.gamma
+            truck.tightness_factor = float(self.data.tightness_factor)
+            truck.calculate_gdj()
+
+    def set_sequence(self, sequence):
+
+        self.current_sequence = sequence
+        self.door_sequences = []
+        prev_index = 0
+        for door_number in range(self.number_of_receiving_doors - 1):
+            current_index = self.current_sequence.index(door_number)
+            door_sequence = self.current_sequence[prev_index:current_index]
+            door_name = 'recv' + str(door_number)
+            for trucks in door_sequence:
+                if trucks in self.inbound_trucks:
+                    self.inbound_trucks[trucks].receiving_door_name = door_name
+                    self.station.receiving_doors[door_name].sequence.append(self.inbound_trucks[trucks])
+                if trucks in self.compound_trucks:
+                    self.compound_trucks[trucks].receiving_door_name = door_name
+                    self.station.receiving_doors[door_name].sequence.append(self.compound_trucks[trucks])
+            prev_index = current_index + 1
+
+        self.door_sequences.append(self.current_sequence[prev_index:])
+        print(self.door_sequences)
+
         pass
         # i = 0
         # name = 'recv'

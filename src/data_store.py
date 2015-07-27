@@ -44,7 +44,7 @@ class DataStore(object):
         self.outbound_twoGD = 0
         self.inbound_twoGD = 0
         self.alpha = 0
-        self.gamma = 0
+        self.gamma  = 0
         self.tightness_factor = 0
 
         self.data_set_list = []

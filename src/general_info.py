@@ -12,7 +12,7 @@ class GeneralInfo(QWidget):
     """
     General information screen in main gui
     """
-    def __init__(self):
+    def __init__(self, status_bar):
         """
         init text screen for info
         :return:
@@ -24,6 +24,7 @@ class GeneralInfo(QWidget):
         self.scn = QGraphicsScene()
         self.simulation = GraphView(self.scn)
 
+        self.status_bar = status_bar
         # solution types
         self.solution_list = {}
         self.solution_list['iteration'] = self.solve_iteration
@@ -31,7 +32,7 @@ class GeneralInfo(QWidget):
         self.solution_list['data_set'] = self.solve_dataset
         self.solution_list['solve'] = self.solve
 
-        self.solution_type = 'step'
+        self.solution_type = 'iteration'
 
         # cycle booleans
         self.time_bool = False
@@ -53,7 +54,7 @@ class GeneralInfo(QWidget):
         self.stop_button.setDisabled(True)
         self.pause_button.setDisabled(True)
 
-        self.play_button.clicked.connect(self.start_solution)
+        self.play_button.clicked.connect(self.start_button)
 
         # setup layout
         self.layout = QGridLayout()
@@ -125,17 +126,29 @@ class GeneralInfo(QWidget):
         solves one iteration
         :return:
         """
-        pass
+        if self.current_iteration == 1:
+            self.algorithms.start()
+        # until finish step forward
+        solved_itration = False
+        self.model.set_sequence(self.algorithms.current_sequence)
+        while not solved_itration:
+            solved_itration = self.solve_step()
 
     def solve_step(self):
         """
         goes one time step forward
         :return:
         """
-        if self.model.current_time == 0:
-            self.algorithms.start()
+        self.model.next_step()
+        self.status_bar.showMessage(str(self.model.current_time))
+        print('time', self.model.current_time)
+        self.simulation.update_image()
+        if self.model.urrent_time == 50:
+            print('true')
+            return True
+        return False
 
-    def start_solution(self):
+    def start_button(self):
         """
         does a solution depending and the solution type
         :return:
