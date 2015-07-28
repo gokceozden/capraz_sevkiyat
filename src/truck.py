@@ -35,7 +35,7 @@ class Truck(object):
         calculates upper limit for coming times
         :return:
         """
-        self.two_gdj = (2 * self.mu * self.tightness_factor* self.product_per_truck) / (2 - self.tightness_factor * self.mu * self.makespan_factor)
+        self.two_gdj = (2 * self.mu * self.tightness_factor * self.product_per_truck) / (2 - self.tightness_factor * self.mu * self.makespan_factor)
 
     def next_state(self):
         self.current_state += 1
@@ -191,6 +191,13 @@ class CompoundTruck(Truck):
         self.transfer_time = compound_data['transfer_time']
         self.inbound_product_per_truck = compound_data['inbound_product_per_truck']
         self.outbound_product_per_truck = compound_data['outbound_product_per_truck']
+
+    def calculate_twogd(self):
+        """
+        calculates upper limit for coming times
+        :return:
+        """
+        self.two_gdj = (2 * self.mu * self.tightness_factor * self.inbound_product_per_truck) / (2 - self.tightness_factor * self.mu * self.makespan_factor)
 
     def calculate_gdj(self):
         self.calculate_twogd()

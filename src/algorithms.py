@@ -29,7 +29,9 @@ class Algorithms(object):
 
         # sequences
         self.start_sequence = []
-        self.current_sequence = []
+        self.current_sequence = {}
+        self.current_sequence['inbound'] = []
+        self.current_sequence['outbound'] = []
         self.previous_sequence = []
         self.next_sequence = []
         self.best_sequence = []
@@ -70,11 +72,11 @@ class Algorithms(object):
 
         i = 0
         for items in self.init_sequence:
-            self.current_sequence.extend(items)
-            self.current_sequence.extend([i])
+            self.current_sequence['inbound'].extend(items)
+            self.current_sequence['inbound'].extend([i])
             i += 1
 
-        self.current_sequence.pop()
+        self.current_sequence['inbound'].pop()
         self.previous_sequence = self.current_sequence
         self.best_sequence = self.current_sequence
 

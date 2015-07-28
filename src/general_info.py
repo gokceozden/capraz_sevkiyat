@@ -128,22 +128,25 @@ class GeneralInfo(QWidget):
         """
         if self.current_iteration == 1:
             self.algorithms.start()
+
         # until finish step forward
         solved_itration = False
-        self.model.set_sequence(self.algorithms.current_sequence)
-        while not solved_itration:
-            solved_itration = self.solve_step()
+        #while not solved_itration:
+        solved_itration = self.solve_step()
 
     def solve_step(self):
         """
         goes one time step forward
         :return:
         """
+        if self.model.current_time == 0:
+            print('start')
+            self.model.set_sequence(self.algorithms.current_sequence)
         self.model.next_step()
         self.status_bar.showMessage(str(self.model.current_time))
         print('time', self.model.current_time)
         self.simulation.update_image()
-        if self.model.urrent_time == 50:
+        if self.model.current_time == 50:
             print('true')
             return True
         return False

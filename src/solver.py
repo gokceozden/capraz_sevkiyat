@@ -5,6 +5,7 @@ from src.station import *
 from src.tavlama import Tavlama
 from src.data_store import DataStore
 from collections import OrderedDict
+from src.good import Good
 
 class Solver(object):
     """
@@ -115,19 +116,39 @@ class Solver(object):
             name = 'inbound' + str(i)
             self.truck_data['name'] = name
             self.inbound_trucks[name] = InboundTruck(self.truck_data, self.inbound_data)
+            coming_goods = self.data.inbound_goods[i]
+            for k, amount in enumerate(coming_goods):
+                new_good = Good(k, amount)
+                self.inbound_trucks[name].coming_goods.append(new_good)
 
         for i in range(self.data.number_of_outbound_trucks):
             self.truck_data['number'] = i
             name = 'outbound' + str(i)
             self.truck_data['name'] = name
             self.outbound_trucks[name] = OutboundTruck(self.truck_data, self.outbound_data)
+            going_goods = self.data.outbound_goods[i]
+            for k, amount in enumerate(going_goods):
+                new_good = Good(k, amount)
+                self.outbound_trucks[name].going_goods.append(new_good)
+
 
         for i in range(self.data.number_of_compound_trucks):
             self.truck_data['number'] = i
             name = 'compound' + str(i)
             self.truck_data['name'] = name
             self.compound_trucks[name] = CompoundTruck(self.truck_data, self.compound_data)
+            coming_goods = self.data.compound_coming_goods[i]
+            going_goods = self.data.compound_going_goods[i]
+            for k, amount in enumerate(coming_goods):
+                print('amount', amount)
+                new_good = Good(k, amount)
+                self.compound_trucks[name].coming_goods.append(new_good)
+            for k, amount in enumerate(going_goods):
+                new_good = Good(k, amount)
+                self.compound_trucks[name].going_goods.append(new_good)
 
+
+        # add doors
         for i in range(self.data.number_of_receiving_doors):
             self.station.add_receiving_door()
 
@@ -161,25 +182,37 @@ class Solver(object):
             truck.calculate_gdj()
 
     def set_sequence(self, sequence):
-
-        self.current_sequence = sequence
+        """
+        sets sequence to trucks and doors
+        :param sequence:
+        :return:
+        """
+        self.current_sequence = sequence['inbound']
         self.door_sequences = []
         prev_index = 0
+
         for door_number in range(self.number_of_receiving_doors - 1):
             current_index = self.current_sequence.index(door_number)
             door_sequence = self.current_sequence[prev_index:current_index]
-            door_name = 'recv' + str(door_number)
+            self.door_sequences.append(door_sequence)
+        self.door_sequences.append(self.current_sequence[prev_index:])
+        print(self.door_sequences)
+
+        for i, door_sequence in enumerate(self.door_sequences):
+            door_name = 'recv' + str(i)
+            print('door_sequence', door_sequence)
             for trucks in door_sequence:
                 if trucks in self.inbound_trucks:
+                    print('truck', trucks)
                     self.inbound_trucks[trucks].receiving_door_name = door_name
                     self.station.receiving_doors[door_name].sequence.append(self.inbound_trucks[trucks])
                 if trucks in self.compound_trucks:
                     self.compound_trucks[trucks].receiving_door_name = door_name
                     self.station.receiving_doors[door_name].sequence.append(self.compound_trucks[trucks])
-            prev_index = current_index + 1
-
-        self.door_sequences.append(self.current_sequence[prev_index:])
-        print(self.door_sequences)
+            #prev_index = current_index + 1
+        #
+        # self.door_sequences.append(self.current_sequence[prev_index:])
+        # print(self.door_sequences)
 
         pass
         # i = 0

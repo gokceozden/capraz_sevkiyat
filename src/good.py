@@ -9,7 +9,7 @@ class Good(object):
         initialize type, number and truck numbers
         :return:
         """
-        self.good_type = str(good_type)
+        self.type = str(good_type)
         self.amount = amount
 
 
