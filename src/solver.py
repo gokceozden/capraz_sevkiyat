@@ -131,7 +131,6 @@ class Solver(object):
                 new_good = Good(k, amount)
                 self.outbound_trucks[name].going_goods.append(new_good)
 
-
         for i in range(self.data.number_of_compound_trucks):
             self.truck_data['number'] = i
             name = 'compound' + str(i)
@@ -196,7 +195,6 @@ class Solver(object):
             door_sequence = self.current_sequence[prev_index:current_index]
             self.door_sequences.append(door_sequence)
         self.door_sequences.append(self.current_sequence[prev_index:])
-        print(self.door_sequences)
 
         for i, door_sequence in enumerate(self.door_sequences):
             door_name = 'recv' + str(i)
@@ -209,12 +207,29 @@ class Solver(object):
                 if trucks in self.compound_trucks:
                     self.compound_trucks[trucks].receiving_door_name = door_name
                     self.station.receiving_doors[door_name].sequence.append(self.compound_trucks[trucks])
+
+        for door_number in range(self.number_of_shipping_doors - 1):
+            current_index = self.current_sequence.index(door_number)
+            door_sequence = self.current_sequence[prev_index:current_index]
+            self.door_sequences.append(door_sequence)
+        self.door_sequences.append(self.current_sequence[prev_index:])
+
+        for i, door_sequence in enumerate(self.door_sequences):
+            door_name = 'ship' + str(i)
+            print('door_sequence', door_sequence)
+            for trucks in door_sequence:
+                if trucks in self.inbound_trucks:
+                    print('truck', trucks)
+                    self.inbound_trucks[trucks].receiving_door_name = door_name
+                    self.station.receiving_doors[door_name].sequence.append(self.inbound_trucks[trucks])
+                if trucks in self.compound_trucks:
+                    self.compound_trucks[trucks].receiving_door_name = door_name
+                    self.station.receiving_doors[door_name].sequence.append(self.compound_trucks[trucks])
+
             #prev_index = current_index + 1
         #
         # self.door_sequences.append(self.current_sequence[prev_index:])
         # print(self.door_sequences)
-
-        pass
         # i = 0
         # name = 'recv'
 

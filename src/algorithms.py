@@ -32,9 +32,9 @@ class Algorithms(object):
         self.current_sequence = {}
         self.current_sequence['inbound'] = []
         self.current_sequence['outbound'] = []
-        self.previous_sequence = []
-        self.next_sequence = []
-        self.best_sequence = []
+        self.previous_sequence = {}
+        self.next_sequence = {}
+        self.best_sequence = {}
 
     def set_algorithms(self, model):
         self.model = model
@@ -77,6 +77,33 @@ class Algorithms(object):
             i += 1
 
         self.current_sequence['inbound'].pop()
+
+        # outboun
+        self.init_sequence = [[] for i in range(self.model.number_of_shipping_doors)]
+        unsorted_trucks = []
+        # sort trucks
+        for truck in itertools.chain(self.model.outbound_trucks.values(), self.model.compound_trucks.values()):
+            truck_times = (truck.truck_name, truck.finish_time)
+            unsorted_trucks.append(truck_times)
+
+        sorted_trucks = [truck for (truck, time) in sorted(unsorted_trucks)]
+        i = 0
+        for truck in sorted_trucks:
+            self.init_sequence[i].append(truck)
+            i += 1
+            if i == self.model.number_of_shipping_doors:
+                i = 0
+
+        i = 0
+        for items in self.init_sequence:
+            self.current_sequence['outbound'].extend(items)
+            self.current_sequence['outbound'].extend([i])
+            i += 1
+
+        self.current_sequence['outbound'].pop()
+        print(self.current_sequence)
+
+
         self.previous_sequence = self.current_sequence
         self.best_sequence = self.current_sequence
 

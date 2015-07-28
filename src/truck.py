@@ -200,6 +200,10 @@ class CompoundTruck(Truck):
         self.two_gdj = (2 * self.mu * self.tightness_factor * self.inbound_product_per_truck) / (2 - self.tightness_factor * self.mu * self.makespan_factor)
 
     def calculate_gdj(self):
+        """
+        calculate gdj
+        :return:
+        """
         self.calculate_twogd()
         self.inbound_gdj = int(uniform(self.arrival_time, self.two_gdj))
         A = self.inbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.inbound_product_per_truck * self.loading_time + self.transfer_time +(self.mu - 1) * self.changeover_time + self.mu * self.outbound_product_per_truck * self.loading_time
