@@ -35,7 +35,7 @@ class GeneralInfo(QWidget):
         self.solution_type = 'iteration'
 
         # cycle booleans
-        self.time_bool = False
+        self.step_bool = False
         self.iteration_bool = False
         self.data_set_bool = False
         self.pause_bool = False
@@ -54,6 +54,9 @@ class GeneralInfo(QWidget):
         self.stop_button.setDisabled(True)
         self.pause_button.setDisabled(True)
 
+        self.solution_type_combo = QComboBox()
+        self.solution_type_combo.addItems(self.solution_list.keys())
+
         self.play_button.clicked.connect(self.start_button)
 
         # setup layout
@@ -64,6 +67,7 @@ class GeneralInfo(QWidget):
         self.h_layout.addWidget(self.play_button)
         self.h_layout.addWidget(self.stop_button)
         self.h_layout.addWidget(self.pause_button)
+        self.h_layout.addWidget(self.solution_type_combo)
         self.layout.addLayout(self.h_layout, 2, 1)
 
         # self.layout.addWidget(self.simulation, 1, 2)
@@ -76,6 +80,8 @@ class GeneralInfo(QWidget):
         self.data_string = ''
         self.algorithms = Algorithms()
         self.algo_screen = ChooseAlgo()
+
+        self.trial_time = 0
 
     def init_solution(self, data=DataStore()):
         """
@@ -112,6 +118,8 @@ class GeneralInfo(QWidget):
         solves all of the data sets
         :return:
         """
+        self.solve_dataset()
+        print('solve')
         pass
 
     def solve_dataset(self):
@@ -119,6 +127,8 @@ class GeneralInfo(QWidget):
         solves one data set
         :return:
         """
+        print('data_set')
+        self.solve_iteration()
         pass
 
     def solve_iteration(self):
@@ -126,37 +136,44 @@ class GeneralInfo(QWidget):
         solves one iteration
         :return:
         """
-        if self.current_iteration == 1:
-            self.algorithms.start()
+        print('iteration')
+
+        # if self.current_iteration == 1:
+        #     self.algorithms.start()
 
         # until finish step forward
-        solved_itration = False
+
         #while not solved_itration:
-        solved_itration = self.solve_step()
 
     def solve_step(self):
         """
         goes one time step forward
         :return:
         """
-        if self.model.current_time == 0:
-            print('start')
-            self.model.set_sequence(self.algorithms.current_sequence)
-        self.model.next_step()
-        self.status_bar.showMessage(str(self.model.current_time))
-        print('time', self.model.current_time)
-        self.simulation.update_image()
-        if self.model.current_time == 50:
-            print('true')
+        print('step', self.trial_time)
+        if self.trial_time == 50:
+            self.trial_time = 0
             return True
-        return False
+        else:
+            self.trial_time += 1
+        # if self.model.current_time == 0:
+        #     print('start')
+        #     self.model.set_sequence(self.algorithms.current_sequence)
+        # self.model.next_step()
+        # self.status_bar.showMessage(str(self.model.current_time))
+        # print('time', self.model.current_time)
+        # self.simulation.update_image()
+        # if self.model.current_time == 50:
+        #     print('true')
+        #     return True
+        # return False
 
     def start_button(self):
         """
         does a solution depending and the solution type
         :return:
         """
-        self.solution_list[self.solution_type]()
+        self.solve()
 
     def print_start_data(self):
         """
