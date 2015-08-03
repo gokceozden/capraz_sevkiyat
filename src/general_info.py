@@ -35,6 +35,7 @@ class GeneralInfo(QWidget):
         self.solution_type = 'iteration'
 
         # cycle booleans
+        self.solve_bool = False
         self.step_bool = False
         self.iteration_bool = False
         self.data_set_bool = False
@@ -50,14 +51,15 @@ class GeneralInfo(QWidget):
         self.pause_button = QPushButton("Pause")
         self.pause_button.setIcon(self.style().standardIcon(QStyle.SP_MediaPause))
 
-        self.play_button.setDisabled(True)
-        self.stop_button.setDisabled(True)
-        self.pause_button.setDisabled(True)
-
         self.solution_type_combo = QComboBox()
         self.solution_type_combo.addItems(self.solution_list.keys())
 
-        self.play_button.clicked.connect(self.start_button)
+        self.play_button.setDisabled(True)
+        self.stop_button.setDisabled(True)
+        self.pause_button.setDisabled(True)
+        self.solution_type_combo.setDisabled(True)
+
+        self.play_button.clicked.connect(self.solve)
 
         # setup layout
         self.layout = QGridLayout()
@@ -75,7 +77,7 @@ class GeneralInfo(QWidget):
         self.model = None
         self.data = DataStore()
         self.current_iteration = 1
-        self.iteration_limit = 0
+        self.iteration_limit = 100
         self.current_data_set = 0
         self.data_string = ''
         self.algorithms = Algorithms()
@@ -92,6 +94,7 @@ class GeneralInfo(QWidget):
         self.play_button.setDisabled(False)
         self.stop_button.setDisabled(False)
         self.pause_button.setDisabled(False)
+        self.solution_type_combo.setDisabled(False)
 
         self.data = data
         self.model = Solver(self.data)
@@ -102,7 +105,37 @@ class GeneralInfo(QWidget):
                    'shipping': self.data.number_of_shipping_doors}
         self.algorithms.set_algorithms(self.model)
         self.model.set_data(0)
-        # self.simulation.init_image(self.model)
+
+    def solution_type_choice(self):
+        """
+        update bools for the choosen solution type
+        :return:
+        """
+        choice = self.solution_type_combo.currentText()
+        if choice == 'solve':
+            self.solve_bool = True
+            self.data_set_bool = False
+            self.iteration_bool = False
+            self.step_bool = False
+
+        elif choice == 'data_set':
+            self.solve_bool = True
+            self.data_set_bool = True
+            self.iteration_bool = False
+            self.step_bool = False
+
+        elif choice == 'iteration':
+            self.solve_bool = True
+            self.data_set_bool = True
+            self.iteration_bool = True
+            self.step_bool = False
+
+        elif choice == 'step':
+            self.solve_bool = True
+            self.data_set_bool = True
+            self.iteration_bool = True
+            self.step_bool = True
+
 
     def choose_algorithm(self):
         """
@@ -118,62 +151,86 @@ class GeneralInfo(QWidget):
         solves all of the data sets
         :return:
         """
+        self.solution_type_choice()
+        # print('solve')
         self.solve_dataset()
-        print('solve')
-        pass
 
     def solve_dataset(self):
         """
         solves one data set
         :return:
         """
-        print('data_set')
-        self.solve_iteration()
-        pass
+        if self.data_set_bool:
+            #print('one_set')1
+            if self.current_iteration == 1 and self.model.current_time == 0:
+                self.model.set_data(self.current_data_set)
+            self.solve_iteration()
+
+            if self.current_data_set == len(self.data.data_set_list):
+            #    print('finish')
+                self.current_iteration = 1
+                self.current_data_set = 0
+                self.trial_time = 0
+        else:
+            while self.current_data_set < len(self.data.data_set_list):
+                self.model.set_data(self.current_data_set)
+                self.solve_iteration()
+                self.current_data_set += 1
+            #    print(self.current_data_set)
+            self.current_data_set = 0
 
     def solve_iteration(self):
         """
         solves one iteration
         :return:
         """
-        print('iteration')
+        if self.iteration_bool:
+            #print('one_iteration')
+            if self.model.current_time == 0:
+                if self.current_iteration == 1:
+                    print('start')
+                    self.algorithms.start()
+                else:
+                    self.algorithms.next_sequence()
+                self.model.set_sequence(self.algorithms.current_sequence)
+            self.solve_step()
+            if self.current_iteration == self.iteration_limit:
+                self.current_data_set += 1
+                self.current_iteration = 1
 
-        # if self.current_iteration == 1:
-        #     self.algorithms.start()
-
-        # until finish step forward
-
-        #while not solved_itration:
+        else:
+            while self.current_iteration < self.iteration_limit:
+                if self.model.current_time == 0:
+                    if self.current_iteration == 1:
+                        self.algorithms.start()
+                    else:
+                        self.algorithms.next_sequence()
+                    self.model.set_sequence(self.algorithms.current_sequence)
+                # next sequence
+                self.solve_step()
+                self.current_iteration += 1
+            #    print(self.current_iteration)
+            self.current_iteration = 1
+            #print('whole_iteration')
 
     def solve_step(self):
         """
         goes one time step forward
         :return:
         """
-        print('step', self.trial_time)
-        if self.trial_time == 50:
-            self.trial_time = 0
-            return True
+        if self.step_bool:
+            self.model.next_step()
+            self.simulation.update_image()
+            if self.model.finish:
+                self.print_results()
+                self.trial_time = 0
+                self.current_iteration += 1
+           # print('one_step')
         else:
-            self.trial_time += 1
-        # if self.model.current_time == 0:
-        #     print('start')
-        #     self.model.set_sequence(self.algorithms.current_sequence)
-        # self.model.next_step()
-        # self.status_bar.showMessage(str(self.model.current_time))
-        # print('time', self.model.current_time)
-        # self.simulation.update_image()
-        # if self.model.current_time == 50:
-        #     print('true')
-        #     return True
-        # return False
-
-    def start_button(self):
-        """
-        does a solution depending and the solution type
-        :return:
-        """
-        self.solve()
+            while not self.model.finish:
+                self.model.next_step()
+            self.trial_time = 0
+            #print('whole_step')
 
     def print_start_data(self):
         """
@@ -218,4 +275,10 @@ class GeneralInfo(QWidget):
         # sequence
         self.infoText.setText(self.data_string)
 
+    def print_results(self):
+        self.infoText.clear()
+        for truck in self.model.outbound_trucks.values():
+            print('bounds', truck.bounds)
+            print('error', truck.error)
+            print('finish', truck.finish_time)
 

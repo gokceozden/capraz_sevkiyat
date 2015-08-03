@@ -6,7 +6,7 @@ class ReceivingDoor(object):
     """
     def __init__(self,station, name):
         self.door_name = name
-        self.trpe = 'Receiving'
+        self.type = 'Receiving'
         self.door_number = 0
         self.truck = 0
         self.truck_sequence = 0
@@ -24,7 +24,7 @@ class ReceivingDoor(object):
             truck.receiving_door_name = self.door_name
 
     def current_action(self):
-        self.print_state()
+        # self.print_state()
         if self.status_number == 0:
             self.no_truck()
         if self.status_number == 1:

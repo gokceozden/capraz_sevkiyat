@@ -21,6 +21,7 @@ class Truck(object):
         self.truck_name = truck_data['name']
         self.makespan_factor = truck_data['makespan_factor']
 
+        self.error = 0
         self.two_gdj = 0
 
         self.mu = 0
@@ -50,7 +51,6 @@ class InboundTruck(Truck):
         self.truck_type = 0
         self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'done')
 
-        self.arrival_time = inbound_data['arrival_time']
         self.arrival_time = inbound_data['arrival_time']
         self.mu = inbound_data['mu']
         self.product_per_truck = inbound_data['product_per_truck']
@@ -112,7 +112,7 @@ class OutboundTruck(Truck):
     def __init__(self, truck_data, outbound_data):
         Truck.__init__(self, truck_data)
         self.truck_type = 1
-        self.state_list = ('coming', 'waiting', 'start_loading', 'loading', 'going')
+        self.state_list = ('coming', 'waiting', 'start_loading', 'loading', 'done')
         self.going_goods = []
         self.finish_time = 0
         self.outbound_gdj = 0
@@ -165,6 +165,13 @@ class OutboundTruck(Truck):
     def leaving(self):
         pass
 
+    def calculate_error(self):
+        if self.bounds[0] <= self.finish_time <= self.bounds[1]:
+            self.error = 0
+        elif self.finish_time < self.bounds[0]:
+            self.error = self.finish_time - self.bounds[0]
+        else:
+            self.error = self.finish_time - self.bounds[1]
 
 class CompoundTruck(Truck):
     """
@@ -173,7 +180,7 @@ class CompoundTruck(Truck):
     def __init__(self, truck_data, compound_data):
         Truck.__init__(self, truck_data)
         self.truck_type = 2
-        self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'transfering', 'waiting', 'start_loading', 'loading', 'going')
+        self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'transfering', 'waiting', 'start_loading', 'loading', 'done')
         self.coming_goods = []
         self.going_goods = []
         
@@ -214,7 +221,7 @@ class CompoundTruck(Truck):
         #print('truck name: ', self.truck_name, ' current_state: ' , self.state_list[self.current_state])
 
         self.current_time = current_time
-        print('state', self.current_state)
+        # print('state', self.current_state)
         if self.current_state == 0:
             self.coming()
         if self.current_state == 1:
@@ -242,8 +249,6 @@ class CompoundTruck(Truck):
         self.next_state()
 
     def loading_goods(self):
-        print('loading')
-        print('time', self.finish_time)
         if self.current_time == self.finish_time:
             self.shipping_door.load_goods(self.going_goods)
             self.next_state()

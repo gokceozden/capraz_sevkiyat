@@ -53,16 +53,18 @@ class Algorithms(object):
 
     def start1(self):
         # do for outbound trucks too
+
         name = 'recv'
         self.init_sequence = [[] for i in range(self.model.number_of_receiving_doors)]
 
         unsorted_trucks = []
         # sort trucks
         for truck in itertools.chain(self.model.inbound_trucks.values(), self.model.compound_trucks.values()):
-            truck_times = (truck.truck_name, truck.finish_time)
+            truck_times = (truck.finish_time, truck.truck_name)
             unsorted_trucks.append(truck_times)
 
-        sorted_trucks = [truck for (truck, time) in sorted(unsorted_trucks)]
+        sorted_trucks = [truck for (time, truck) in sorted(unsorted_trucks)]
+       # print(sorted_trucks)
         i = 0
         for truck in sorted_trucks:
             self.init_sequence[i].append(truck)
@@ -78,15 +80,20 @@ class Algorithms(object):
 
         self.current_sequence['inbound'].pop()
 
-        # outboun
+        # outbound
         self.init_sequence = [[] for i in range(self.model.number_of_shipping_doors)]
         unsorted_trucks = []
         # sort trucks
-        for truck in itertools.chain(self.model.outbound_trucks.values(), self.model.compound_trucks.values()):
-            truck_times = (truck.truck_name, truck.finish_time)
+        for truck in self.model.outbound_trucks.values():
+            truck_times = (truck.finish_time, truck.truck_name)
             unsorted_trucks.append(truck_times)
 
-        sorted_trucks = [truck for (truck, time) in sorted(unsorted_trucks)]
+        sorted_trucks = [truck for (time, truck) in sorted(unsorted_trucks)]
+        for truck in self.model.compound_trucks.values():
+            sorted_trucks.append(truck.truck_name)
+
+        # print(sorted_trucks)
+
         i = 0
         for truck in sorted_trucks:
             self.init_sequence[i].append(truck)
@@ -101,8 +108,7 @@ class Algorithms(object):
             i += 1
 
         self.current_sequence['outbound'].pop()
-        print(self.current_sequence)
-
+        # print('current', self.current_sequence)
 
         self.previous_sequence = self.current_sequence
         self.best_sequence = self.current_sequence

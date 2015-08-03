@@ -37,6 +37,9 @@ class Solver(object):
                                  'compound': self.compound_trucks
                                  }
 
+        self.sequence_bool = False
+        self.solution_finish = False
+
         self.number_of_shipping_doors = self.data.number_of_shipping_doors
         self.number_of_receiving_doors = self.data.number_of_receiving_doors
 
@@ -52,8 +55,11 @@ class Solver(object):
         self.calculate_mu()
         self.calculate_product_per_truck()
 
+        self.finish = False
+
         # create trucks
         self.inbound_data['arrival_time'] = self.data.inbound_arrival_time
+        print(self.data.inbound_arrival_time)
         self.inbound_data['mu'] = self.inbound_mu
         self.inbound_data['product_per_truck'] = self.product_per_inbound_truck
 
@@ -146,14 +152,12 @@ class Solver(object):
                 new_good = Good(k, amount)
                 self.compound_trucks[name].going_goods.append(new_good)
 
-
         # add doors
         for i in range(self.data.number_of_receiving_doors):
             self.station.add_receiving_door()
 
         for i in range(self.data.number_of_shipping_doors):
             self.station.add_shipping_door()
-
 
     def set_data(self, data_set_number):
         """
@@ -194,37 +198,48 @@ class Solver(object):
             current_index = self.current_sequence.index(door_number)
             door_sequence = self.current_sequence[prev_index:current_index]
             self.door_sequences.append(door_sequence)
+            prev_index = current_index + 1
+
         self.door_sequences.append(self.current_sequence[prev_index:])
 
         for i, door_sequence in enumerate(self.door_sequences):
             door_name = 'recv' + str(i)
-            print('door_sequence', door_sequence)
+#            print('door_sequence', door_sequence)
             for trucks in door_sequence:
                 if trucks in self.inbound_trucks:
-                    print('truck', trucks)
+                    #                    print('truck', trucks)
                     self.inbound_trucks[trucks].receiving_door_name = door_name
+                    self.inbound_trucks[trucks].receiving_door = self.station.receiving_doors[door_name]
                     self.station.receiving_doors[door_name].sequence.append(self.inbound_trucks[trucks])
                 if trucks in self.compound_trucks:
                     self.compound_trucks[trucks].receiving_door_name = door_name
+                    self.compound_trucks[trucks].receiving_door = self.station.receiving_doors[door_name]
                     self.station.receiving_doors[door_name].sequence.append(self.compound_trucks[trucks])
 
+        # outbound
+        self.current_sequence = sequence['outbound']
+        self.door_sequences = []
+        prev_index = 0
         for door_number in range(self.number_of_shipping_doors - 1):
             current_index = self.current_sequence.index(door_number)
             door_sequence = self.current_sequence[prev_index:current_index]
             self.door_sequences.append(door_sequence)
+            prev_index = current_index + 1
         self.door_sequences.append(self.current_sequence[prev_index:])
 
         for i, door_sequence in enumerate(self.door_sequences):
             door_name = 'ship' + str(i)
-            print('door_sequence', door_sequence)
+#            print('door_sequence', door_sequence)
             for trucks in door_sequence:
-                if trucks in self.inbound_trucks:
-                    print('truck', trucks)
-                    self.inbound_trucks[trucks].receiving_door_name = door_name
-                    self.station.receiving_doors[door_name].sequence.append(self.inbound_trucks[trucks])
+                if trucks in self.outbound_trucks:
+                    #                    print('truck', trucks)
+                    self.outbound_trucks[trucks].shipping_door_name = door_name
+                    self.outbound_trucks[trucks].shipping_door = self.station.shipping_doors[door_name]
+                    self.station.shipping_doors[door_name].sequence.append(self.outbound_trucks[trucks])
                 if trucks in self.compound_trucks:
-                    self.compound_trucks[trucks].receiving_door_name = door_name
-                    self.station.receiving_doors[door_name].sequence.append(self.compound_trucks[trucks])
+                    self.compound_trucks[trucks].shipping_door_name = door_name
+                    self.compound_trucks[trucks].shipping_door = self.station.shipping_doors[door_name]
+                    self.station.shipping_doors[door_name].sequence.append(self.compound_trucks[trucks])
 
             #prev_index = current_index + 1
         #
@@ -279,4 +294,22 @@ class Solver(object):
             doors.current_action()
 
         self.station.check_states()
+        self.check_finish()
+        #check if finish
 
+    def check_finish(self):
+        """
+        checks of everything is finished
+        :return:
+        """
+        self.finish = True
+        for truck_types in self.truck_dictionary.values():
+            for truck in truck_types.values():
+                if truck.state_list[truck.current_state] == 'done':
+                    print('done', truck.truck_name)
+                    self.finish = self.finish and True
+                else:
+                    self.finish = self.finish and False
+
+    def reset_solution(self):
+        pass

@@ -23,7 +23,7 @@ class ShippingDoor(object):
             truck.shipping_door_name = self.door_name
 
     def current_action(self):
-        self.print_state()
+        # self.print_state()
         if self.status_number == 0:
             self.no_truck()
         if self.status_number == 1:
@@ -33,7 +33,7 @@ class ShippingDoor(object):
         self.status_number += 1
 
     def no_truck(self):
-        self.print_state()
+        # self.print_state()
         if len(self.sequence) != 0:
             next_truck = self.sequence[0]
             self.loading_truck = next_truck
