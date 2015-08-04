@@ -133,37 +133,41 @@ class TruckDataWindow(QDialog):
         self.data.compound_coming_goods = []
         missing_data = False
 
-        for i in range(self.numberGoodsSpin.value()):
-            for inbound_truck in self.inboundView:
+        for inbound_truck in self.inboundView:
+            goods = []
+            for i in range(0, self.numberGoodsSpin.value()):
                 data = inbound_truck.goodTable.item(0,i)
-                goods = []
                 if data:
                     goods.append(int(data.text()))
                 else:
                     missing_data = True
 
-                self.data.inbound_goods.append(goods)
+            self.data.inbound_goods.append(goods)
 
-            for outbound_truck in self.outboundView:
-                data = outbound_truck.goodTable.item(0,i)
-                goods = []
+        for outbound_truck in self.outboundView:
+            goods = []
+            for i in range(0, self.numberGoodsSpin.value()):
+                data = outbound_truck.goodTable.item(0, i)
                 if data:
                     goods.append(int(data.text()))
                 else:
                     missing_data = True
-                self.data.outbound_goods.append(goods)
+            self.data.outbound_goods.append(goods)
 
-            for compound_truck in self.compoundView:
+        for compound_truck in self.compoundView:
+            goods = []
+            for i in range(0, self.numberGoodsSpin.value()):
                 data = compound_truck.goodTable.item(0, i)
-                goods = []
                 if data:
                     goods.append(int(data.text()))
                 else:
                     missing_data = True
-                self.data.compound_coming_goods.append(goods)
+            self.data.compound_coming_goods.append(goods)
 
-                data = compound_truck.goodTable.item(1,i)
-                goods = []
+            goods = []
+            for i in range(0, self.numberGoodsSpin.value()):
+                data = compound_truck.goodTable.item(1, i)
+
                 if data:
                     goods.append(int(data.text()))
                 else:
@@ -187,13 +191,13 @@ class TruckDataWindow(QDialog):
 
         for i in range(self.data.number_of_inbound_trucks):
             name = 'inbound' + str(i)
-            self.inboundView.append(TruckWidget( self.numberGoodsSpin.value(), 'inbound'))
+            self.inboundView.append(TruckWidget(self.numberGoodsSpin.value(), 'inbound'))
             self.vInboundTruck.addWidget(self.inboundView[-1])
             self.update_good_table()
             for k in range(self.data.number_of_goods):
                 new_item = QTableWidgetItem()
                 new_item.setText(str(self.data.inbound_goods[i][k]))
-                self.inboundView[-1].goodTable.setItem(0,k,new_item)
+                self.inboundView[-1].goodTable.setItem(0, k, new_item)
 
         for i in range(self.data.number_of_outbound_trucks):
             name = 'outbound' + str(i)

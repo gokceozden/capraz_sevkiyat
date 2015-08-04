@@ -222,15 +222,22 @@ class GeneralInfo(QWidget):
             self.model.next_step()
             self.simulation.update_image()
             if self.model.finish:
+                for truck in self.model.outbound_trucks.values():
+                    truck.calculate_error()
                 self.print_results()
                 self.trial_time = 0
                 self.current_iteration += 1
+                self.model.finish = False
            # print('one_step')
         else:
             while not self.model.finish:
                 self.model.next_step()
+            for truck in self.model.outbound_trucks.values():
+                    truck.calculate_error()
+            self.model.finish = False
             self.trial_time = 0
-            #print('whole_step')
+            self.current_iteration += 1
+            self.print_results()
 
     def print_start_data(self):
         """

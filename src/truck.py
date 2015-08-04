@@ -166,12 +166,19 @@ class OutboundTruck(Truck):
         pass
 
     def calculate_error(self):
+        """
+        calculate error values
+        """
+        print('bounds', self.bounds)
+        print('finish', self.finish_time)
         if self.bounds[0] <= self.finish_time <= self.bounds[1]:
             self.error = 0
         elif self.finish_time < self.bounds[0]:
             self.error = self.finish_time - self.bounds[0]
         else:
             self.error = self.finish_time - self.bounds[1]
+        print('error', self.error)
+
 
 class CompoundTruck(Truck):
     """
