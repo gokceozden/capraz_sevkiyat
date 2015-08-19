@@ -3,7 +3,8 @@ __author__ = 'mustafa'
 import itertools
 from src.solver import Solver
 import random
-
+import copy
+import math
 class Algorithms(object):
     """
     all the algorithms
@@ -29,12 +30,15 @@ class Algorithms(object):
 
         # sequences
         self.start_sequence = []
+
         self.current_sequence = {}
         self.current_sequence['inbound'] = []
         self.current_sequence['outbound'] = []
-        self.previous_sequence = {}
-        self.next_sequence = {}
-        self.best_sequence = {}
+        self.current_sequence['error'] = 0
+
+        self.next_sequence = copy.deepcopy(self.current_sequence)
+        self.solution_sequence = copy.deepcopy(self.current_sequence)
+        self.best_sequence = copy.deepcopy(self.current_sequence)
 
     def set_algorithms(self, model):
         self.model = model
@@ -46,7 +50,7 @@ class Algorithms(object):
         self.next_sequence_algorithms[self.next_algorithm]()
 
     def calculate(self):
-        self.calculate_sequence_algorithms[self.calculate_algorithm]()
+        self.calculate_algorithms[self.calculate_algorithm]()
 
     def next_sequence(self):
         pass
@@ -109,32 +113,51 @@ class Algorithms(object):
 
         self.current_sequence['outbound'].pop()
         # print('current', self.current_sequence)
-
-        self.previous_sequence = self.current_sequence
-        self.best_sequence = self.current_sequence
+        self.solution_sequence = copy.deepcopy(self.current_sequence)
 
     def random1(self):
         """
         generates a random next sequence
         :return:
         """
-        a, b = self.generate_random()
-        indexA = self.current_sequence.index(a)
-        indexB = self.current_sequence.index(b)
-        self.current_sequence[indexA] = b
-        self.current_sequence[indexB] = a
+        self.next_sequence = copy.deepcopy(self.current_sequence)
 
-    def generate_random(self):
-        a = random.choice(self.current_sequence)
-        b = random.choice(self.current_sequence)
+        truck_type = 'inbound'
+        a, b = self.generate_random(truck_type)
+        indexA = self.next_sequence[truck_type].index(a)
+        indexB = self.next_sequence[truck_type].index(b)
+        self.next_sequence[truck_type][indexA] = b
+        self.next_sequence[truck_type][indexB] = a
+
+        truck_type = 'outbound'
+        a, b = self.generate_random(truck_type)
+        indexA = self.next_sequence[truck_type].index(a)
+        indexB = self.next_sequence[truck_type].index(b)
+        self.next_sequence[truck_type][indexA] = b
+        self.next_sequence[truck_type][indexB] = a
+        print('random')
+        self.next_sequence['error'] = 0
+
+    def generate_random(self, truck_type):
+        a = random.choice(self.current_sequence[truck_type])
+        b = random.choice(self.current_sequence[truck_type])
         if a == b:
-            a, b = self.generate_random()
+            a, b = self.generate_random(truck_type)
         if isinstance(a, int) and isinstance(b, int):
-            a, b = self.generate_random()
-        return (a, b)
+            a, b = self.generate_random(truck_type)
+        return a, b
 
     def annealing1(self):
-        pass
+        # get next sequence
+        accept = False
+
+        p_accept = math.exp(self._sequence['error'] - self.candidate_sequence['error'])
+        self.previous_sequence = copy.copy(self.current_sequence)
+        print('current', self.current_sequence)
+        print('next', self.next_sequence)
+        self.next_sequence_algorithms[self.next_algorithm]()
+        print('current', self.current_sequence)
+        print('next', self.next_sequence)
 
     def tabu1(self):
         pass

@@ -1,5 +1,6 @@
 __author__ = 'mustafa'
 
+import itertools
 from PySide.QtGui import *
 from PySide.QtCore import *
 from src.graphview import GraphView
@@ -190,10 +191,14 @@ class GeneralInfo(QWidget):
                 if self.current_iteration == 1:
                     print('start')
                     self.algorithms.start()
+                    self.model.set_sequence(self.algorithms.current_sequence)
+                    self.solve_whole_step()
+                    self.algorithms.calculate()
                 else:
-                    self.algorithms.next_sequence()
-                self.model.set_sequence(self.algorithms.current_sequence)
-            self.solve_step()
+                    self.algorithms.calculate()
+                    self.model.set_sequence(self.algorithms.current_sequence)
+                self.solve_step()
+
             if self.current_iteration == self.iteration_limit:
                 self.current_data_set += 1
                 self.current_iteration = 1
@@ -205,39 +210,70 @@ class GeneralInfo(QWidget):
                         self.algorithms.start()
                     else:
                         self.algorithms.next_sequence()
-                    self.model.set_sequence(self.algorithms.current_sequence)
+                    self.model.set_sequence(self.algorithms.solution_sequence)
                 # next sequence
                 self.solve_step()
                 self.current_iteration += 1
-            #    print(self.current_iteration)
+            #print(self.current_iteration)
             self.current_iteration = 1
             #print('whole_iteration')
 
     def solve_step(self):
+        if self.step_bool:
+            self.solve_one_step()
+        else:
+            self.solve_whole_step()
+
+    def solve_whole_step(self):
+        """
+        solves one iterations
+        :return:
+        """
+        while not self.model.finish:
+            self.model.next_step()
+
+            #finished
+        for truck in self.model.outbound_trucks.values():
+            truck.calculate_error()
+
+        #add reset
+        self.model.finish = False
+        self.current_iteration += 1
+        self.algorithms.current_sequence['error'] = self.add_errors()
+        #self.print_results()
+
+    def solve_one_step(self):
         """
         goes one time step forward
         :return:
         """
-        if self.step_bool:
-            self.model.next_step()
-            self.simulation.update_image()
-            if self.model.finish:
-                for truck in self.model.outbound_trucks.values():
-                    truck.calculate_error()
-                self.print_results()
-                self.trial_time = 0
-                self.current_iteration += 1
-                self.model.finish = False
-           # print('one_step')
-        else:
-            while not self.model.finish:
-                self.model.next_step()
+
+        self.model.next_step()
+        self.simulation.update_image()
+
+        if self.model.finish:
+            #finished
             for truck in self.model.outbound_trucks.values():
-                    truck.calculate_error()
-            self.model.finish = False
-            self.trial_time = 0
-            self.current_iteration += 1
-            self.print_results()
+                truck.calculate_error()
+        # add reset
+        self.add_errors()
+        #self.print_results()
+        self.current_iteration += 1
+        self.model.finish = False
+        self.algorithms.current_sequence['error'] = self.add_errors()
+
+
+    def add_errors(self):
+        """
+        adds absolute values of the errors
+
+        :return:
+        """
+        total_error = 0
+        for truck in itertools.chain(self.model.outbound_trucks.values(), self.model.compound_trucks.values()):
+            total_error += abs(truck.error)
+        print('total error', total_error)
+        return total_error
 
     def print_start_data(self):
         """
