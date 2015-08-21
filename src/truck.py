@@ -59,6 +59,7 @@ class InboundTruck(Truck):
         self.door_number = 0
         self.receive_door = 0
         self.coming_goods = []
+        self.coming_good_amounts = {}
 
     def calculate_gdj(self):
         self.calculate_twogd()
@@ -114,6 +115,7 @@ class OutboundTruck(Truck):
         self.truck_type = 1
         self.state_list = ('coming', 'waiting', 'start_loading', 'loading', 'done')
         self.going_goods = []
+        self.going_good_amounts = {}
         self.finish_time = 0
         self.outbound_gdj = 0
         self.shipping_door = 0
@@ -121,6 +123,7 @@ class OutboundTruck(Truck):
         self.arrival_time = outbound_data['arrival_time']
         self.mu = outbound_data['mu']
         self.product_per_truck = outbound_data['product_per_truck']
+
 
     def calculate_gdj(self):
         self.calculate_twogd()
@@ -190,8 +193,10 @@ class CompoundTruck(Truck):
         self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'transfering', 'waiting', 'start_loading', 'loading', 'done')
         self.coming_goods = []
         self.going_goods = []
-        
-        self.inbound_gdj = 0                
+
+        self.coming_good_amounts = {}
+        self.going_good_amounts = {}
+        self.inbound_gdj = 0
         self.outbound_gdj = 0
         self.finish_time = 0
         self.receiving_door = 0

@@ -27,7 +27,6 @@ class Station(object):
         name = 'recv' + str(len(self.receiving_doors))
         door = ReceivingDoor(self, name)
         self.receiving_doors[name] = door
-
     def clear_door_sequences(self):
         for doors in itertools.chain(self.receiving_doors.values(), self.shipping_doors.values()):
             doors.sequence = []

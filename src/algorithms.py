@@ -138,6 +138,8 @@ class Algorithms(object):
         print('random')
         self.next_sequence['error'] = 0
 
+        self.solution_sequence = copy.deepcopy(self.next_sequence)
+
     def generate_random(self, truck_type):
         a = random.choice(self.current_sequence[truck_type])
         b = random.choice(self.current_sequence[truck_type])
@@ -151,11 +153,8 @@ class Algorithms(object):
         # get next sequence
         accept = False
 
-        p_accept = math.exp(self._sequence['error'] - self.candidate_sequence['error'])
+        # p_accept = math.exp(self.sequence['error'] - self.candidate_sequence['error'])
         self.previous_sequence = copy.copy(self.current_sequence)
-        print('current', self.current_sequence)
-        print('next', self.next_sequence)
-        self.next_sequence_algorithms[self.next_algorithm]()
         print('current', self.current_sequence)
         print('next', self.next_sequence)
 

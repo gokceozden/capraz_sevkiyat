@@ -172,7 +172,7 @@ class TruckDataWindow(QDialog):
                     goods.append(int(data.text()))
                 else:
                     missing_data = True
-                self.data.compound_going_goods.append(goods)
+            self.data.compound_going_goods.append(goods)
 
     def prev_data(self):
         """

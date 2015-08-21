@@ -177,7 +177,7 @@ class GeneralInfo(QWidget):
                 self.model.set_data(self.current_data_set)
                 self.solve_iteration()
                 self.current_data_set += 1
-            #    print(self.current_data_set)
+            #   print(self.current_data_set)
             self.current_data_set = 0
 
     def solve_iteration(self):
@@ -191,13 +191,14 @@ class GeneralInfo(QWidget):
                 if self.current_iteration == 1:
                     print('start')
                     self.algorithms.start()
-                    self.model.set_sequence(self.algorithms.current_sequence)
+                    self.model.set_sequence(self.algorithms.solution_sequence)
                     self.solve_whole_step()
-                    self.algorithms.calculate()
+                    self.algorithms.next()
+                    self.model.set_sequence(self.algorithms.solution_sequence)
                 else:
-                    self.algorithms.calculate()
-                    self.model.set_sequence(self.algorithms.current_sequence)
-                self.solve_step()
+                    self.algorithms.next()
+                    self.model.set_sequence(self.algorithms.solution_sequence)
+            self.solve_step()
 
             if self.current_iteration == self.iteration_limit:
                 self.current_data_set += 1
@@ -240,6 +241,7 @@ class GeneralInfo(QWidget):
         self.model.finish = False
         self.current_iteration += 1
         self.algorithms.current_sequence['error'] = self.add_errors()
+        self.model.reset_trucks()
         #self.print_results()
 
     def solve_one_step(self):
@@ -255,12 +257,13 @@ class GeneralInfo(QWidget):
             #finished
             for truck in self.model.outbound_trucks.values():
                 truck.calculate_error()
-        # add reset
-        self.add_errors()
-        #self.print_results()
-        self.current_iteration += 1
-        self.model.finish = False
-        self.algorithms.current_sequence['error'] = self.add_errors()
+            self.model.reset_trucks()
+            # add reset
+            self.add_errors()
+            #self.print_results()
+            self.current_iteration += 1
+            self.model.finish = False
+            self.algorithms.current_sequence['error'] = self.add_errors()
 
 
     def add_errors(self):

@@ -125,6 +125,7 @@ class Solver(object):
             coming_goods = self.data.inbound_goods[i]
             for k, amount in enumerate(coming_goods):
                 new_good = Good(k, amount)
+                self.inbound_trucks[name].coming_good_amounts[k] = amount
                 self.inbound_trucks[name].coming_goods.append(new_good)
 
         for i in range(self.data.number_of_outbound_trucks):
@@ -135,6 +136,7 @@ class Solver(object):
             going_goods = self.data.outbound_goods[i]
             for k, amount in enumerate(going_goods):
                 new_good = Good(k, amount)
+                self.outbound_trucks[name].going_good_amounts[k] = amount
                 self.outbound_trucks[name].going_goods.append(new_good)
 
         for i in range(self.data.number_of_compound_trucks):
@@ -148,9 +150,11 @@ class Solver(object):
                 print('amount', amount)
                 new_good = Good(k, amount)
                 self.compound_trucks[name].coming_goods.append(new_good)
+                self.compound_trucks[name].coming_good_amounts[k] = amount
             for k, amount in enumerate(going_goods):
                 new_good = Good(k, amount)
                 self.compound_trucks[name].going_goods.append(new_good)
+                self.compound_trucks[name].going_good_amounts[k] = amount
 
         # add doors
         for i in range(self.data.number_of_receiving_doors):
@@ -158,6 +162,37 @@ class Solver(object):
 
         for i in range(self.data.number_of_shipping_doors):
             self.station.add_shipping_door()
+
+    def reset_trucks(self):
+        """
+        reset truck goods, times and sequences
+        :return:
+        """
+        self.current_time = 0
+        for truck in itertools.chain(self.inbound_trucks.values(), self.outbound_trucks.values(), self.compound_trucks.values()):
+            truck.current_state = 0
+
+        for truck in self.inbound_trucks.values():
+            truck.coming_goods = []
+            for good_type, amount in truck.coming_good_amounts.iteritems():
+                new_good = Good(good_type, amount)
+                truck.coming_goods.append(new_good)
+
+        for truck in self.outbound_trucks.values():
+            truck.going_goods = []
+            for good_type, amount in truck.going_good_amounts.iteritems():
+                new_good = Good(good_type, amount)
+                truck.going_goods.append(new_good)
+
+        for truck in self.compound_trucks.values():
+            truck.coming_goods = []
+            truck.going_goods = []
+            for good_type, amount in truck.coming_good_amounts.iteritems():
+                new_good = Good(good_type, amount)
+                truck.coming_goods.append(new_good)
+            for good_type, amount in truck.going_good_amounts.iteritems():
+                new_good = Good(good_type, amount)
+                truck.going_goods.append(new_good)
 
     def set_data(self, data_set_number):
         """
@@ -240,44 +275,6 @@ class Solver(object):
                     self.compound_trucks[trucks].shipping_door_name = door_name
                     self.compound_trucks[trucks].shipping_door = self.station.shipping_doors[door_name]
                     self.station.shipping_doors[door_name].sequence.append(self.compound_trucks[trucks])
-
-            #prev_index = current_index + 1
-        #
-        # self.door_sequences.append(self.current_sequence[prev_index:])
-        # print(self.door_sequences)
-        # i = 0
-        # name = 'recv'
-
-        # self.station.clear_door_sequences()  # delete previous sequences
-        #
-        # self.tavlama = Tavlama(self)
-        # sequence = self.tavlama.initialize_sequence()
-        #
-        # # for coming_truck in itertools.chain(self.inbound_trucks.values(), self.compound_trucks.values()):
-        # #     door_name = name + str(i)
-        # #     i += 1
-        # #     self.station.receiving_doors[door_name].sequence.append(coming_truck)
-        # #     if i == len(self.station.receiving_doors):
-        # #         i = 0
-        # #
-        # for door_name, truck_names in sequence.iteritems():
-        #     trucks = dict(self.inbound_trucks.items() + self.compound_trucks.items())
-        #     for truck_name in truck_names:
-        #         self.station.receiving_doors[door_name].sequence.append(trucks[truck_name])
-        #
-        # for doors in self.station.receiving_doors.values():
-        #     doors.set_truck_doors()
-        #
-        # i = 0
-        # for going_trucks in itertools.chain(self.outbound_trucks.values(), self.compound_trucks.values()):
-        #     door_name = 'ship' + str(i)
-        #     i += 1
-        #     self.station.shipping_doors[door_name].sequence.append(going_trucks)
-        #     if i == len(self.station.shipping_doors):
-        #         i = 0
-        #
-        # for doors in self.station.shipping_doors.values():
-        #     doors.set_truck_doors()
 
     def next_step(self):
         self.current_time += self.time_step
