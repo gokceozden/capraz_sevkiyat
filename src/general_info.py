@@ -137,7 +137,6 @@ class GeneralInfo(QWidget):
             self.iteration_bool = True
             self.step_bool = True
 
-
     def choose_algorithm(self):
         """
         choose and algorithm
@@ -264,7 +263,6 @@ class GeneralInfo(QWidget):
             self.current_iteration += 1
             self.model.finish = False
             self.algorithms.current_sequence['error'] = self.add_errors()
-
 
     def add_errors(self):
         """

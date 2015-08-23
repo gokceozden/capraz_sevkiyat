@@ -23,7 +23,6 @@ class TruckDataWindow(QDialog):
         self.setGeometry(300,400,500,500)
         self.setWindowModality(Qt.ApplicationModal)
 
-
     def setupComponents(self):
         """
         Setup all the components, statusbar, menubar, toolbar

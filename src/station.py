@@ -16,6 +16,7 @@ class Station(object):
 
         self.receiving_doors = {}
         self.shipping_doors = {}
+        self.not_ready_goods = {}
         self.station_goods = {}
 
     def add_receiving_door(self):
@@ -23,10 +24,10 @@ class Station(object):
         creates a receiving door
         :return:
         """
-        
         name = 'recv' + str(len(self.receiving_doors))
         door = ReceivingDoor(self, name)
         self.receiving_doors[name] = door
+
     def clear_door_sequences(self):
         for doors in itertools.chain(self.receiving_doors.values(), self.shipping_doors.values()):
             doors.sequence = []
@@ -63,12 +64,21 @@ class Station(object):
 
     def add_goods(self, goods):
         for good in goods:
-            if good.type in self.station_goods.keys():
-                self.station_goods[good.type].append(good)
+            if good.type in self.not_ready_goods.keys():
+                self.not_ready_goods[good.type].append(good)
             else:
-                self.station_goods[good.type] = []
-                self.station_goods[good.type].append(good)
-        print(self.station_goods)
+                self.not_ready_goods[good.type] = []
+                self.not_ready_goods[good.type].append(good)
+        print(self.not_ready_goods)
+
+    def transfer_goods(self, good_type):
+        """
+        transfer goods inside the station
+        :param good_tyoe:
+        :return:
+        """
+        # problem with all the goods transfering at the same time
+        self.station_goods[good_type].append(self.not_ready_goods.pop(good_type))
 
     def remove_goods(self, goods):
         for good in goods:
