@@ -61,6 +61,7 @@ class GeneralInfo(QWidget):
         self.solution_type_combo.setDisabled(True)
 
         self.play_button.clicked.connect(self.solve)
+        self.pause_button.clicked.connect(self.pause)
 
         # setup layout
         self.layout = QGridLayout()
@@ -146,11 +147,15 @@ class GeneralInfo(QWidget):
         self.iteration_limit = self.algo_screen.iteration_number
         #get algorithm
 
+    def pause(self):
+        self.pause_bool = True
+
     def solve(self):
         """
         solves all of the data sets
         :return:
         """
+        self.pause_bool = False
         self.solution_type_choice()
         # print('solve')
         self.solve_dataset()
@@ -173,6 +178,8 @@ class GeneralInfo(QWidget):
                 self.trial_time = 0
         else:
             while self.current_data_set < len(self.data.data_set_list):
+                if self.pause_bool:
+                    break
                 self.model.set_data(self.current_data_set)
                 self.solve_iteration()
                 self.current_data_set += 1
@@ -187,6 +194,7 @@ class GeneralInfo(QWidget):
         if self.iteration_bool:
             #print('one_iteration')
             if self.model.current_time == 0:
+
                 if self.current_iteration == 1:
                     print('start')
                     self.algorithms.start()
@@ -197,6 +205,7 @@ class GeneralInfo(QWidget):
                 else:
                     self.algorithms.next()
                     self.model.set_sequence(self.algorithms.solution_sequence)
+                self.print_simulation_data()
             self.solve_step()
 
             if self.current_iteration == self.iteration_limit:
@@ -205,6 +214,10 @@ class GeneralInfo(QWidget):
 
         else:
             while self.current_iteration < self.iteration_limit:
+                if self.pause_bool:
+                    break
+
+                self.print_simulation_data()
                 if self.model.current_time == 0:
                     if self.current_iteration == 1:
                         self.algorithms.start()
@@ -230,6 +243,8 @@ class GeneralInfo(QWidget):
         :return:
         """
         while not self.model.finish:
+            if self.pause_bool:
+                break
             self.model.next_step()
 
             #finished
@@ -312,7 +327,9 @@ class GeneralInfo(QWidget):
     def print_simulation_data(self):
         self.infoText.clear()
         self.data_string = ''
-        self.data_string += "Iteration Number:"
+        self.data_string += "Iteration Number: {0}\n".format(self.current_iteration)
+        self.data_string += "Inbound Sequence: {0}\n".format(self.algorithms.solution_sequence['inbound'])
+        self.data_string += "Outbound Sequence: {0}\n".format(self.algorithms.solution_sequence['outbound'])
         # time
         # data set number
         # error value
