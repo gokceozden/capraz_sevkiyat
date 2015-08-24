@@ -14,6 +14,7 @@ from src.graphview import GraphView
 from src.tavlama import Tavlama
 from src.greeting_screen import Greeting
 from src.general_info import GeneralInfo
+from src.data_writer import gams_writer
 
 class MainWindow(QMainWindow):
     """
@@ -38,6 +39,7 @@ class MainWindow(QMainWindow):
 
         self.saveAction = QAction(QIcon('images/save.png'), '&Save', self, shortcut=QKeySequence.Save, statusTip = 'Save data set', triggered = self.save_model)
 
+        self.printAction = QAction(QIcon('images/print.png'), '&Print', self, shortcut=QKeySequence.Print, )
         # setup buttons
 
         # setup toolbar
