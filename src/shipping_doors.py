@@ -50,8 +50,6 @@ class ShippingDoor(object):
                 enough_goods = True
                 for station_good in self.station.station_goods[good.type]:
                     total += station_good.amount
-                print('total', total)
-                print('amoung', good.amount)
                 if good.amount > total:
                     enough_goods = False
         return enough_goods

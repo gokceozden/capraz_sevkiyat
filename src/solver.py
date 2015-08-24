@@ -80,7 +80,7 @@ class Solver(object):
         self.truck_data['gamma'] = self.gamma
         self.truck_data['tightness_factor'] = self.tightness_factor
 
-        self.station = Station()
+        self.station = Station(self.data.good_transfer_time)
         self.create_trucks()
 
         # init model solution
@@ -147,7 +147,7 @@ class Solver(object):
             coming_goods = self.data.compound_coming_goods[i]
             going_goods = self.data.compound_going_goods[i]
             for k, amount in enumerate(coming_goods):
-                print('amount', amount)
+                # print('amount', amount)
                 new_good = Good(k, amount)
                 self.compound_trucks[name].coming_goods.append(new_good)
                 self.compound_trucks[name].coming_good_amounts[k] = amount
@@ -174,17 +174,20 @@ class Solver(object):
 
         for truck in self.inbound_trucks.values():
             truck.coming_goods = []
+            truck.finish_time = truck.inbound_gdj
             for good_type, amount in truck.coming_good_amounts.iteritems():
                 new_good = Good(good_type, amount)
                 truck.coming_goods.append(new_good)
 
         for truck in self.outbound_trucks.values():
             truck.going_goods = []
+            truck.finish_time = truck.outbound_gdj
             for good_type, amount in truck.going_good_amounts.iteritems():
                 new_good = Good(good_type, amount)
                 truck.going_goods.append(new_good)
 
         for truck in self.compound_trucks.values():
+            truck.finish_time = truck.inbound_gdj
             truck.coming_goods = []
             truck.going_goods = []
             for good_type, amount in truck.coming_good_amounts.iteritems():
@@ -193,6 +196,9 @@ class Solver(object):
             for good_type, amount in truck.going_good_amounts.iteritems():
                 new_good = Good(good_type, amount)
                 truck.going_goods.append(new_good)
+
+        self.station.not_ready_goods = {}
+        self.station.station_goods = {}
 
     def set_data(self, data_set_number):
         """
@@ -291,6 +297,7 @@ class Solver(object):
             doors.current_action()
 
         self.station.check_states()
+        self.station.check_good_transfer(self.current_time)
         self.check_finish()
         #check if finish
 
@@ -307,6 +314,3 @@ class Solver(object):
                     self.finish = self.finish and True
                 else:
                     self.finish = self.finish and False
-
-    def reset_solution(self):
-        pass

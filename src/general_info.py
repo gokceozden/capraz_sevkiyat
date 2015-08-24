@@ -233,7 +233,7 @@ class GeneralInfo(QWidget):
             self.model.next_step()
 
             #finished
-        for truck in self.model.outbound_trucks.values():
+        for truck in itertools.chain(self.model.outbound_trucks.values(), self.model.compound_trucks.values()):
             truck.calculate_error()
 
         #add reset

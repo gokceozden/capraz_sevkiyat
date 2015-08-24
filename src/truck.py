@@ -89,7 +89,7 @@ class InboundTruck(Truck):
 
     def deploy_goods(self):
         if self.current_time == self.finish_time:
-            self.receiving_door.deploy_goods(self.coming_goods)
+            self.receiving_door.deploy_goods(self.coming_goods, self.current_time)
             self.next_state()
 
     def coming(self):
@@ -123,7 +123,6 @@ class OutboundTruck(Truck):
         self.arrival_time = outbound_data['arrival_time']
         self.mu = outbound_data['mu']
         self.product_per_truck = outbound_data['product_per_truck']
-
 
     def calculate_gdj(self):
         self.calculate_twogd()
@@ -274,7 +273,7 @@ class CompoundTruck(Truck):
 
     def deploy_goods(self):
         if self.current_time == self.finish_time:
-            self.receiving_door.deploy_goods(self.coming_goods)
+            self.receiving_door.deploy_goods(self.coming_goods, self.current_time)
             self.next_state()
             self.finish_time = self.current_time + self.transfer_time
 
@@ -294,3 +293,17 @@ class CompoundTruck(Truck):
 
     def leaving(self):
         pass
+
+    def calculate_error(self):
+        """
+        calculate error values
+        """
+        print('bounds', self.bounds)
+        print('finish', self.finish_time)
+        if self.bounds[0] <= self.finish_time <= self.bounds[1]:
+            self.error = 0
+        elif self.finish_time < self.bounds[0]:
+            self.error = self.finish_time - self.bounds[0]
+        else:
+            self.error = self.finish_time - self.bounds[1]
+        print('error', self.error)

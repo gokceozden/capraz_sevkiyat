@@ -11,5 +11,4 @@ class Good(object):
         """
         self.type = str(good_type)
         self.amount = amount
-
-
+        self.transfer_time = 0

@@ -44,8 +44,8 @@ class ReceivingDoor(object):
                 self.sequence[0].next_state()
                 self.next_state()
 
-    def deploy_goods(self, goods):
-        self.station.add_goods(goods)
+    def deploy_goods(self, goods, current_time):
+        self.station.add_goods(goods, current_time)
         self.status_number = 0
         self.sequence.pop(0)
 

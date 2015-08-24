@@ -8,7 +8,7 @@ class Station(object):
     """
     Station for the goods to come in and go out.
     """
-    def __init__(self):
+    def __init__(self, transfer_time):
         """
         Initialize the station by creating doors and types
         :return:
@@ -18,6 +18,7 @@ class Station(object):
         self.shipping_doors = {}
         self.not_ready_goods = {}
         self.station_goods = {}
+        self.good_transfer_time = transfer_time
 
     def add_receiving_door(self):
         """
@@ -62,14 +63,21 @@ class Station(object):
             if doors.good_list:
                 self.add_goods(doors.good_list)
 
-    def add_goods(self, goods):
+    def add_goods(self, goods, current_time):
         for good in goods:
+            good.transfer_time = current_time + self.good_transfer_time
+            print('tranfer_time', good.transfer_time)
             if good.type in self.not_ready_goods.keys():
                 self.not_ready_goods[good.type].append(good)
             else:
                 self.not_ready_goods[good.type] = []
                 self.not_ready_goods[good.type].append(good)
-        print(self.not_ready_goods)
+        #     if good.type in self.not_ready_goods.keys():
+        #         self.not_ready_goods[good.type].append(good)
+        #     else:
+        #         self.not_ready_goods[good.type] = []
+        #         self.not_ready_goods[good.type].append(good)
+        # print(self.not_ready_goods)
 
     def transfer_goods(self, good_type):
         """
@@ -78,7 +86,22 @@ class Station(object):
         :return:
         """
         # problem with all the goods transfering at the same time
-        self.station_goods[good_type].append(self.not_ready_goods.pop(good_type))
+        self.station_goods[good_type].append()
+
+    def check_good_transfer(self, current_time):
+        """
+        check if goods are ready to transfer
+        :return:
+        """
+        for goods in self.not_ready_goods.values():
+            for good in goods:
+                if good.transfer_time == current_time:
+                    if good.type in self.station_goods.keys():
+                        self.station_goods[good.type].append(good)
+                    else:
+                        self.station_goods[good.type] = []
+                        self.station_goods[good.type].append(good)
+                    print(self.station_goods)
 
     def remove_goods(self, goods):
         for good in goods:
