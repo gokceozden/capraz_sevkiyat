@@ -3,6 +3,7 @@ __author__ = 'robotes'
 from src.receiving_door import ReceivingDoor
 from src.shipping_doors import ShippingDoor
 import itertools
+import logging
 
 class Station(object):
     """
@@ -101,7 +102,16 @@ class Station(object):
                     else:
                         self.station_goods[good.type] = []
                         self.station_goods[good.type].append(good)
-                    print(self.station_goods)
+                    total_good = 0
+                    logging.debug("Station: Unloading goods from truck")
+                    self.log_goods()
+
+    def log_goods(self):
+        total_good = 0
+        for good_type in self.station_goods.values():
+            for good_amounts in good_type:
+                total_good +=  good_amounts.amount
+            logging.debug("--Station: good type:{0}, amount:{1}".format(good_type[0].type, total_good))
 
     def remove_goods(self, goods):
         for good in goods:
@@ -120,3 +130,5 @@ class Station(object):
                     moved_good += error
                     max_item.amount -= error
                 error = good.amount - moved_good
+        logging.debug("Station: Loading goods to truck")
+        self.log_goods()

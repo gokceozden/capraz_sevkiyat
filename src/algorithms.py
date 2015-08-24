@@ -1,5 +1,6 @@
 __author__ = 'mustafa'
 
+import logging
 import itertools
 from src.solver import Solver
 import random
@@ -14,6 +15,8 @@ class Algorithms(object):
         self.next_sequence_algorithms = {}
         self.calculate_algorithms = {}
 
+        self.temperature_reduction_rate = 0.9
+        self.temperature = 100
         self.model = None
 
         self.start_sequence_algorithms['start1'] = self.start1
@@ -113,6 +116,8 @@ class Algorithms(object):
 
         self.current_sequence['outbound'].pop()
         # print('current', self.current_sequence)
+        logging.info("Start sequence inbound: {0}".format(self.current_sequence['inbound']))
+        logging.info("Start sequence outbound: {0}".format(self.current_sequence['outbound']))
         self.solution_sequence = copy.deepcopy(self.current_sequence)
 
     def random1(self):
@@ -138,6 +143,8 @@ class Algorithms(object):
         print('random')
         self.next_sequence['error'] = 0
 
+        logging.info("Random1 next sequence inbound: {0}".format(self.next_sequence['inbound']))
+        logging.info("Random1 next sequence outbound: {0}".format(self.next_sequence['outbound']))
         self.solution_sequence = copy.deepcopy(self.next_sequence)
 
     def generate_random(self, truck_type):
@@ -151,12 +158,23 @@ class Algorithms(object):
 
     def annealing1(self):
         # get next sequence
-        accept = False
+        # bir eksik var ????
+        if self.solution_sequence['error'] < self.current_sequence['error']:
+            self.current_sequence = copy.deepcopy(self.solution_sequence)
+            if self.solution_sequence['error'] < self.best_sequence['error']:
+                self.best_sequence = copy.deepcopy(self.current_sequence)
+            print('better solution')
+        else:
+            p_accept = math.exp((self.current_sequence['error'] - self.solution_sequence['error']) / self.temperature)
+            print('p', p_accept)
+            if p_accept >= random.random():
+                self.current_sequence = copy.deepcopy(self.solution_sequence)
+                print('accept worse solution')
 
-        # p_accept = math.exp(self.sequence['error'] - self.candidate_sequence['error'])
-        self.previous_sequence = copy.copy(self.current_sequence)
-        print('current', self.current_sequence)
-        print('next', self.next_sequence)
+        self.temperature = self.temperature_reduction_rate * self.temperature
+
+        self.previous_sequence = copy.deepcopy(self.current_sequence)
+        self.solution_sequence = copy.deepcopy(self.current_sequence)
 
     def tabu1(self):
         pass

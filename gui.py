@@ -1,6 +1,8 @@
 #!/usr/bin/python
 __author__ = 'Robotes'
 
+import os
+import logging
 import sys
 from PySide.QtGui import *
 from src.truckDataWindow import TruckDataWindow
@@ -154,6 +156,10 @@ class MainWindow(QMainWindow):
         # self.simulation.update_image()
 
 if __name__ == '__main__':
+    with open('capraz.log', 'w'):
+        pass
+    logging.basicConfig(format='%(levelname)s:%(message)s', filename='capraz.log', level=logging.DEBUG)
+    logging.info('Program Started')
     myApp = QApplication(sys.argv)
     mainWindow = MainWindow()
     mainWindow.showMaximized()

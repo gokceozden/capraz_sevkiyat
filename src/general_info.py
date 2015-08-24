@@ -1,5 +1,6 @@
 __author__ = 'mustafa'
 
+import logging
 import itertools
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -191,6 +192,7 @@ class GeneralInfo(QWidget):
         solves one iteration
         :return:
         """
+
         if self.iteration_bool:
             #print('one_iteration')
             if self.model.current_time == 0:
@@ -211,7 +213,6 @@ class GeneralInfo(QWidget):
             if self.current_iteration == self.iteration_limit:
                 self.current_data_set += 1
                 self.current_iteration = 1
-
         else:
             while self.current_iteration < self.iteration_limit:
                 if self.pause_bool:
@@ -243,6 +244,9 @@ class GeneralInfo(QWidget):
         :return:
         """
         while not self.model.finish:
+            if self.model.current_time > 800:
+                print('time limit')
+                break
             if self.pause_bool:
                 break
             self.model.next_step()
@@ -253,9 +257,11 @@ class GeneralInfo(QWidget):
 
         #add reset
         self.model.finish = False
-        self.current_iteration += 1
-        self.algorithms.current_sequence['error'] = self.add_errors()
+        self.algorithms.solution_sequence['error'] = self.add_errors()
         self.model.reset_trucks()
+        if self.current_iteration > 1:
+            self.algorithms.calculate()
+        self.current_iteration += 1
         #self.print_results()
 
     def solve_one_step(self):
@@ -278,6 +284,7 @@ class GeneralInfo(QWidget):
             self.current_iteration += 1
             self.model.finish = False
             self.algorithms.current_sequence['error'] = self.add_errors()
+            self.algorithms.calculate()
 
     def add_errors(self):
         """

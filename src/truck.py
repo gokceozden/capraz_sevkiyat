@@ -1,7 +1,7 @@
 __author__ = 'robotes'
 
 from random import uniform
-
+import logging
 
 class Truck(object):
     """
@@ -41,6 +41,8 @@ class Truck(object):
     def next_state(self):
         self.current_state += 1
 
+    def log_truck(self):
+        logging.debug('--Truck name: {0}, current state:{1}, next state:{2}'.format(self.truck_name, self.state_list[self.current_state], self.finish_time))
 
 class InboundTruck(Truck):
     """
@@ -67,6 +69,7 @@ class InboundTruck(Truck):
         self.finish_time = self.inbound_gdj
 
     def current_action(self, current_time):
+        self.log_truck()
         self.current_time = current_time
         #self.print_state()
         if self.current_state == 0:
@@ -81,10 +84,14 @@ class InboundTruck(Truck):
             self.leaving()
 
     def start_deploy(self):
+
         total = 0
+        logging.debug("----Deploy goods:")
         for good in self.coming_goods:
             total += good.amount
+            logging.debug("------{0}: {1}".format(good.type, good.amount))
         self.finish_time = int(self.current_time + total * self.loading_time)
+        logging.debug("----Finish time: {0}".format(self.finish_time))
         self.next_state()
 
     def deploy_goods(self):
@@ -133,6 +140,8 @@ class OutboundTruck(Truck):
         self.finish_time = self.outbound_gdj
 
     def current_action(self, current_time):
+        self.log_truck()
+
         self.current_time = current_time
         if self.current_state == 0:
             self.coming()
@@ -147,12 +156,16 @@ class OutboundTruck(Truck):
 
     def start_loading(self):
         total = 0
+        logging.debug("----Load Goods:")
         for good in self.going_goods:
             total += good.amount
+            logging.debug("------{0}: {1}".format(good.type, good.amount))
         self.finish_time = int(self.current_time + total * self.loading_time)
+        logging.debug("----Finish time: {0}".format(self.finish_time))
         self.next_state()
 
     def loading_goods(self):
+
         if self.current_time == self.finish_time:
             self.shipping_door.load_goods(self.going_goods)
             self.next_state()
@@ -229,6 +242,7 @@ class CompoundTruck(Truck):
         self.finish_time = self.inbound_gdj
 
     def current_action(self, current_time):
+        self.log_truck()
         #print('truck name: ', self.truck_name, ' current_state: ' , self.state_list[self.current_state])
 
         self.current_time = current_time
@@ -253,10 +267,13 @@ class CompoundTruck(Truck):
             self.leaving()
 
     def start_loading(self):
+        logging.debug("----Load Goods:")
         total = 0
         for good in self.going_goods:
             total += good.amount
+            logging.debug("------{0}: {1}".format(good.type, good.amount))
         self.finish_time = int(self.current_time + total * self.loading_time)
+        logging.debug("----Finish time: {0}".format(self.finish_time))
         self.next_state()
 
     def loading_goods(self):
@@ -266,9 +283,12 @@ class CompoundTruck(Truck):
 
     def start_deploy(self):
         total = 0
+        logging.debug("----Deploy goods:")
         for good in self.coming_goods:
             total += good.amount
+            logging.debug("------{0}: {1}".format(good.type, good.amount))
         self.finish_time = int(self.current_time + total * self.loading_time)
+        logging.debug("----Finish time: {0}".format(self.finish_time))
         self.next_state()
 
     def deploy_goods(self):

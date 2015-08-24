@@ -6,6 +6,7 @@ from src.tavlama import Tavlama
 from src.data_store import DataStore
 from collections import OrderedDict
 from src.good import Good
+import logging
 
 class Solver(object):
     """
@@ -284,7 +285,8 @@ class Solver(object):
 
     def next_step(self):
         self.current_time += self.time_step
-        print('current time: ', self.current_time)
+        logging.debug('Current time: {0}-------------------'.format(self.current_time))
+        # print('current time: ', self.current_time)
         self.check_state_changers()
 
     def check_state_changers(self):
