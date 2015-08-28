@@ -68,6 +68,9 @@ class InboundTruck(Truck):
         self.inbound_gdj = int(uniform(self.arrival_time, self.two_gdj))
         self.finish_time = self.inbound_gdj
 
+    def load_gdj(self):
+        pass
+
     def current_action(self, current_time):
         self.log_truck()
         self.current_time = current_time
@@ -138,6 +141,9 @@ class OutboundTruck(Truck):
         self.A = self.outbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.product_per_truck * self.loading_time
         self.bounds = [self.A * self.alpha, self.A * self.gamma]
         self.finish_time = self.outbound_gdj
+
+    def load_gdj(self):
+        pass
 
     def current_action(self, current_time):
         self.log_truck()
@@ -240,6 +246,9 @@ class CompoundTruck(Truck):
         A = self.inbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.inbound_product_per_truck * self.loading_time + self.transfer_time +(self.mu - 1) * self.changeover_time + self.mu * self.outbound_product_per_truck * self.loading_time
         self.bounds = [A * self.alpha, A*(self.alpha + self.gamma)]
         self.finish_time = self.inbound_gdj
+
+    def load_gdj(self):
+        pass
 
     def current_action(self, current_time):
         self.log_truck()

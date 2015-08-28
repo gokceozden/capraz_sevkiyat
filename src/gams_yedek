@@ -1,7 +1,4 @@
-f.write("""alias(i,l);
-alias(j,g);
 
-parameter GG(i)/\n""")
 
     for i in range(1,inbound+1):
         f.write("\n" + str(i) + ' 10')

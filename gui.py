@@ -39,7 +39,7 @@ class MainWindow(QMainWindow):
 
         self.saveAction = QAction(QIcon('images/save.png'), '&Save', self, shortcut=QKeySequence.Save, statusTip = 'Save data set', triggered = self.save_model)
 
-        self.printAction = QAction(QIcon('images/print.png'), '&Print', self, shortcut=QKeySequence.Print, )
+        self.printAction = QAction(QIcon('images/printer.png'), '&Print', self, shortcut=QKeySequence.Print, statusTip = 'Print gams data', triggered = self.print_gams)
         # setup buttons
 
         # setup toolbar
@@ -47,6 +47,7 @@ class MainWindow(QMainWindow):
         self.mainToolBar.addAction(self.newAction)
         self.mainToolBar.addAction(self.loadAction)
         self.mainToolBar.addAction(self.saveAction)
+        self.mainToolBar.addAction(self.printAction)
 
         # setup layout
         self.general_info = GeneralInfo(self.mainStatusBar)
@@ -76,6 +77,10 @@ class MainWindow(QMainWindow):
             self.new_model()
         elif i == 0:
             self.load_data()
+
+    def print_gams(self):
+        file_name, _ = QFileDialog.getOpenFileName(self, 'Open file', '/home')
+        gams_writer('deneme.txt', self.data )
 
     def newModel(self):
         """
