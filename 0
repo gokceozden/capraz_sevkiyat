@@ -39,18 +39,19 @@ parameter D(j)/
 /;
 
 table r(i,k)
-   1  2  3 
-1  12  32  42 
-2  23  13  23 
-3  24  34  14 
+   1 
+1  12 
+2  23 
+3  24 
 /;
 
 table  s(j,k)
-   1  2  3 
-1  13  24  34 
-2  23  14  24 
-3  34  34  24 
+   1 
+1  13 
+2  23 
+3  34 
 /;
+
 
 Positive variable TT;
 Positive variable TTT;

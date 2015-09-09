@@ -232,7 +232,7 @@ class Solver(object):
             truck.gamma = self.data.gamma
             truck.tightness_factor = float(self.data.tightness_factor)
             truck.calculate_gdj()
-            arrival_times[truck.truck_name] = truck.inbound_gdj
+            arrival_times[truck.truck_name] = [truck.inbound_gdj, truck.outbound_gdj]
             boundaries[truck.truck_name] = truck.bounds
 
         self.data.arrival_times.append(arrival_times)

@@ -243,6 +243,7 @@ class CompoundTruck(Truck):
         """
         self.calculate_twogd()
         self.inbound_gdj = int(uniform(self.arrival_time, self.two_gdj))
+        self.outbound_gdj = self.inbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.inbound_product_per_truck * self.loading_time + self.transfer_time
         A = self.inbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.inbound_product_per_truck * self.loading_time + self.transfer_time +(self.mu - 1) * self.changeover_time + self.mu * self.outbound_product_per_truck * self.loading_time
         self.bounds = [A * self.alpha, A*(self.alpha + self.gamma)]
         self.finish_time = self.inbound_gdj

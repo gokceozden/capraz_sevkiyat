@@ -16,6 +16,7 @@ from src.greeting_screen import Greeting
 from src.general_info import GeneralInfo
 from src.data_writer import gams_writer
 from src.solver import Solver
+from src.show_data import ShowData
 
 class MainWindow(QWidget):
     """
@@ -110,20 +111,22 @@ class MainWindow(QWidget):
     def generate_data_set(self):
         # ask if sure
 
+        self.data.arrival_times = []
+        self.data.boundaries = []
         self.model = Solver(self.data)
 
         for i in range(len(self.data.data_set_list)):
             self.model.current_data_set = i
             self.model.set_data()
-            print('arrival', self.data.arrival_times)
-            print('boundaries', self.data.boundaries)
 
     def show_data(self):
-        pass
+        self.data_show = ShowData(self.data)
+        self.data_show.exec_()
 
     def print_gams(self):
         file_name, _ = QFileDialog.getSaveFileName(self, 'Open file', '/home')
-        gams_writer('deneme.txt', self.data )
+        for i in range(len(self.data.data_set_list)):
+            gams_writer(file_name + str(i), i, self.data )
 
     def show_truck_data(self):
         """
