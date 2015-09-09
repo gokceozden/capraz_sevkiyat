@@ -15,83 +15,81 @@ from src.tavlama import Tavlama
 from src.greeting_screen import Greeting
 from src.general_info import GeneralInfo
 from src.data_writer import gams_writer
+from src.solver import Solver
 
-class MainWindow(QMainWindow):
+class MainWindow(QWidget):
     """
     Main window class for capraz_sevkiyat project
     """
     def __init__(self):
-        QMainWindow.__init__(self)
+        QWidget.__init__(self)
         self.model = None
         self.setWindowTitle("Capraz Sevkiyat Projesi")
         self.setGeometry(400,400,400,400)
 
-        # setup status bar
-        self.mainStatusBar = QStatusBar()
-        self.setStatusBar(self.mainStatusBar)
-        self.mainStatusBar.showMessage('Ready')
+        self.set_buttons()
+        self.set_layout()
 
-        ### setup menu bar
-        # setup actions
-        self.newAction = QAction(QIcon('images/new.png'), '&New', self, shortcut = QKeySequence.New, statusTip = "New data set", triggered = self.newModel)
-        self.loadAction = QAction(QIcon('images/load.png'), '&Load', self,
-                                   shortcut=QKeySequence.Open, statusTip = 'Load a saved data set', triggered = self.load_data)
-
-        self.saveAction = QAction(QIcon('images/save.png'), '&Save', self, shortcut=QKeySequence.Save, statusTip = 'Save data set', triggered = self.save_model)
-
-        self.printAction = QAction(QIcon('images/printer.png'), '&Print', self, shortcut=QKeySequence.Print, statusTip = 'Print gams data', triggered = self.print_gams)
-        # setup buttons
-
-        # setup toolbar
-        self.mainToolBar = self.addToolBar('Main')
-        self.mainToolBar.addAction(self.newAction)
-        self.mainToolBar.addAction(self.loadAction)
-        self.mainToolBar.addAction(self.saveAction)
-        self.mainToolBar.addAction(self.printAction)
-
-        # setup layout
-        self.general_info = GeneralInfo(self.mainStatusBar)
-        self.setCentralWidget(self.general_info)
-
-        # empty objects
         self.truck_image_list = {}
         self.truckDataWindow = None
 
-        # set algoruthms
-        # self.tavlama = Tavlama()
-        self.data_set_number = 0
-        self.data_set = []
-
-        self.simulation_on = False
         self.data = DataStore()
-        self.greeting = Greeting()
-        self.data_screen = None
+        self.model = None
 
-    def greet(self):
+    def set_buttons(self):
+        self.new_data_set_button = QPushButton('New Data Set')
+        self.load_data_set_button = QPushButton('Load Data Set')
+        self.save_data_set_button = QPushButton('Save Data Set')
+
+        self.truck_data_button = QPushButton('Truck Data')
+        self.system_data_button = QPushButton('System Data')
+        self.algorithm_data_button = QPushButton('Algorithm Data')
+
+        self.generate_data_set_button = QPushButton('Generate Data Set')
+        self.show_data_button = QPushButton('Show Data Set')
+        self.print_gams_button = QPushButton('Print gams output')
+
+        self.data_set_ready_button = QPushButton('Data Set Ready')
+
+        self.new_data_set_button.clicked.connect(self.new_data_set)
+        self.load_data_set_button.clicked.connect(self.load_data)
+        self.save_data_set_button.clicked.connect(self.save_data)
+
+        self.truck_data_button.clicked.connect(self.show_truck_data)
+        self.system_data_button.clicked.connect(self.show_system_data)
+        self.algorithm_data_button.clicked.connect(self.show_algorithm_data)
+
+        self.generate_data_set_button.clicked.connect(self.generate_data_set)
+        self.show_data_button.clicked.connect(self.show_data)
+        self.print_gams_button.clicked.connect(self.print_gams)
+
+        self.data_set_ready_button.clicked.connect(self.data_set_ready)
+
+    def set_layout(self):
+        self.data_set_layout = QGridLayout()
+        self.data_set_layout.addWidget(self.new_data_set_button, 1 ,1)
+        self.data_set_layout.addWidget(self.load_data_set_button, 1 ,2)
+        self.data_set_layout.addWidget(self.save_data_set_button, 1 ,3)
+
+        self.data_set_layout.addWidget(self.truck_data_button, 2 ,1)
+        self.data_set_layout.addWidget(self.system_data_button, 2 ,2)
+        self.data_set_layout.addWidget(self.algorithm_data_button, 2 ,3)
+
+        self.data_set_layout.addWidget(self.generate_data_set_button, 3, 1)
+        self.data_set_layout.addWidget(self.show_data_button, 3, 2)
+        self.data_set_layout.addWidget(self.print_gams_button, 3, 3)
+
+        self.data_set_layout.addWidget(self.data_set_ready_button, 4, 1)
+
+        self.layout = QVBoxLayout()
+        self.layout.addLayout(self.data_set_layout)
+        self.setLayout(self.layout)
+
+    def new_data_set(self):
         """
-        starts a new window sequence to gather information about the system and solution
         :return:
         """
-        i = self.greeting.exec_()
-        if i == 1:
-            self.new_model()
-        elif i == 0:
-            self.load_data()
-
-    def print_gams(self):
-        file_name, _ = QFileDialog.getSaveFileName(self, 'Open file', '/home')
-        gams_writer('deneme.txt', self.data )
-
-    def newModel(self):
-        """
-
-        :return:
-        """
         self.data = DataStore()
-        self.show_truck_data()
-        self.show_data()
-        self.general_info.print_start_data()
-        self.general_info.init_solution(self.data)
 
     def load_data(self):
         """
@@ -100,18 +98,32 @@ class MainWindow(QMainWindow):
         """
         file_name, _ = QFileDialog.getOpenFileName(self, 'Open file', '/home')
         self.data = pickle.load(open(file_name, 'rb'))
-        self.show_truck_data()
-        self.show_data()
-        self.general_info.init_solution(self.data)
-        self.general_info.print_start_data()
 
-    def save_model(self):
+    def save_data(self):
         """
         saves current data
         :return:
         """
         file_name, _ = QFileDialog.getSaveFileName(self, 'Save file', '/home')
         pickle.dump(self.data,  open(file_name, 'wb'))
+
+    def generate_data_set(self):
+        # ask if sure
+
+        self.model = Solver(self.data)
+
+        for i in range(len(self.data.data_set_list)):
+            self.model.current_data_set = i
+            self.model.set_data()
+            print('arrival', self.data.arrival_times)
+            print('boundaries', self.data.boundaries)
+
+    def show_data(self):
+        pass
+
+    def print_gams(self):
+        file_name, _ = QFileDialog.getSaveFileName(self, 'Open file', '/home')
+        gams_writer('deneme.txt', self.data )
 
     def show_truck_data(self):
         """
@@ -121,7 +133,7 @@ class MainWindow(QMainWindow):
         self.truckDataWindow = TruckDataWindow(self.data)
         self.truckDataWindow.exec_()
 
-    def show_data(self):
+    def show_system_data(self):
         """
         shows data set
         :return:
@@ -129,21 +141,19 @@ class MainWindow(QMainWindow):
         self.dataWindow = DataSetWindow(self.data)
         self.dataWindow.exec_()
 
+    def show_algorithm_data(self):
+        pass
+
+    def data_set_ready(self):
+        #enable solve buttons
+        self.model = Solver(self.data)
+
     def init_simulation(self):
         self.scn = QGraphicsScene()
         self.simulation = GraphView(self.scn, self.model)
         # self.setCentralWidget(self.simulation)
 
         #self.setup_simulation()
-
-    def showDataSet(self):
-        self.model.init_iteration(0)
-        self.simulation.update_image()
-
-    def setup_simulation(self):
-
-        self.simulation.init_image()
-        self.simulation.show()
 
     def simulation_cycle(self):
         i = 0
@@ -155,13 +165,6 @@ class MainWindow(QMainWindow):
             i = i +1
         self.simulation.show()
 
-    def stepForward(self):
-        self.model = Solver(self.data)
-#        self.model.set_data(self.data_set[self.data_set_number])
-        # self.model.step()
-        # self.statusBar().showMessage(str(self.model.current_time))
-        # self.simulation.update_image()
-
 if __name__ == '__main__':
     with open('capraz.log', 'w'):
         pass
@@ -169,6 +172,6 @@ if __name__ == '__main__':
     logging.info('Program Started')
     myApp = QApplication(sys.argv)
     mainWindow = MainWindow()
-    mainWindow.showMaximized()
+    mainWindow.show()
     myApp.exec_()
     sys.exit(0)

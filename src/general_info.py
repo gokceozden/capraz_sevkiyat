@@ -56,6 +56,8 @@ class GeneralInfo(QWidget):
         self.solution_type_combo = QComboBox()
         self.solution_type_combo.addItems(self.solution_list.keys())
 
+        self.new_data_set_button = QPushButton("New Data Set")
+
         self.play_button.setDisabled(True)
         self.stop_button.setDisabled(True)
         self.pause_button.setDisabled(True)
@@ -66,8 +68,12 @@ class GeneralInfo(QWidget):
 
         # setup layout
         self.layout = QGridLayout()
-        self.layout.addWidget(self.infoText, 1, 1, 1)
-        self.layout.addWidget(self.simulation, 1, 2)
+        self.data_set_layout = QGridLayout()
+
+        self.data_set_layout.addWidget(self.new_data_set_button)
+        self.layout.addLayout(self.data_set_layout, 1,1)
+        # self.layout.addWidget(self.infoText, 1, 1, 1)
+        # self.layout.addWidget(self.simulation, 1, 2)
         self.h_layout = QHBoxLayout()
         self.h_layout.addWidget(self.play_button)
         self.h_layout.addWidget(self.stop_button)

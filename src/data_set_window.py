@@ -22,7 +22,7 @@ class DataSetWindow(QDialog):
         self.setupComponents()
         self.setupConnections()
         self.setup_layout()
-    #        self.load_data()
+        self.load_data()
 
     def setupConnections(self):
 
@@ -99,10 +99,10 @@ class DataSetWindow(QDialog):
 
         data_set = []
         for value in range(self.numberOfDataSpin.value()):
-            alpha_data = self.dataTable.item(0, value)
-            beta_data = self.dataTable.item(1, value)
-            tightness_data = self.dataTable.item(2, value)
-            data_set.append([alpha_data, beta_data, tightness_data])
+            alpha_data = self.dataTable.item(value, 0)
+            beta_data = self.dataTable.item(value, 1)
+            tightness_data = self.dataTable.item(value, 2)
+            data_set.append([float(alpha_data.text()), float(beta_data.text()), float(tightness_data.text())])
 
         self.data.data_set_list = data_set
         logging.debug("data set: {0}".format(self.data.data_set_list))
@@ -119,17 +119,17 @@ class DataSetWindow(QDialog):
         self.inboundArrivalTimeEdit.setText(str(self.data.inbound_arrival_time))
         self.outboundArrivalTimeEdit.setText(str(self.data.outbound_arrival_time))
 
-        #self.numberOfDataSpin.setValue(len(self.data))
+        self.numberOfDataSpin.setValue(len(self.data.data_set_list))
 
         self.update_tables()
 
-        for i in range(self.numberOfDataSpin.value()):
+        for i, data_set in enumerate(self.data.data_set_list):
             new_item = QTableWidgetItem()
-            new_item.setText(str(self.data.alpha_values[i]))
-            self.dataTable.setItem(0, i, new_item)
+            new_item.setText(str(data_set[0]))
+            self.dataTable.setItem(i, 0, new_item)
             new_item = QTableWidgetItem()
-            new_item.setText(str(self.data.beta_values[i]))
-            self.dataTable.setItem(1, i, new_item)
+            new_item.setText(str(data_set[1]))
+            self.dataTable.setItem(i, 1, new_item)
             new_item = QTableWidgetItem()
-            new_item.setText(str(self.data.tightness_factors[i]))
-            self.dataTable.setItem(2, i, new_item)
+            new_item.setText(str(data_set[2]))
+            self.dataTable.setItem(i, 2, new_item)

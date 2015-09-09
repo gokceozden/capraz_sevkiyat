@@ -60,7 +60,6 @@ class Solver(object):
 
         # create trucks
         self.inbound_data['arrival_time'] = self.data.inbound_arrival_time
-        print(self.data.inbound_arrival_time)
         self.inbound_data['mu'] = self.inbound_mu
         self.inbound_data['product_per_truck'] = self.product_per_inbound_truck
 
@@ -83,6 +82,8 @@ class Solver(object):
 
         self.station = Station(self.data.good_transfer_time)
         self.create_trucks()
+
+        self.current_data_set = 0
 
         # init model solution
         self.current_time = 0
@@ -201,30 +202,41 @@ class Solver(object):
         self.station.not_ready_goods = {}
         self.station.station_goods = {}
 
-    def set_data(self, data_set_number):
+    def set_data(self):
         """
         sets alpha gamma, tightness factor and twogd values
         :return:
         """
-        self.data.setup_data_set(data_set_number)
+        self.data.setup_data_set(self.current_data_set)
+        print(self.data.alpha, self.data.gamma)
 
-        # for truck in self.inbound_trucks.values():
-        #     truck.alpha = self.data.alpha
-        #     truck.gamma = self.data.gamma
-        #     truck.tightness_factor = float(self.data.tightness_factor)
-        #     truck.calculate_gdj()
-        #
-        # for truck in self.outbound_trucks.values():
-        #     truck.alpha = self.data.alpha
-        #     truck.gamma = self.data.gamma
-        #     truck.tightness_factor = float(self.data.tightness_factor)
-        #     truck.calculate_gdj()
-        #
-        # for truck in self.compound_trucks.values():
-        #     truck.alpha = self.data.alpha
-        #     truck.gamma = self.data.gamma
-        #     truck.tightness_factor = float(self.data.tightness_factor)
-        #     truck.calculate_gdj()
+        arrival_times = {}
+        boundaries = {}
+        for truck in self.inbound_trucks.values():
+            truck.alpha = self.data.alpha
+            truck.gamma = self.data.gamma
+            truck.tightness_factor = float(self.data.tightness_factor)
+            truck.calculate_gdj()
+            arrival_times[truck.truck_name] = truck.inbound_gdj
+
+        for truck in self.outbound_trucks.values():
+            truck.alpha = self.data.alpha
+            truck.gamma = self.data.gamma
+            truck.tightness_factor = float(self.data.tightness_factor)
+            truck.calculate_gdj()
+            arrival_times[truck.truck_name] = truck.outbound_gdj
+            boundaries[truck.truck_name] = truck.bounds
+
+        for truck in self.compound_trucks.values():
+            truck.alpha = self.data.alpha
+            truck.gamma = self.data.gamma
+            truck.tightness_factor = float(self.data.tightness_factor)
+            truck.calculate_gdj()
+            arrival_times[truck.truck_name] = truck.inbound_gdj
+            boundaries[truck.truck_name] = truck.bounds
+
+        self.data.arrival_times.append(arrival_times)
+        self.data.boundaries.append(boundaries)
 
     def set_sequence(self, sequence):
         """

@@ -60,22 +60,16 @@ class DataStore(object):
         self.inbound_twogdj = 0
         self.outbound_twogdj = 0
 
+        # truck values
+        self.arrival_times = []
+        self.boundaries = []
+
     def calculate_truck_data(self):
         """
         create lists and names
         :return:
         """
         pass
-
-    def create_data_set(self):
-        """
-        creates data set for alpha beta and tightness factor values
-        :return:
-        """
-        for alpha in self.alpha_values:
-            for beta in self.beta_values:
-                for tightness in self.tightness_factors:
-                    self.data_set_list.append((alpha, beta, tightness))
 
     def setup_data_set(self, data_set_number):
         """
