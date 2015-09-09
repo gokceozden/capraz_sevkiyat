@@ -5,6 +5,7 @@ from PySide.QtCore import *
 
 from src.solver import Solver
 from src.data_store import DataStore
+import logging
 
 class DataSetWindow(QDialog):
     """
@@ -21,18 +22,14 @@ class DataSetWindow(QDialog):
         self.setupComponents()
         self.setupConnections()
         self.setup_layout()
-        self.load_data()
+    #        self.load_data()
 
     def setupConnections(self):
 
-        self.numberOfGammaSpin.valueChanged.connect(self.update_tables)
-        self.numberOfAlphaSpin.valueChanged.connect(self.update_tables)
-        self.numberofTightnessSpin.valueChanged.connect(self.update_tables)
+        self.numberOfDataSpin.valueChanged.connect(self.update_tables)
 
     def setupComponents(self):
-        self.gammaTable = QTableWidget(1, 1)
-        self.alphaTable = QTableWidget(1, 1)
-        self.tightnessFactorTable = QTableWidget(1, 1)
+        self.dataTable = QTableWidget(1, 3)
 
     def setupButtons(self):
         self.loadingTimeLabel = QLabel("Loading Time")
@@ -59,17 +56,9 @@ class DataSetWindow(QDialog):
         self.doneButton = QPushButton('Done')
         self.doneButton.clicked.connect(self.save_data)
 
-        self.numberOfGammaLabel = QLabel("Number of gamma values")
-        self.numberOfGammaSpin = QSpinBox()
-        self.numberOfGammaSpin.setMinimum(1)
-
-        self.numberOfAlphaLabel = QLabel("Number of alpha values")
-        self.numberOfAlphaSpin = QSpinBox()
-        self.numberOfAlphaSpin.setMinimum(1)
-
-        self.numberofTightnessLabel = QLabel("Number of tightness factors")
-        self.numberofTightnessSpin = QSpinBox()
-        self.numberofTightnessSpin.setMinimum(1)
+        self.numberOfDataLabel = QLabel("Number of data sets")
+        self.numberOfDataSpin = QSpinBox()
+        self.numberOfDataSpin.setMinimum(1)
 
     def setup_layout(self):
 
@@ -84,14 +73,10 @@ class DataSetWindow(QDialog):
         self.dataSetForm.addRow(self.inboundArrivalTimeLabel, self.inboundArrivalTimeEdit)
         self.dataSetForm.addRow(self.outboundArrivalTimeLabel, self.outboundArrivalTimeEdit)
         self.dataSetForm.addRow(self.goodTransferTimeLabel, self.goodTransferTimeEdit)
-        self.dataSetForm.addRow(self.numberOfGammaLabel, self.numberOfGammaSpin)
-        self.dataSetForm.addRow(self.numberOfAlphaLabel, self.numberOfAlphaSpin)
-        self.dataSetForm.addRow(self.numberofTightnessLabel, self.numberofTightnessSpin)
+        self.dataSetForm.addRow(self.numberOfDataLabel, self.numberOfDataSpin)
         self.dataSetForm.addRow(self.doneButton)
 
-        self.vTableLayout.addWidget(self.gammaTable)
-        self.vTableLayout.addWidget(self.alphaTable)
-        self.vTableLayout.addWidget(self.tightnessFactorTable)
+        self.vTableLayout.addWidget(self.dataTable)
 
         self.mainLayout.addLayout(self.dataSetForm)
         self.mainLayout.addLayout(self.vTableLayout)
@@ -100,9 +85,7 @@ class DataSetWindow(QDialog):
 
     def update_tables(self):
 
-        self.gammaTable.setColumnCount(self.numberOfGammaSpin.value())
-        self.alphaTable.setColumnCount(self.numberOfAlphaSpin.value())
-        self.tightnessFactorTable.setColumnCount(self.numberofTightnessSpin.value())
+        self.dataTable.setRowCount(self.numberOfDataSpin.value())
 
     def save_data(self):
 
@@ -113,31 +96,17 @@ class DataSetWindow(QDialog):
         self.data.good_transfer_time = float(self.goodTransferTimeEdit.text())
         self.data.inbound_arrival_time = float(self.inboundArrivalTimeEdit.text())
         self.data.outbound_arrival_time = float(self.outboundArrivalTimeEdit.text())
-        
-        alpha = []
-        gamma = []
-        tightness = []
-        
-        for value in range(self.numberOfAlphaSpin.value()):
-            data = self.alphaTable.item(0,value)
-            if data:
-                alpha.append(float(data.text()))
 
-        for value in range(self.numberOfGammaSpin.value()):
-            data = self.gammaTable.item(0, value)
-            if data:
-                gamma.append(float(data.text()))
+        data_set = []
+        for value in range(self.numberOfDataSpin.value()):
+            alpha_data = self.dataTable.item(0, value)
+            beta_data = self.dataTable.item(1, value)
+            tightness_data = self.dataTable.item(2, value)
+            data_set.append([alpha_data, beta_data, tightness_data])
 
-        for value in range(self.numberofTightnessSpin.value()):
-            data = self.tightnessFactorTable.item(0, value)
-            if data:
-                tightness.append(float(data.text()))
-
-        self.data.alpha_values = alpha
-        self.data.gamma_values = gamma
-        self.data.tightness_factors = tightness
-
-        self.data.create_data_set()
+        self.data.data_set_list = data_set
+        logging.debug("data set: {0}".format(self.data.data_set_list))
+        # self.data.create_data_set()
         self.close()
 
     def load_data(self):
@@ -150,23 +119,17 @@ class DataSetWindow(QDialog):
         self.inboundArrivalTimeEdit.setText(str(self.data.inbound_arrival_time))
         self.outboundArrivalTimeEdit.setText(str(self.data.outbound_arrival_time))
 
-        self.numberOfGammaSpin.setValue(len(self.data.gamma_values))
-        self.numberOfAlphaSpin.setValue(len(self.data.alpha_values))
-        self.numberofTightnessSpin.setValue(len(self.data.tightness_factors))
-        
+        #self.numberOfDataSpin.setValue(len(self.data))
+
         self.update_tables()
 
-        for i in range(self.numberOfGammaSpin.value()):
-            new_item = QTableWidgetItem()
-            new_item.setText(str(self.data.gamma_values[i]))
-            self.gammaTable.setItem(0, i, new_item)
-
-        for i in range(self.numberOfAlphaSpin.value()):
+        for i in range(self.numberOfDataSpin.value()):
             new_item = QTableWidgetItem()
             new_item.setText(str(self.data.alpha_values[i]))
-            self.alphaTable.setItem(0, i, new_item)
-
-        for i in range(self.numberofTightnessSpin.value()):
+            self.dataTable.setItem(0, i, new_item)
+            new_item = QTableWidgetItem()
+            new_item.setText(str(self.data.beta_values[i]))
+            self.dataTable.setItem(1, i, new_item)
             new_item = QTableWidgetItem()
             new_item.setText(str(self.data.tightness_factors[i]))
-            self.tightnessFactorTable.setItem(0, i, new_item)
+            self.dataTable.setItem(2, i, new_item)

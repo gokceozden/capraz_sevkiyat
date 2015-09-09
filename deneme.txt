@@ -1,0 +1,22 @@
+option mip=cplex;
+option lp=cplex;
+option reslim=200000000;
+option iterlim=300000000;
+options limrow =32;
+
+Sets
+
+i  inbountrucks /2/
+j  outboundtrucks /1/
+w  compoundtrucks /1/
+m  receivingdocks /1/
+n  shippingdocks /1/
+
+k  producttypes //
+
+alias(i,l);
+alias(j,g);
+
+parameter GG(i)/
+
+

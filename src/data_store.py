@@ -33,18 +33,19 @@ class DataStore(object):
         self.good_transfer_time = 0
         self.inbound_arrival_time = 0
         self.outbound_arrival_time = 0
-        self.number_of_gammas = 0
-        self.gamma_values = [0]
+        self.number_of_betas = 0
         self.number_of_alphas = 0
-        self.alpha_values = [0]
         self.number_of_tghtness_factors = 0
-        self.tightness_factors = [0]
 
         # dataset
+        self.gdj_values = {}
+        self.gdj_values['inbound'] = []
+        self.gdj_values['outbound'] = []
+        self.gdj_values['compound'] = []
         self.outbound_twoGD = 0
         self.inbound_twoGD = 0
         self.alpha = 0
-        self.gamma  = 0
+        self.beta = 0
         self.tightness_factor = 0
 
         self.data_set_list = []
@@ -68,13 +69,13 @@ class DataStore(object):
 
     def create_data_set(self):
         """
-        creates data set for alpha gamma and tightness factor values
+        creates data set for alpha beta and tightness factor values
         :return:
         """
         for alpha in self.alpha_values:
-            for gamma in self.gamma_values:
+            for beta in self.beta_values:
                 for tightness in self.tightness_factors:
-                    self.data_set_list.append((alpha, gamma, tightness))
+                    self.data_set_list.append((alpha, beta, tightness))
 
     def setup_data_set(self, data_set_number):
         """

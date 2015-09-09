@@ -208,23 +208,23 @@ class Solver(object):
         """
         self.data.setup_data_set(data_set_number)
 
-        for truck in self.inbound_trucks.values():
-            truck.alpha = self.data.alpha
-            truck.gamma = self.data.gamma
-            truck.tightness_factor = float(self.data.tightness_factor)
-            truck.calculate_gdj()
-
-        for truck in self.outbound_trucks.values():
-            truck.alpha = self.data.alpha
-            truck.gamma = self.data.gamma
-            truck.tightness_factor = float(self.data.tightness_factor)
-            truck.calculate_gdj()
-
-        for truck in self.compound_trucks.values():
-            truck.alpha = self.data.alpha
-            truck.gamma = self.data.gamma
-            truck.tightness_factor = float(self.data.tightness_factor)
-            truck.calculate_gdj()
+        # for truck in self.inbound_trucks.values():
+        #     truck.alpha = self.data.alpha
+        #     truck.gamma = self.data.gamma
+        #     truck.tightness_factor = float(self.data.tightness_factor)
+        #     truck.calculate_gdj()
+        #
+        # for truck in self.outbound_trucks.values():
+        #     truck.alpha = self.data.alpha
+        #     truck.gamma = self.data.gamma
+        #     truck.tightness_factor = float(self.data.tightness_factor)
+        #     truck.calculate_gdj()
+        #
+        # for truck in self.compound_trucks.values():
+        #     truck.alpha = self.data.alpha
+        #     truck.gamma = self.data.gamma
+        #     truck.tightness_factor = float(self.data.tightness_factor)
+        #     truck.calculate_gdj()
 
     def set_sequence(self, sequence):
         """

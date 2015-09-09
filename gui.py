@@ -79,7 +79,7 @@ class MainWindow(QMainWindow):
             self.load_data()
 
     def print_gams(self):
-        file_name, _ = QFileDialog.getOpenFileName(self, 'Open file', '/home')
+        file_name, _ = QFileDialog.getSaveFileName(self, 'Open file', '/home')
         gams_writer('deneme.txt', self.data )
 
     def newModel(self):
