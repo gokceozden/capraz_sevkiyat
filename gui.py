@@ -52,6 +52,14 @@ class MainWindow(QWidget):
 
         self.data_set_ready_button = QPushButton('Data Set Ready')
 
+        self.solve_step_button = QPushButton('Solve Next Step')
+        self.solve_iteration_button = QPushButton('Solve Next Iteration')
+        self.solve_next_data_set_button = QPushButton('Solve Next Data Set')
+
+        self.show_debug_logger_button = QPushButton('Show Debug Logger')
+        self.show_logger_button = QPushButton('Show Logger')
+        self.show_simulation_button = QPushButton('Show Simulation')
+
         self.new_data_set_button.clicked.connect(self.new_data_set)
         self.load_data_set_button.clicked.connect(self.load_data)
         self.save_data_set_button.clicked.connect(self.save_data)
@@ -82,8 +90,21 @@ class MainWindow(QWidget):
 
         self.data_set_layout.addWidget(self.data_set_ready_button, 4, 1)
 
+        self.solver_layout = QGridLayout()
+        self.solver_layout.addWidget(self.solve_step_button, 1, 1)
+        self.solver_layout.addWidget(self.solve_iteration_button, 1, 2)
+        self.solver_layout.addWidget(self.solve_next_data_set_button, 1, 3)
+
+        self.interaction_layout = QGridLayout()
+        self.interaction_layout.addWidget(self.show_logger_button, 1, 1)
+        self.interaction_layout.addWidget(self.show_debug_logger_button, 1, 2)
+        self.interaction_layout.addWidget(self.show_simulation_button, 1, 3)
+
         self.layout = QVBoxLayout()
         self.layout.addLayout(self.data_set_layout)
+        self.layout.addLayout(self.solver_layout)
+        self.layout.addLayout(self.interaction_layout)
+
         self.setLayout(self.layout)
 
     def new_data_set(self):

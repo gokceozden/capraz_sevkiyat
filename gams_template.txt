@@ -12,7 +12,7 @@ w  compoundtrucks /{{number_of_compound}}/
 m  receivingdocks /{{number_of_receiving_doors}}/
 n  shippingdocks /{{number_of_shipping_doors}}/
 
-k  producttypes //
+k  producttypes /{{number_of_goods}}/
 
 alias(i,l);
 alias(j,g);
@@ -31,12 +31,12 @@ parameter D(j)/
 {% endfor %}/;
 
 table r(i,k)
-  {% for item in number_of_goods%} {{item + 1}} {% endfor %}
+  {% for item in good_numbers%} {{item + 1}} {% endfor %}
 {% for goods in inbound_goods %}{{loop.index}} {% for good in goods %} {{good}} {% endfor %}
 {% endfor %}/;
 
 table  s(j,k)
-  {% for item in number_of_goods%} {{item + 1}} {% endfor %}
+  {% for item in good_numbers%} {{item + 1}} {% endfor %}
 {% for goods in outbound_goods %}{{loop.index}} {% for good in goods %} {{good}} {% endfor %}
 {% endfor %}/;
 
