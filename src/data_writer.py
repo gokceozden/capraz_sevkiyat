@@ -16,24 +16,28 @@ def gams_writer(file_name, data_set_number, data = DataStore()):
 
     for i in range(data.number_of_inbound_trucks):
         truck_name = 'inbound' + str(i)
-        inbound_arrivals.append(data.arrival_times[data_set_number][truck_name])
+        inbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name]))
 
     for i in range(data.number_of_outbound_trucks):
         truck_name = 'outbound' + str(i)
-        outbound_arrivals.append(data.arrival_times[data_set_number][truck_name])
-        lower_boundaries.append(data.boundaries[data_set_number][truck_name][0])
-        upper_boundaries.append(data.boundaries[data_set_number][truck_name][1])
+        outbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name]))
+        lower_boundaries.append(int(data.boundaries[data_set_number][truck_name][0]))
+        upper_boundaries.append(int(data.boundaries[data_set_number][truck_name][1]))
 
     for i in range(data.number_of_compound_trucks):
         truck_name = 'compound' + str(i)
-        inbound_arrivals.append(data.arrival_times[data_set_number][truck_name][0])
-        outbound_arrivals.append(data.arrival_times[data_set_number][truck_name][1])
-        lower_boundaries.append(data.boundaries[data_set_number][truck_name][0])
-        upper_boundaries.append(data.boundaries[data_set_number][truck_name][1])
+        inbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name][0]))
+        outbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name][1]))
+        lower_boundaries.append(int(data.boundaries[data_set_number][truck_name][0]))
+        upper_boundaries.append(int(data.boundaries[data_set_number][truck_name][1]))
 
-    d = {'number_of_inbound': data.number_of_inbound_trucks,
-         'number_of_outbound': data.number_of_outbound_trucks,
+    d = {'number_of_inbound': data.number_of_inbound_trucks + data.number_of_compound_trucks,
+         'number_of_outbound': data.number_of_outbound_trucks + data.number_of_compound_trucks,
          'number_of_compound': data.number_of_compound_trucks,
+         'compound_plus_one': data.number_of_compound_trucks + 1,
+         'changeover_time': int(data.changeover_time),
+         'product_transfer_time': int(data.good_transfer_time),
+         'transfer_time': int(data.transfer_time),
          'number_of_goods': data.number_of_goods,
          'number_of_receiving_doors': data.number_of_receiving_doors,
          'number_of_shipping_doors': data.number_of_shipping_doors,
@@ -57,6 +61,7 @@ def print_data( data = DataStore()):
     d = {'number_of_inbound': data.number_of_inbound_trucks,
          'number_of_outbound': data.number_of_outbound_trucks,
          'number_of_compound': data.number_of_compound_trucks,
+
          'number_of_receiving_doors': data.number_of_receiving_doors,
          'number_of_shipping_doors': data.number_of_shipping_doors,
          'number_of_goods': data.number_of_goods,

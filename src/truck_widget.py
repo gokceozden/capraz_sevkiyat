@@ -2,6 +2,7 @@ __author__ = 'mustafa'
 
 import sys
 from PySide.QtGui import *
+from PySide.QtCore import *
 
 class TruckWidget(QWidget):
     """
@@ -15,6 +16,7 @@ class TruckWidget(QWidget):
         self.truckHLayout = QHBoxLayout(self)
         self.number_of_goods = number_of_goods
         self.goodTable = QTableWidget(1,number_of_goods,self)
+
 
         #combo box for truck type
 
