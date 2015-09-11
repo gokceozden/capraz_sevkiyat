@@ -23,12 +23,12 @@ class TruckDataWindow(QDialog):
         self.setGeometry(300,400,500,500)
         self.setWindowModality(Qt.ApplicationModal)
 
-
     def setupComponents(self):
         """
         Setup all the components, statusbar, menubar, toolbar
         :return:
         """
+
         self.setupButtons()
         self.setupLayout()
         self.prev_data()
@@ -80,15 +80,9 @@ class TruckDataWindow(QDialog):
         self.mainVBox = QVBoxLayout()
         self.truckForm = QFormLayout()
         self.doorForm = QFormLayout()
-        self.scroll = QScrollArea()
-        self.scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        self.scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.scroll.setWidgetResizable(False)
         self.hBoxMainData = QHBoxLayout()
         self.vBoxTruckData = QVBoxLayout()
-
         self.vInboundTruck = QVBoxLayout()
-
         self.vOutBoundTruck = QVBoxLayout()
         self.vCompoundTruck = QVBoxLayout()
         self.inboundLabel = QLabel('Inbound Trucks')

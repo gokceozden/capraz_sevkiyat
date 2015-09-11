@@ -355,3 +355,4 @@ class GeneralInfo(QWidget):
             print('bounds', truck.bounds)
             print('error', truck.error)
             print('finish', truck.finish_time)
+

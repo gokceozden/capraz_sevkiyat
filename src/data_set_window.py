@@ -17,6 +17,7 @@ class DataSetWindow(QDialog):
         self.setWindowTitle('Data Set Window')
         self.setWindowModality(Qt.ApplicationModal)        
         self.setupComponents()
+
         self.setupButtons()
         self.setupComponents()
         self.setupConnections()

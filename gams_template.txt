@@ -6,13 +6,13 @@ options limrow =32;
 
 Sets
 
-i  inbountrucks /1*{{number_of_inbound}}/
-j  outboundtrucks /1*{{number_of_outbound}}/
-w  compoundtrucks /1*{{number_of_compound}}/
-m  receivingdocks /1*{{number_of_receiving_doors}}/
-n  shippingdocks /1*{{number_of_shipping_doors}}/
+i  inbountrucks /{{number_of_inbound}}/
+j  outboundtrucks /{{number_of_outbound}}/
+w  compoundtrucks /{{number_of_compound}}/
+m  receivingdocks /{{number_of_receiving_doors}}/
+n  shippingdocks /{{number_of_shipping_doors}}/
 
-k  producttypes /1*{{number_of_goods}}/
+k  producttypes /{{number_of_goods}}/
 
 alias(i,l);
 alias(j,g);
@@ -31,14 +31,14 @@ parameter D(j)/
 {% endfor %}/;
 
 table r(i,k)
-  {% for item in good_numbers%} {{'%4d' % (item + 1)}} {% endfor %}
-{% for goods in inbound_goods %}{{loop.index}} {% for good in goods %} {{'%4d' % good}} {% endfor %}
-{% endfor %};
+  {% for item in good_numbers%} {{item + 1}} {% endfor %}
+{% for goods in inbound_goods %}{{loop.index}} {% for good in goods %} {{good}} {% endfor %}
+{% endfor %}/;
 
 table  s(j,k)
-  {% for item in good_numbers%} {{'%4d' % (item + 1)}} {% endfor %}
-{% for goods in outbound_goods %}{{loop.index}} {% for good in goods %} {{'%4d' % good}} {% endfor %}
-{% endfor %};
+  {% for item in good_numbers%} {{item + 1}} {% endfor %}
+{% for goods in outbound_goods %}{{loop.index}} {% for good in goods %} {{good}} {% endfor %}
+{% endfor %}/;
 
 
 Positive variable TT;
@@ -98,7 +98,7 @@ constraint2..                                                   TT=e=sum(j,T(j))
 
 constraint3 (i)..                                               ee(i)+sum(k,r(i,k))=l=E(i);
 
-constraint4 (i,l)$(ord(i)<>ord(l))..                            E(i)+{{changeover_time}}=l=ee(l)+100000*(1-sum(m,p(i,l,m)));
+constraint4 (i,l)$(ord(i)<>ord(l))..                            E(i)+9=l=ee(l)+100000*(1-sum(m,p(i,l,m)));
 
 constraint5 (i)..                                              sum(m,y(i,m))=e=1;
 
@@ -110,7 +110,7 @@ constraint8 (i,m)..                                            sum((l)$(ord(i)<>
 
 constraint9 (j)..                                              ff(j)+sum(k,s(j,k))=l=F(j);
 
-constraint10 (j,g)$(ord(j)<>ord(g))..                         F(g)+{{changeover_time}}=l=ff(j)+100000*(1-sum(n,q(g,j,n)));
+constraint10 (j,g)$(ord(j)<>ord(g))..                         F(g)+9=l=ff(j)+100000*(1-sum(n,q(g,j,n)));
 
 constraint11 (j)..                                              sum(n,z(j,n))=e=1;
 
@@ -126,11 +126,11 @@ constraint16 (j,k)..                                           sum(i,x(i,j,k))=e
 
 constraint17 (i,j)..                                           sum(k,x(i,j,k))=l=100000*v(i,j);
 
-constraint18 (i,j)..                                           E(i)+{{product_transfer_time}}=l=ff(j)+100000*(1-v(i,j));
+constraint18 (i,j)..                                           E(i)+25=l=ff(j)+100000*(1-v(i,j));
 
 *constraint19(i)..                                              E(i)+100000*(1-sum(m,y(i,m)))=g=GG(i)+sum(k,r(i,k));
 
-*constraint20(j)$(ord(j)>{{compound_plus_one}})..                                  F(j)+100000*(1-sum(n,z(j,n)))=g=GT(j)+sum(k,s(j,k));
+*constraint20(j)$(ord(j)>3)..                                  F(j)+100000*(1-sum(n,z(j,n)))=g=GT(j)+sum(k,s(j,k));
 
 constraint21(j)..                                              EEE(j)=g= dd(j)-F(j);
 
@@ -138,9 +138,9 @@ constraint22(j)..                                              T(j)=g=F(j)-D(j);
 
 constraint23(i)..                                              ee(i)=g=GG(i);
 
-constraint25(j)$(ord(j)>{{compound_plus_one}})..                                   ff(j)=g=GT(j);
+constraint25(j)$(ord(j)>3)..                                   ff(j)=g=GT(j);
 
-constraint24(i,j)$(ord(i)=ord(j)and ord(i){{number_of_compound_trucks}})..                ee(i)+sum(k,r(i,k))+{{changeover_time}}+{{transfer_time}}=l=ff(j);
+constraint24(i,j)$(ord(i)=ord(j)and ord(i)<2)..                ee(i)+sum(k,r(i,k))+9+12=l=ff(j);
 
 
 objective..                                                    TT=e=h;
