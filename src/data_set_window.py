@@ -23,6 +23,7 @@ class DataSetWindow(QDialog):
         self.setup_layout()
         self.load_data()
 
+
     def setupConnections(self):
 
         self.numberOfDataSpin.valueChanged.connect(self.update_tables)

@@ -17,6 +17,7 @@ from src.general_info import GeneralInfo
 from src.data_writer import gams_writer
 from src.solver import Solver
 from src.show_data import ShowData
+from src.logger_output import LogData
 
 class MainWindow(QWidget):
     """
@@ -73,6 +74,8 @@ class MainWindow(QWidget):
         self.print_gams_button.clicked.connect(self.print_gams)
 
         self.data_set_ready_button.clicked.connect(self.data_set_ready)
+
+        self.show_logger_button.clicked.connect(self.show_data)
 
     def set_layout(self):
         self.data_set_layout = QGridLayout()
@@ -171,6 +174,19 @@ class MainWindow(QWidget):
     def data_set_ready(self):
         #enable solve buttons
         self.model = Solver(self.data)
+
+    def show_data(self):
+        self.logger = LogData()
+        root = logging.getLogger()
+        root.setLevel(logging.DEBUG)
+
+        ch = logging.StreamHandler(self.logger)
+        ch.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        ch.setFormatter(formatter)
+        root.addHandler(ch)
+        self.logger.show()
+        logging.info('Logger Started')
 
     def init_simulation(self):
         self.scn = QGraphicsScene()
