@@ -238,6 +238,22 @@ class Solver(object):
         self.data.arrival_times.append(arrival_times)
         self.data.boundaries.append(boundaries)
 
+    def load_data_set(self):
+        self.data.setup_data_set(self.current_data_set)
+        for truck in self.inbound_trucks.values():
+            truck.inbound_gdj = self.data.arrival_times[self.current_data_set][truck.truck_name]
+            self.finish_time = truck.inbound_gdj
+
+        for truck in self.outbound_trucks.values():
+            truck.outbound_gdj = self.data.arrival_times[self.current_data_set][truck.truck_name]
+            truck.bounds = self.data.boundaries[self.current_data_set][truck.truck_name]
+            self.finish_time = truck.outbound_gdj
+
+        for truck in self.compound_trucks.values():
+            [truck.inbound_gdj, truck.outbound_gdj] = self.data.arrival_times[self.current_data_set][truck.truck_name]
+            truck.bounds = self.data.boundaries[self.current_data_set][truck.truck_name]
+            self.finish_time = truck.inbound_gdj
+
     def set_sequence(self, sequence):
         """
         sets sequence to trucks and doors
@@ -324,7 +340,7 @@ class Solver(object):
         for truck_types in self.truck_dictionary.values():
             for truck in truck_types.values():
                 if truck.state_list[truck.current_state] == 'done':
-                    print('done', truck.truck_name)
+                    #print('done', truck.truck_name)
                     self.finish = self.finish and True
                 else:
                     self.finish = self.finish and False

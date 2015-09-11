@@ -18,6 +18,8 @@ from src.data_writer import gams_writer
 from src.solver import Solver
 from src.show_data import ShowData
 from src.logger_output import LogData
+import itertools
+from src.algorithms import Algorithms
 
 class MainWindow(QWidget):
     """
@@ -37,6 +39,14 @@ class MainWindow(QWidget):
 
         self.data = DataStore()
         self.model = None
+
+        self.current_iteration = 1
+        self.iteration_limit = 100
+        self.current_data_set = 0
+
+        self.algorithms = None
+
+        self.solution_choice = None
 
     def set_buttons(self):
         self.new_data_set_button = QPushButton('New Data Set')
@@ -61,6 +71,9 @@ class MainWindow(QWidget):
         self.show_logger_button = QPushButton('Show Logger')
         self.show_simulation_button = QPushButton('Show Simulation')
 
+        self.data_set_number = QSpinBox()
+        self.data_set_number.setMinimum(0)
+
         self.new_data_set_button.clicked.connect(self.new_data_set)
         self.load_data_set_button.clicked.connect(self.load_data)
         self.save_data_set_button.clicked.connect(self.save_data)
@@ -76,6 +89,11 @@ class MainWindow(QWidget):
         self.data_set_ready_button.clicked.connect(self.data_set_ready)
 
         self.show_logger_button.clicked.connect(self.show_data)
+
+        self.solve_next_data_set_button.clicked.connect(self.data_set_button)
+        self.solve_iteration_button.clicked.connect(self.iteration_button)
+        self.solve_step_button.clicked.connect(self.step_button)
+        self.data_set_number.valueChanged.connect(self.set_data_set_number)
 
     def set_layout(self):
         self.data_set_layout = QGridLayout()
@@ -97,6 +115,7 @@ class MainWindow(QWidget):
         self.solver_layout.addWidget(self.solve_step_button, 1, 1)
         self.solver_layout.addWidget(self.solve_iteration_button, 1, 2)
         self.solver_layout.addWidget(self.solve_next_data_set_button, 1, 3)
+        self.solver_layout.addWidget(self.data_set_number, 1, 4)
 
         self.interaction_layout = QGridLayout()
         self.interaction_layout.addWidget(self.show_logger_button, 1, 1)
@@ -109,6 +128,7 @@ class MainWindow(QWidget):
         self.layout.addLayout(self.interaction_layout)
 
         self.setLayout(self.layout)
+        self.pause_bool = False
 
     def new_data_set(self):
         """
@@ -173,7 +193,13 @@ class MainWindow(QWidget):
 
     def data_set_ready(self):
         #enable solve buttons
+        self.algorithms = Algorithms()
         self.model = Solver(self.data)
+        self.model.current_data_set = self.current_data_set
+        self.model.load_data_set()
+        self.algorithms.set_algorithms(self.model)
+        self.current_iteration = 1
+        self.iteration_limit = 100
 
     def show_data(self):
         self.logger = LogData()
@@ -181,19 +207,166 @@ class MainWindow(QWidget):
         root.setLevel(logging.DEBUG)
 
         ch = logging.StreamHandler(self.logger)
-        ch.setLevel(logging.DEBUG)
+        ch.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch.setFormatter(formatter)
         root.addHandler(ch)
         self.logger.show()
         logging.info('Logger Started')
 
-    def init_simulation(self):
-        self.scn = QGraphicsScene()
-        self.simulation = GraphView(self.scn, self.model)
-        # self.setCentralWidget(self.simulation)
+    def data_set_button(self):
+        self.solution_choice = 'data_set'
+        self.solution_type_choice()
+        self.solve_dataset()
 
-        #self.setup_simulation()
+    def iteration_button(self):
+        self.solution_choice = 'iteration'
+        self.solution_type_choice()
+        self.solve_dataset()
+
+    def step_button(self):
+        self.solution_choice = 'step'
+        self.solution_type_choice()
+        self.solve_dataset()
+
+    def set_data_set_number(self):
+        self.current_data_set = self.data_set_number.value()
+
+    def solve_dataset(self):
+        """
+        solves one data set
+        :return:
+        """
+        logging.info('Data Set Number: {0}'.format(self.current_data_set))
+        self.model.current_data_set = self.current_data_set
+        if self.data_set_bool:
+            #print('one_set')1
+            if self.current_iteration == 1 and self.model.current_time == 0:
+                self.model.load_data_set()
+            self.solve_iteration()
+
+            if self.current_data_set == len(self.data.data_set_list):
+            #    print('finish')
+                self.current_iteration = 1
+                self.current_data_set = 0
+                self.trial_time = 0
+        else:
+            while self.current_data_set < len(self.data.data_set_list):
+                if self.pause_bool:
+                    break
+                self.model.load_data_set()
+                self.solve_iteration()
+            #   print(self.current_data_set)
+            self.current_data_set = 0
+
+    def solve_iteration(self):
+        """
+        solves one iteration
+        :return:
+        """
+        if self.iteration_bool:
+            #print('one_iteration')
+            if self.model.current_time == 0:
+
+                if self.current_iteration == 1:
+                    print('start')
+                    self.algorithms.start()
+                    self.model.set_sequence(self.algorithms.solution_sequence)
+                    self.solve_whole_step()
+                    self.algorithms.next()
+                    self.model.set_sequence(self.algorithms.solution_sequence)
+                else:
+                    self.algorithms.next()
+                    self.model.set_sequence(self.algorithms.solution_sequence)
+                self.print_simulation_data()
+            self.solve_step()
+
+            if self.current_iteration == self.iteration_limit:
+                self.current_data_set += 1
+                self.current_iteration = 1
+        else:
+            while self.current_iteration < self.iteration_limit:
+                if self.pause_bool:
+                    break
+
+                self.print_simulation_data()
+                if self.model.current_time == 0:
+                    if self.current_iteration == 1:
+                        self.algorithms.start()
+                    else:
+                        self.algorithms.next()
+                    self.model.set_sequence(self.algorithms.solution_sequence)
+                # next sequence
+                self.solve_step()
+            #print(self.current_iteration)
+            self.current_iteration = 1
+            #print('whole_iteration')
+
+    def solve_step(self):
+        if self.step_bool:
+            self.solve_one_step()
+        else:
+            self.solve_whole_step()
+
+    def solve_whole_step(self):
+        """
+        solves one iterations
+        :return:
+        """
+        while not self.model.finish:
+            if self.model.current_time > 800:
+
+                break
+            if self.pause_bool:
+                break
+            self.model.next_step()
+
+            #finished
+        for truck in itertools.chain(self.model.outbound_trucks.values(), self.model.compound_trucks.values()):
+            truck.calculate_error()
+
+        #add reset
+        self.model.finish = False
+        self.algorithms.solution_sequence['error'] = self.add_errors()
+        self.model.reset_trucks()
+        if self.current_iteration > 1:
+            self.algorithms.calculate()
+        self.current_iteration += 1
+        #self.print_results()
+
+    def solve_one_step(self):
+        """
+        goes one time step forward
+        :return:
+        """
+
+        self.model.next_step()
+#        self.simulation.update_image()
+
+        if self.model.finish:
+            #finished
+            for truck in self.model.outbound_trucks.values():
+                truck.calculate_error()
+            self.model.reset_trucks()
+            # add reset
+            self.add_errors()
+            #self.print_results()
+            self.current_iteration += 1
+            self.model.finish = False
+            self.algorithms.solution_sequence['error'] = self.add_errors()
+            self.algorithms.calculate()
+
+    def add_errors(self):
+        """
+        adds absolute values of the errors
+
+        :return:
+        """
+        total_error = 0
+        for truck in itertools.chain(self.model.outbound_trucks.values(), self.model.compound_trucks.values()):
+            total_error += abs(truck.error)
+        logging.info("Error: {0}\n".format(total_error))
+        return total_error
 
     def simulation_cycle(self):
         i = 0
@@ -204,6 +377,44 @@ class MainWindow(QWidget):
             self.truck_image_list[truck_name].setPos(-600,i*100)
             i = i +1
         self.simulation.show()
+
+    def solution_type_choice(self):
+        """
+        update bools for the choosen solution type
+        :return:
+        """
+
+        if self.solution_choice == 'solve':
+            self.solve_bool = True
+            self.data_set_bool = False
+            self.iteration_bool = False
+            self.step_bool = False
+
+        elif self.solution_choice == 'data_set':
+            self.solve_bool = True
+            self.data_set_bool = True
+            self.iteration_bool = False
+            self.step_bool = False
+            self.data_set_ready()
+
+        elif self.solution_choice == 'iteration':
+            self.solve_bool = True
+            self.data_set_bool = True
+            self.iteration_bool = True
+            self.step_bool = False
+
+        elif self.solution_choice == 'step':
+            self.solve_bool = True
+            self.data_set_bool = True
+            self.iteration_bool = True
+            self.step_bool = True
+
+    def print_simulation_data(self):
+        logging.info("Iteration Number: {0}\n".format(self.current_iteration))
+        logging.info("Inbound Sequence: {0}\n".format(self.algorithms.solution_sequence['inbound']))
+        logging.info("Outbound Sequence: {0}\n".format(self.algorithms.solution_sequence['outbound']))
+
+
 
 if __name__ == '__main__':
     with open('capraz.log', 'w'):
