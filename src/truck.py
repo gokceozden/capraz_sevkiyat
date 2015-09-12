@@ -167,8 +167,10 @@ class OutboundTruck(Truck):
             total += good.amount
             logging.debug("------{0}: {1}".format(good.type, good.amount))
         self.finish_time = int(self.current_time + total * self.loading_time)
+        print("deploy finish: {0} {1}".format(self.finish_time, self.truck_name))
         logging.debug("----Finish time: {0}".format(self.finish_time))
-        self.next_state()
+        if self.finish_time > self.bounds[0]:
+            self.next_state()
 
     def loading_goods(self):
 
@@ -190,8 +192,8 @@ class OutboundTruck(Truck):
         """
         calculate error values
         """
-        print('bounds', self.bounds)
-        print('finish', self.finish_time)
+        print('bounds', self.bounds, self.truck_name)
+        print('finish', self.finish_time, self.truck_name)
         if self.bounds[0] <= self.finish_time <= self.bounds[1]:
             self.error = 0
         elif self.finish_time < self.bounds[0]:
@@ -283,6 +285,7 @@ class CompoundTruck(Truck):
             total += good.amount
             logging.debug("------{0}: {1}".format(good.type, good.amount))
         self.finish_time = int(self.current_time + total * self.loading_time)
+
         logging.debug("----Finish time: {0}".format(self.finish_time))
         self.next_state()
 
@@ -297,9 +300,12 @@ class CompoundTruck(Truck):
         for good in self.coming_goods:
             total += good.amount
             logging.debug("------{0}: {1}".format(good.type, good.amount))
+
         self.finish_time = int(self.current_time + total * self.loading_time)
+        print("deploy finish: {0} {1}".format(self.finish_time, self.truck_name))
         logging.debug("----Finish time: {0}".format(self.finish_time))
-        self.next_state()
+        if self.finish_time > self.bounds[0]:
+            self.next_state()
 
     def deploy_goods(self):
         if self.current_time == self.finish_time:
@@ -328,8 +334,9 @@ class CompoundTruck(Truck):
         """
         calculate error values
         """
-        print('bounds', self.bounds)
-        print('finish', self.finish_time)
+        print('bounds', self.bounds, self.truck_name)
+        print('finish', self.finish_time, self.truck_name)
+
         if self.bounds[0] <= self.finish_time <= self.bounds[1]:
             self.error = 0
         elif self.finish_time < self.bounds[0]:

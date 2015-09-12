@@ -123,10 +123,10 @@ class Station(object):
                     next_item = items
                     if max_item is None or max_item.amount < next_item.amount:
                         max_item = next_item
-                if max_item < error:
-                    moved_good += max_item
+                if max_item.amount < error:
+                    moved_good += max_item.amount
                     max_item.amount = 0
-                elif max_item >= error:
+                elif max_item.amount >= error:
                     moved_good += error
                     max_item.amount -= error
                 error = good.amount - moved_good

@@ -19,8 +19,10 @@ class TruckDataWindow(QDialog):
         self.outboundView = []
         self.compoundView = []
         self.setWindowTitle('Truck Data Window')
+
+
         self.setupComponents()
-        self.setGeometry(300,400,500,500)
+        self.setGeometry(300, 400, 500, 500)
         self.setWindowModality(Qt.ApplicationModal)
 
 
@@ -99,6 +101,21 @@ class TruckDataWindow(QDialog):
         self.vOutBoundTruck.addWidget(self.outboundLabel)
         self.vCompoundTruck.addWidget(self.compoundLabel)
 
+        self.good_widget = QWidget()
+        self.good_layout = QVBoxLayout()
+        self.good_widget.setLayout(self.good_layout)
+
+        self.good_layout.addLayout(self.vInboundTruck)
+        self.good_layout.addLayout(self.vOutBoundTruck)
+        self.good_layout.addLayout(self.vCompoundTruck)
+
+        self.scroll = QScrollArea()
+        self.scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll.setWidgetResizable(True)
+        self.scroll.setWidget(self.good_widget)
+
+
         self.truckForm.addRow(self.numberInbound, self.numberInboundSpin)
         self.truckForm.addRow(self.numberOutbound, self.numberOutboundSpin)
         self.truckForm.addRow(self.numberCompound, self.numberCompoundSpin)
@@ -111,10 +128,11 @@ class TruckDataWindow(QDialog):
         self.hBoxMainData.addWidget(self.doneButton)
         self.mainVBox.addLayout(self.hBoxMainData)
 
-        self.mainVBox.addLayout(self.vInboundTruck)
-        self.mainVBox.addLayout(self.vOutBoundTruck)
-        self.mainVBox.addLayout(self.vCompoundTruck)
-        self.mainVBox.addStretch()
+        # self.mainVBox.addLayout(self.vInboundTruck)
+        # self.mainVBox.addLayout(self.vOutBoundTruck)
+        # self.mainVBox.addLayout(self.vCompoundTruck)
+        # self.mainVBox.addStretch()
+        self.mainVBox.addWidget(self.scroll)
         self.setLayout(self.mainVBox)
 
     def setup_connections(self):

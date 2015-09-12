@@ -2,7 +2,7 @@ __author__ = 'mustafa'
 
 from PySide.QtGui import *
 from PySide.QtCore import *
-from data_writer import print_data
+from src.data_writer import print_data
 
 class LogData(QWidget):
     """

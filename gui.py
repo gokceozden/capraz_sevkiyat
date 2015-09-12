@@ -88,7 +88,7 @@ class MainWindow(QWidget):
 
         self.data_set_ready_button.clicked.connect(self.data_set_ready)
 
-        self.show_logger_button.clicked.connect(self.show_data)
+        self.show_logger_button.clicked.connect(self.show_logger)
 
         self.solve_next_data_set_button.clicked.connect(self.data_set_button)
         self.solve_iteration_button.clicked.connect(self.iteration_button)
@@ -201,10 +201,11 @@ class MainWindow(QWidget):
         self.current_iteration = 1
         self.iteration_limit = 100
 
-    def show_data(self):
+
+    def show_logger(self):
         self.logger = LogData()
         root = logging.getLogger()
-        root.setLevel(logging.DEBUG)
+        root.setLevel(logging.INFO)
 
         ch = logging.StreamHandler(self.logger)
         ch.setLevel(logging.INFO)
@@ -282,7 +283,7 @@ class MainWindow(QWidget):
             self.solve_step()
 
             if self.current_iteration == self.iteration_limit:
-                self.current_data_set += 1
+                self.log_results()
                 self.current_iteration = 1
         else:
             while self.current_iteration < self.iteration_limit:
@@ -300,6 +301,7 @@ class MainWindow(QWidget):
                 self.solve_step()
             #print(self.current_iteration)
             self.current_iteration = 1
+            self.log_results()
             #print('whole_iteration')
 
     def solve_step(self):
@@ -413,13 +415,18 @@ class MainWindow(QWidget):
         logging.info("Iteration Number: {0}\n".format(self.current_iteration))
         logging.info("Inbound Sequence: {0}\n".format(self.algorithms.solution_sequence['inbound']))
         logging.info("Outbound Sequence: {0}\n".format(self.algorithms.solution_sequence['outbound']))
+        logging.info("Error value: {0}\n".format(self.algorithms.solution_sequence['error']))
 
-
+    def log_results(self):
+        logging.info("Best result:")
+        logging.info("Inbound Sequence: {0}\n".format(self.algorithms.best_sequence['inbound']))
+        logging.info("Outbound Sequence: {0}\n".format(self.algorithms.best_sequence['outbound']))
+        logging.info("Error value: {0}\n".format(self.algorithms.best_sequence['error']))
 
 if __name__ == '__main__':
     with open('capraz.log', 'w'):
         pass
-    logging.basicConfig(format='%(levelname)s:%(message)s', filename='capraz.log', level=logging.DEBUG)
+    logging.basicConfig(format='%(levelname)s:%(message)s', filename='capraz.log', level=logging.INFO)
     logging.info('Program Started')
     myApp = QApplication(sys.argv)
     mainWindow = MainWindow()

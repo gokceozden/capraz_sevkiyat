@@ -1,6 +1,6 @@
 __author__ = 'mustafa'
 
-from data_store import DataStore
+from src.data_store import DataStore
 from jinja2 import Template
 from itertools import chain
 

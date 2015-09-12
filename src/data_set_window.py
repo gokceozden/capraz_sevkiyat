@@ -35,13 +35,13 @@ class DataSetWindow(QDialog):
         self.loadingTimeLabel = QLabel("Loading Time")
         self.loadingTimeEdit = QLineEdit()
 
-        self.changeoverTimeLabel = QLabel("Changeover Time")
+        self.changeoverTimeLabel = QLabel("Truck Changeover Time")
         self.changeoverTimeEdit = QLineEdit()
 
-        self.makespanFactorLabel = QLabel("Makespan Factor")
+        self.makespanFactorLabel = QLabel("Effect of the arrival times on makespan")
         self.makespanFactorEdit = QLineEdit()
 
-        self.transferTimeLabel = QLabel("Truck Transfer Time")
+        self.transferTimeLabel = QLabel("Truck Transferr Time")
         self.transferTimeEdit = QLineEdit()
 
         self.inboundArrivalTimeLabel = QLabel("Inbound Arrival Time")

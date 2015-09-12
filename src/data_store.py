@@ -1,6 +1,6 @@
 __author__ = 'mustafa'
 
-from data_set import DataSet
+from src.data_set import DataSet
 
 class DataStore(object):
     """

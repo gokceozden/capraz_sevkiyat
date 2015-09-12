@@ -177,14 +177,14 @@ class Solver(object):
         for truck in self.inbound_trucks.values():
             truck.coming_goods = []
             truck.finish_time = truck.inbound_gdj
-            for good_type, amount in truck.coming_good_amounts.iteritems():
+            for good_type, amount in truck.coming_good_amounts.items():
                 new_good = Good(good_type, amount)
                 truck.coming_goods.append(new_good)
 
         for truck in self.outbound_trucks.values():
             truck.going_goods = []
             truck.finish_time = truck.outbound_gdj
-            for good_type, amount in truck.going_good_amounts.iteritems():
+            for good_type, amount in truck.going_good_amounts.items():
                 new_good = Good(good_type, amount)
                 truck.going_goods.append(new_good)
 
@@ -192,10 +192,10 @@ class Solver(object):
             truck.finish_time = truck.inbound_gdj
             truck.coming_goods = []
             truck.going_goods = []
-            for good_type, amount in truck.coming_good_amounts.iteritems():
+            for good_type, amount in truck.coming_good_amounts.items():
                 new_good = Good(good_type, amount)
                 truck.coming_goods.append(new_good)
-            for good_type, amount in truck.going_good_amounts.iteritems():
+            for good_type, amount in truck.going_good_amounts.items():
                 new_good = Good(good_type, amount)
                 truck.going_goods.append(new_good)
 
@@ -344,3 +344,4 @@ class Solver(object):
                     self.finish = self.finish and True
                 else:
                     self.finish = self.finish and False
+

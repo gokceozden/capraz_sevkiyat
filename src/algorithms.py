@@ -119,6 +119,7 @@ class Algorithms(object):
         logging.info("Start sequence inbound: {0}".format(self.current_sequence['inbound']))
         logging.info("Start sequence outbound: {0}".format(self.current_sequence['outbound']))
         self.solution_sequence = copy.deepcopy(self.current_sequence)
+        self.best_sequence = copy.deepcopy(self.current_sequence)
 
     def random1(self):
         """
