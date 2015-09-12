@@ -287,7 +287,8 @@ class CompoundTruck(Truck):
         self.finish_time = int(self.current_time + total * self.loading_time)
 
         logging.debug("----Finish time: {0}".format(self.finish_time))
-        self.next_state()
+        if self.finish_time > self.bounds[0]:
+            self.next_state()
 
     def loading_goods(self):
         if self.current_time == self.finish_time:
@@ -304,8 +305,7 @@ class CompoundTruck(Truck):
         self.finish_time = int(self.current_time + total * self.loading_time)
         print("deploy finish: {0} {1}".format(self.finish_time, self.truck_name))
         logging.debug("----Finish time: {0}".format(self.finish_time))
-        if self.finish_time > self.bounds[0]:
-            self.next_state()
+        self.next_state()
 
     def deploy_goods(self):
         if self.current_time == self.finish_time:

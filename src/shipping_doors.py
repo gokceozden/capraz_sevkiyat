@@ -1,4 +1,5 @@
 __author__ = 'robotes'
+import logging
 
 class ShippingDoor(object):
     """
@@ -50,8 +51,11 @@ class ShippingDoor(object):
                 enough_goods = True
                 for station_good in self.station.station_goods[good.type]:
                     total += station_good.amount
+                logging.debug("Total good in station {0}".format(total))
+                logging.debug("Needed goods {0}".format(good.amount))
                 if good.amount > total:
                     enough_goods = False
+                logging.debug("Enough goods {0}".format(enough_goods))
         return enough_goods
 
     def load_goods(self, goods):

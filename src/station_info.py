@@ -7,7 +7,7 @@ class StationInfo(QMessageBox):
         self.station = station
         QMessageBox.__init__(self)
         good_text = "Goods:\n"
-        for good_name, goods in self.station.station_goods.iteritems():
+        for good_name, goods in self.station.station_goods.items():
             good_text += good_name + ': '
             total = 0
             for good in goods:

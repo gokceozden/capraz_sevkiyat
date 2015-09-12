@@ -25,28 +25,28 @@ class GraphView(QGraphicsView):
 
     def mousePressEvent(self, event):
         item = self.itemAt(event.pos())
-        for truck_name, truck_item in self.inbound_truck_images.iteritems():
+        for truck_name, truck_item in self.inbound_truck_images.items():
             if truck_item == item:
                 truck_info = TruckInfo(self.model.inbound_trucks[truck_name])
                 truck_info.exec_()
 
-        for truck_name, truck_item in self.outbound_truck_images.iteritems():
+        for truck_name, truck_item in self.outbound_truck_images.items():
             if truck_item == item:
                 truck_info = TruckInfo(self.model.outbound_trucks[truck_name])
                 truck_info.exec_()
 
-        for truck_name, truck_item in self.compound_truck_images.iteritems():
+        for truck_name, truck_item in self.compound_truck_images.items():
             if truck_item == item:
                 truck_info = TruckInfo(self.model.compound_trucks[truck_name])
                 truck_info.exec_()
 
-        for door_name, door_item in self.coming_door_images.iteritems():
+        for door_name, door_item in self.coming_door_images.items():
             if door_item == item:
                 door_info = DoorInfo(self.model.station.receiving_doors[door_name])
                 door_info.setWindowTitle(door_name)
                 door_info.exec_()
 
-        for door_name, door_item in self.shipping_door_images.iteritems():
+        for door_name, door_item in self.shipping_door_images.items():
             if door_item == item:
                 door_info = DoorInfo(self.model.station.shipping_doors[door_name])
                 door_info.setWindowTitle(door_name)
@@ -82,7 +82,7 @@ class GraphView(QGraphicsView):
             self.compound_truck_images[trucks.truck_name] = truck_image
 
         i = 0
-        for door_name, doors in self.model.station.receiving_doors.iteritems():
+        for door_name, doors in self.model.station.receiving_doors.items():
             door_image = self.scn.addPixmap(self.doorPixmap)
             door_image.scale(0.4, 0.4)
             self.coming_door_images[door_name] = door_image
@@ -90,7 +90,7 @@ class GraphView(QGraphicsView):
             i += 1
 
         i = 0
-        for door_name, doors in self.model.station.shipping_doors.iteritems():
+        for door_name, doors in self.model.station.shipping_doors.items():
             door_image = self.scn.addPixmap(self.doorPixmap)
             door_image.scale(0.4, 0.4)
             self.shipping_door_images[door_name] = door_image

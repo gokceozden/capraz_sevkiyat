@@ -48,6 +48,10 @@ class MainWindow(QWidget):
 
         self.solution_choice = None
 
+        self.scn = QGraphicsScene()
+        self.simulation = GraphView(self.scn)
+
+
     def set_buttons(self):
         self.new_data_set_button = QPushButton('New Data Set')
         self.load_data_set_button = QPushButton('Load Data Set')
@@ -201,11 +205,14 @@ class MainWindow(QWidget):
         self.current_iteration = 1
         self.iteration_limit = 100
 
+        self.simulation.init_image(self.model)
+        self.simulation.show()
+
 
     def show_logger(self):
         self.logger = LogData()
         root = logging.getLogger()
-        root.setLevel(logging.INFO)
+        root.setLevel(logging.DEBUG)
 
         ch = logging.StreamHandler(self.logger)
         ch.setLevel(logging.INFO)
@@ -343,7 +350,7 @@ class MainWindow(QWidget):
         """
 
         self.model.next_step()
-#        self.simulation.update_image()
+        self.simulation.update_image()
 
         if self.model.finish:
             #finished
@@ -426,7 +433,7 @@ class MainWindow(QWidget):
 if __name__ == '__main__':
     with open('capraz.log', 'w'):
         pass
-    logging.basicConfig(format='%(levelname)s:%(message)s', filename='capraz.log', level=logging.INFO)
+    logging.basicConfig(format='%(levelname)s:%(message)s', filename='capraz.log', level=logging.DEBUG)
     logging.info('Program Started')
     myApp = QApplication(sys.argv)
     mainWindow = MainWindow()
