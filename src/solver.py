@@ -37,7 +37,7 @@ class Solver(object):
                                  'outbound': self.outbound_trucks,
                                  'compound': self.compound_trucks
                                  }
-
+        self.all_trucks = None
         self.sequence_bool = False
         self.solution_finish = False
 
@@ -164,6 +164,10 @@ class Solver(object):
 
         for i in range(self.data.number_of_shipping_doors):
             self.station.add_shipping_door()
+
+        self.all_trucks = dict(self.inbound_trucks, **self.outbound_trucks)
+        self.all_trucks.update(self.compound_trucks)
+
 
     def reset_trucks(self):
         """

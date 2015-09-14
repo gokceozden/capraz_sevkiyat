@@ -20,6 +20,7 @@ from src.show_data import ShowData
 from src.logger_output import LogData
 import itertools
 from src.algorithms import Algorithms
+from src.truck_data_table import TruckDataTable
 
 class MainWindow(QWidget):
     """
@@ -74,6 +75,7 @@ class MainWindow(QWidget):
         self.show_debug_logger_button = QPushButton('Show Debug Logger')
         self.show_logger_button = QPushButton('Show Logger')
         self.show_simulation_button = QPushButton('Show Simulation')
+        self.show_data_table = QPushButton('Show Run Time Data Table')
 
         self.data_set_number = QSpinBox()
         self.data_set_number.setMinimum(0)
@@ -93,6 +95,7 @@ class MainWindow(QWidget):
         self.data_set_ready_button.clicked.connect(self.data_set_ready)
 
         self.show_logger_button.clicked.connect(self.show_logger)
+        self.show_data_table.clicked.connect(self.show_runtime_table)
 
         self.solve_next_data_set_button.clicked.connect(self.data_set_button)
         self.solve_iteration_button.clicked.connect(self.iteration_button)
@@ -125,6 +128,7 @@ class MainWindow(QWidget):
         self.interaction_layout.addWidget(self.show_logger_button, 1, 1)
         self.interaction_layout.addWidget(self.show_debug_logger_button, 1, 2)
         self.interaction_layout.addWidget(self.show_simulation_button, 1, 3)
+        self.interaction_layout.addWidget(self.show_data_table, 1, 4)
 
         self.layout = QVBoxLayout()
         self.layout.addLayout(self.data_set_layout)
@@ -267,6 +271,14 @@ class MainWindow(QWidget):
             #   print(self.current_data_set)
             self.current_data_set = 0
 
+    def show_runtime_table(self):
+        """
+        shows data table of the
+        :return:
+        """
+        self.runtime_table = TruckDataTable(self.model)
+        self.runtime_table.show()
+
     def solve_iteration(self):
         """
         solves one iteration
@@ -351,6 +363,10 @@ class MainWindow(QWidget):
 
         self.model.next_step()
         self.simulation.update_image()
+
+        if self.runtime_table:
+            self.runtime_table.update_tables()
+            self.runtime_table.activateWindow()
 
         if self.model.finish:
             #finished
