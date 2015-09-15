@@ -30,6 +30,8 @@ class Truck(object):
         self.finish_time = 0
         self.next_action_time = 0
         self.product_per_truck = 0
+        self.time_to_load = 0
+        self.good_amounts = 0
 
     def calculate_twogd(self):
         """
@@ -123,7 +125,7 @@ class OutboundTruck(Truck):
     def __init__(self, truck_data, outbound_data):
         Truck.__init__(self, truck_data)
         self.truck_type = 1
-        self.state_list = ('coming', 'waiting', 'start_loading', 'loading', 'done')
+        self.state_list = ('coming', 'waiting_to_load', 'not_ready_to_load', 'ready_to_load', 'must_load', 'done')
         self.going_goods = []
         self.going_good_amounts = {}
         self.finish_time = 0
@@ -154,10 +156,12 @@ class OutboundTruck(Truck):
         if self.current_state == 1:
             self.waiting()
         if self.current_state == 2:
-            self.start_loading()
+            self.not_ready_to_load()
         if self.current_state == 3:
-            self.loading_goods()
-        if self.current_state == 4:
+            self.ready_to_load()
+        if self.current_state == 5:
+            self.must_load()
+        if self.current_state == 6:
             self.leaving()
 
     def start_loading(self):
@@ -185,6 +189,43 @@ class OutboundTruck(Truck):
     def waiting(self):
         pass
 
+    def not_ready_to_load(self):
+        """
+        check if loading time is later than lower bound
+        """
+        self.good_amounts = 0
+        for good in self.going_goods:
+            self.good_amounts += good.amount
+
+        self.time_to_load = self.good_amounts * self.loading_time
+        load_finish = self.current_time + self.time_to_load
+
+        if load_finish < self.bounds[0]:
+            logging.debug("Not ready to load: {0}".format(self.truck_name))
+
+        elif load_finish < self.bounds[1]:
+            logging.debug("Ready to load: {0}".format(self.truck_name))
+            self.next_state()
+
+    def ready_to_load(self):
+        """
+        rezerve goods needed, check if must load
+        """
+        self.shipping_door.reserve_goods(self.going_goods)
+        load_finish = self.current_time + self.time_to_load
+        if load_finish >= self.bounds[1]:
+            logging.debug("Ready to load: {0}".format(self.truck_name))
+            self.finish_time = self.current_time + self.time_to_load
+            self.next_state()
+
+    def must_load(self):
+        """
+        must load goods, move goods, wait for finish time
+        """
+        if self.current_time == self.finish_time:
+            # loading finished
+            self.next_state()
+
     def leaving(self):
         pass
 
@@ -202,7 +243,6 @@ class OutboundTruck(Truck):
             self.error = self.finish_time - self.bounds[1]
         print('error', self.error)
 
-
 class CompoundTruck(Truck):
     """
     compound truck class
@@ -210,7 +250,7 @@ class CompoundTruck(Truck):
     def __init__(self, truck_data, compound_data):
         Truck.__init__(self, truck_data)
         self.truck_type = 2
-        self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'transfering', 'waiting', 'start_loading', 'loading', 'done')
+        self.state_list = ('coming', 'waiting', 'start_deploy', 'deploying', 'transfering', 'waiting_to_load', 'not_needed_to_load', 'ready_to_load', 'must_load', 'done')
         self.coming_goods = []
         self.going_goods = []
 

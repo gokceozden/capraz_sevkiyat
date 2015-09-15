@@ -36,12 +36,10 @@ class ShippingDoor(object):
     def no_truck(self):
         # self.print_state()
         if len(self.sequence) != 0:
-            next_truck = self.sequence[0]
-            self.loading_truck = next_truck
-            if next_truck.state_list[next_truck.current_state] == 'waiting':
-                if self.check_goods():
-                    self.sequence[0].next_state()
-                    self.next_state()
+            self.loading_truck = self.sequence[0]
+            if self.loading_truck.state_list[self.loading_truck.current_state] == 'waiting_to_load':
+                self.loading_truck.next_state()
+                self.next_state()
 
     def check_goods(self):
         enough_goods = False
@@ -57,6 +55,9 @@ class ShippingDoor(object):
                     enough_goods = False
                 logging.debug("Enough goods {0}".format(enough_goods))
         return enough_goods
+
+    def reserve_goods(self):
+        pass
 
     def load_goods(self, goods):
         self.station.remove_goods(goods)
