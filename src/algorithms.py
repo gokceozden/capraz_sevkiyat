@@ -141,7 +141,6 @@ class Algorithms(object):
         indexB = self.next_sequence[truck_type].index(b)
         self.next_sequence[truck_type][indexA] = b
         self.next_sequence[truck_type][indexB] = a
-        print('random')
         self.next_sequence['error'] = 0
 
         logging.info("Random1 next sequence inbound: {0}".format(self.next_sequence['inbound']))

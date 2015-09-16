@@ -212,14 +212,13 @@ class MainWindow(QWidget):
         self.simulation.init_image(self.model)
         self.simulation.show()
 
-
     def show_logger(self):
         self.logger = LogData()
         root = logging.getLogger()
         root.setLevel(logging.DEBUG)
 
         ch = logging.StreamHandler(self.logger)
-        ch.setLevel(logging.INFO)
+        ch.setLevel(logging.DEBUG)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch.setFormatter(formatter)
         root.addHandler(ch)

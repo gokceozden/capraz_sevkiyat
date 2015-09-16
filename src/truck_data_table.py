@@ -64,8 +64,6 @@ class TruckDataTable(QWidget):
         temp_list.append(self.algorithm.best_sequence['inbound'])
         temp_list.append(self.algorithm.best_sequence['outbound'])
         self.sequence_table_view.truck_list = temp_list
-        print(self.sequence_table_view.truck_list)
-
 
 class RunTimeTruckTableModel(QAbstractTableModel):
     def __init__(self, parent, mylist, header, vertical):

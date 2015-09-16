@@ -139,7 +139,7 @@ class Solver(object):
             self.outbound_trucks[name] = OutboundTruck(self.truck_data, self.outbound_data)
             going_goods = self.data.outbound_goods[i]
             for k, amount in enumerate(going_goods):
-                self.outbound_trucks[name].going_good_amounts[k] = amount
+                self.outbound_trucks[name].going_good_amounts[k] = int(amount)
 
         for i in range(self.data.number_of_compound_trucks):
             self.truck_data['number'] = i
@@ -152,9 +152,9 @@ class Solver(object):
                 # print('amount', amount)
                 new_good = Good(k, amount)
                 self.compound_trucks[name].coming_goods.append(new_good)
-                self.compound_trucks[name].coming_good_amounts[k] = amount
+                self.compound_trucks[name].coming_good_amounts[k] = int(amount)
             for k, amount in enumerate(going_goods):
-                self.compound_trucks[name].going_good_amounts[k] = amount
+                self.compound_trucks[name].going_good_amounts[k] = int(amount)
 
         # add doors
         for i in range(self.data.number_of_receiving_doors):
@@ -202,10 +202,13 @@ class Solver(object):
 
         self.station.not_ready_goods = {}
         self.station.station_goods = {}
+
         for door in self.station.shipping_doors.values():
             door.status_number = 0
+            door.sequence = []
         for door in self.station.receiving_doors.values():
             door.status_number = 0
+            door.sequence = []
 
 
     def set_data(self):
@@ -295,6 +298,7 @@ class Solver(object):
         # outbound
         self.current_sequence = sequence['outbound']
         self.door_sequences = []
+
         prev_index = 0
         for door_number in range(self.number_of_shipping_doors - 1):
             current_index = self.current_sequence.index(door_number)
@@ -302,6 +306,7 @@ class Solver(object):
             self.door_sequences.append(door_sequence)
             prev_index = current_index + 1
         self.door_sequences.append(self.current_sequence[prev_index:])
+        print("door sequebnce", self.door_sequences)
 
         for i, door_sequence in enumerate(self.door_sequences):
             door_name = 'ship' + str(i)
