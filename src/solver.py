@@ -205,11 +205,12 @@ class Solver(object):
 
         for door in self.station.shipping_doors.values():
             door.status_number = 0
+            door.reserved_goods = {}
             door.sequence = []
+
         for door in self.station.receiving_doors.values():
             door.status_number = 0
             door.sequence = []
-
 
     def set_data(self):
         """
@@ -335,7 +336,7 @@ class Solver(object):
                 truck.current_action(self.current_time)
 
         for doors in itertools.chain(self.station.receiving_doors.values(), self.station.shipping_doors.values()):
-            doors.current_action()
+            doors.current_action(self.current_time)
 
         self.station.check_states()
         self.station.check_good_transfer(self.current_time)

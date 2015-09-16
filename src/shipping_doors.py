@@ -12,7 +12,7 @@ class ShippingDoor(object):
         self.door_name = name
         self.trpe = 'Shipping'
         self.truck = None
-        self.status = ['empty', 'loading']
+        self.status = ['empty', 'loading', 'waiting']
         self.status_number = 0
         self.good_list = []
         self.sequence = []
@@ -20,20 +20,27 @@ class ShippingDoor(object):
         self.waiting_trucks = 0
         self.loading_truck = None
         self.reserved_goods = {}
+        self.finish_time = 0
+        self.current_time = 0
 
     def set_truck_doors(self):
         for truck in self.sequence:
             truck.shipping_door = self
             truck.shipping_door_name = self.door_name
 
-    def current_action(self):
+    def current_action(self, current_time):
+        self.current_time = current_time
+        logging.debug("Reserved goods: {0}".format(self.reserved_goods))
         if self.status_number == 0:
             self.no_truck()
         if self.status_number == 1:
             self.load()
+        if self.status_number == 2:
+            self.wait_truck_change()
 
     def next_state(self):
         self.status_number += 1
+
 
     def no_truck(self):
         if len(self.sequence) != 0:
@@ -59,15 +66,17 @@ class ShippingDoor(object):
                 logging.debug("{0} : {1}".format(good.type, good.amount))
 
         enough_goods = False
-        for good in self.loading_truck.going_goods:
+        for good_name, good_amount in self.loading_truck.going_good_amounts.items():
             total = 0
-            if good.type in self.reserved_goods:
+            good_name = str(good_name)
+            logging.debug("Checking amount ")
+            if good_name in self.reserved_goods.keys():
                 enough_goods = True
-                for reserved_good in self.reserved_goods[good.type]:
+                for reserved_good in self.reserved_goods[good_name]:
                     total += reserved_good.amount
                 logging.debug("Total good in station {0}".format(total))
-                logging.debug("Needed goods {0}".format(good.amount))
-                if good.amount > total:
+                logging.debug("Needed goods {0}".format(good_amount))
+                if good_amount > total:
                     enough_goods = False
                 logging.debug("Enough goods {0}".format(enough_goods))
         return enough_goods
@@ -91,28 +100,36 @@ class ShippingDoor(object):
                     for reserved_good in self.reserved_goods[good_name]:
                         needed_good_amount = needed_good_amount - reserved_good.amount
                 logging.debug("needed amount {0}: {1}".format(good_name, needed_good_amount))
+
                 if needed_good_amount == 0:
                     continue
-                for station_good in station_goods:
+                for i, station_good in enumerate(station_goods):
                     if needed_good_amount == 0:
                         break
                     transfered_good_amount = 0
                     if station_good.amount > needed_good_amount:
+                        logging.debug("needed greater")
                         station_good.amount = station_good.amount - needed_good_amount
+
                         needed_good_amount = 0
                         transfered_good_amount = needed_good_amount
 
                     elif station_good.amount == needed_good_amount:
-                        del station_good
+                        logging.debug("needed equal")
                         transfered_good_amount = needed_good_amount
                         needed_good_amount = 0
+                        logging.debug("needed amount {0}: {1}".format(good_name, station_good.amount))
+                        station_goods.pop(i)
 
                     elif station_good.amount < needed_good_amount:
-                        del station_good
                         transfered_good_amount = station_good.amount
                         needed_good_amount = needed_good_amount - station_good.amount
+                        logging.debug("needed amount {0}: {1}".format(good_name, station_good.amount))
+                        station_goods.pop(i)
 
                     new_good = Good(good_name, transfered_good_amount)
+
+                    logging.debug("transferred amount :{0}".format(transfered_good_amount))
                     if good_name in self.reserved_goods.keys():
                         self.reserved_goods[good_name].append(new_good)
                     else:
@@ -120,20 +137,24 @@ class ShippingDoor(object):
                         self.reserved_goods[good_name].append(new_good)
 
     def reserve_critical_goods(self, good_amounts):
-        self.reserve_goods()
+        self.reserve_goods(good_amounts)
         if self.check_goods():
             return
         else:
             for good_name, needed_good_amount in good_amounts.items():
                 if good_name in self.reserved_goods.keys():
+                    good_name = str(good_name)
                     for reserved_good in self.reserved_goods.values():
                         needed_good_amount = needed_good_amount - reserved_good.amount
                     if needed_good_amount == 0:
-                        next()
+                        continue
 
-                for shipping_door in self.station.shipping_doors:
+                transfered_good_amount = 0
+
+                for shipping_door in self.station.shipping_doors.values():
                     if needed_good_amount == 0:
                         break
+
                     other_reserved_good = shipping_door.reserved_goods[good_name]
                     if other_reserved_good.amount > needed_good_amount:
                         other_reserved_good.amount = other_reserved_good.amount - needed_good_amount
@@ -150,6 +171,9 @@ class ShippingDoor(object):
                         transfered_good_amount = other_reserved_good.amount
                         needed_good_amount = needed_good_amount - other_reserved_good.amount
 
+                if transfered_good_amount == 0:
+                    return
+
                 new_good = Good(good_name, transfered_good_amount)
                 if good_name in self.reserved_goods.keys():
                     self.reserved_goods[good_name].append(new_good)
@@ -157,11 +181,18 @@ class ShippingDoor(object):
                     self.reserved_goods[good_name] = []
                     self.reserved_goods[good_name].append(new_good)
 
-    def load_goods(self):
+    def wait_truck_change(self):
+        if self.current_time == self.finish_time:
+            self.status_number = 0
+
+    def load_goods(self, current_time):
+        self.current_time = current_time
         self.loading_truck.going_goods = deepcopy(self.reserved_goods)
         self.reserved_goods = {}
-        self.status_number = 0
-        self.sequence.pop(0)
+        self.next_state()
+        self.finish_time = current_time + self.loading_truck.changeover_time
+        if self.sequence:
+            self.sequence.pop(0)
 
     def load(self):
         pass # wait for truck

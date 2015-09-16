@@ -10,25 +10,30 @@ class ReceivingDoor(object):
         self.door_number = 0
         self.truck = 0
         self.truck_sequence = 0
-        self.status = ['empty', 'deploying']
+        self.status = ['empty', 'deploying', 'waiting']
         self.status_number = 0
         self.good_list = []
         self.sequence = []
         self.station = station
         self.waiting_trucks = 0
         self.deploying_truck = None
+        self.finish_time = 0
+        self.current_time = 0
 
     def set_truck_doors(self):
         for truck in self.sequence:
             truck.receiving_door = self
             truck.receiving_door_name = self.door_name
 
-    def current_action(self):
-        # self.print_state()
+    def current_action(self, current_time):
+        self.current_time = current_time
+        self.print_state()
         if self.status_number == 0:
             self.no_truck()
         if self.status_number == 1:
             self.deploying()
+        if self.status_number == 2:
+            self.wait_truck_change()
 
     def next_state(self):
         self.status_number += 1
@@ -44,9 +49,16 @@ class ReceivingDoor(object):
                 self.sequence[0].next_state()
                 self.next_state()
 
+    def wait_truck_change(self):
+        if self.current_time == self.finish_time:
+            self.status_number = 0
+
     def deploy_goods(self, goods, current_time):
+        print('deploy goods')
+        self.current_time = current_time
         self.station.add_goods(goods, current_time)
-        self.status_number = 0
+        self.finish_time = current_time + self.deploying_truck.changeover_time
+        self.next_state()
         self.sequence.pop(0)
 
     def deploying(self):

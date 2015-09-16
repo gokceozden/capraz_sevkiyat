@@ -60,6 +60,11 @@ class Station(object):
         del self.shipping_doors[name]
 
     def check_states(self):
+        logging.debug("station goods")
+        for goods in self.station_goods.values():
+            for good in goods:
+                logging.debug("type: {0}, amount: {1}".format(good.type, good.amount))
+
         for doors in itertools.chain(self.receiving_doors.values()):
             if doors.good_list:
                 self.add_goods(doors.good_list)
@@ -102,7 +107,7 @@ class Station(object):
         for good_type in self.station_goods.values():
             for good_amounts in good_type:
                 total_good +=  good_amounts.amount
-            logging.debug("--Station: good type:{0}, amount:{1}".format(good_type[0].type, total_good))
+            # logging.debug("--Station: good type:{0}, amount:{1}".format(good_type[0].type, total_good))
 
     def remove_goods(self, goods):
         for good in goods:

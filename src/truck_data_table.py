@@ -6,6 +6,7 @@ from solver import Solver
 from itertools import chain
 from src.algorithms import Algorithms
 
+
 class TruckDataTable(QWidget):
     """
     shows goods and time data of trucks in runtime
@@ -16,7 +17,7 @@ class TruckDataTable(QWidget):
         self.algorithm = algorithm
 
         self.truck_table = QTableView()
-        self.truck_header = ['truck name', 'current state', 'state change time', 'coming goods', 'going goods']
+        self.truck_header = ['truck name', 'current state', 'state change time', 'coming goods', 'going goods', 'boundaries']
         self.truck_list = []
         self.truck_vertical = []
         self.truck_table_view = RunTimeTruckTableModel(self, self.truck_list, self.truck_header, self.truck_vertical)
@@ -54,7 +55,7 @@ class TruckDataTable(QWidget):
     def update_tables(self):
         temp_list = []
         for truck in self.model.all_trucks.values():
-            list_item = [truck.truck_name, truck.state_list[truck.current_state], truck.finish_time, str(truck.coming_good_amounts.values()), str(truck.going_good_amounts.values())]
+            list_item = [truck.truck_name, truck.state_list[truck.current_state], truck.finish_time, str(truck.coming_good_amounts.values()), str(truck.going_good_amounts.values()), str(truck.bounds)]
             temp_list.append(list_item)
         self.truck_table_view.truck_list = temp_list
 
@@ -64,6 +65,7 @@ class TruckDataTable(QWidget):
         temp_list.append(self.algorithm.best_sequence['inbound'])
         temp_list.append(self.algorithm.best_sequence['outbound'])
         self.sequence_table_view.truck_list = temp_list
+
 
 class RunTimeTruckTableModel(QAbstractTableModel):
     def __init__(self, parent, mylist, header, vertical):

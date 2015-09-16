@@ -336,9 +336,9 @@ class MainWindow(QWidget):
         """
 
         while not self.model.finish:
-            if self.model.current_time > 800:
-
-                break
+            # if self.model.current_time > 800:
+            #
+            #     break
             if self.pause_bool:
                 break
             self.model.next_step()
@@ -377,7 +377,7 @@ class MainWindow(QWidget):
             #finished
             for truck in self.model.outbound_trucks.values():
                 truck.calculate_error()
-            self.model.reset_trucks()
+            self.model.reset()
             # add reset
             self.add_errors()
             #self.print_results()
