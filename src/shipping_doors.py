@@ -17,6 +17,7 @@ class ShippingDoor(object):
         self.station = station
         self.waiting_trucks = 0
         self.loading_truck = None
+        self.reserved_goods = []
 
     def set_truck_doors(self):
         for truck in self.sequence:
@@ -37,7 +38,9 @@ class ShippingDoor(object):
         # self.print_state()
         if len(self.sequence) != 0:
             self.loading_truck = self.sequence[0]
-            if self.loading_truck.state_list[self.loading_truck.current_state] == 'waiting_to_load':
+            print('loading_truck', self.loading_truck)
+            if self.loading_truck.current_state == 1:
+                print('truck ready')
                 self.loading_truck.next_state()
                 self.next_state()
 
@@ -56,8 +59,10 @@ class ShippingDoor(object):
                 logging.debug("Enough goods {0}".format(enough_goods))
         return enough_goods
 
-    def reserve_goods(self):
+    def reserve_goods(self, good_amounts):
         pass
+        # for good_name, good_amount in good_amounts.items():
+        #     if good_name in self.station.
 
     def load_goods(self, goods):
         self.station.remove_goods(goods)

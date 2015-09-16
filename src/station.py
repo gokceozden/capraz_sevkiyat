@@ -80,15 +80,6 @@ class Station(object):
         #         self.not_ready_goods[good.type].append(good)
         # print(self.not_ready_goods)
 
-    def transfer_goods(self, good_type):
-        """
-        transfer goods inside the station
-        :param good_tyoe:
-        :return:
-        """
-        # problem with all the goods transfering at the same time
-        self.station_goods[good_type].append()
-
     def check_good_transfer(self, current_time):
         """
         check if goods are ready to transfer

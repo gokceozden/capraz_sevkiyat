@@ -12,3 +12,5 @@ class Good(object):
         self.type = str(good_type)
         self.amount = amount
         self.transfer_time = 0
+        self.coming_truck_name = None
+        self.going_truck_name = None

@@ -276,7 +276,7 @@ class MainWindow(QWidget):
         shows data table of the
         :return:
         """
-        self.runtime_table = TruckDataTable(self.model)
+        self.runtime_table = TruckDataTable(self.algorithms, self.model)
         self.runtime_table.show()
 
     def solve_iteration(self):
@@ -293,6 +293,7 @@ class MainWindow(QWidget):
                     self.algorithms.start()
                     self.model.set_sequence(self.algorithms.solution_sequence)
                     self.solve_whole_step()
+                    self.model.reset()
                     self.algorithms.next()
                     self.model.set_sequence(self.algorithms.solution_sequence)
                 else:
@@ -334,6 +335,7 @@ class MainWindow(QWidget):
         solves one iterations
         :return:
         """
+
         while not self.model.finish:
             if self.model.current_time > 800:
 
@@ -346,10 +348,14 @@ class MainWindow(QWidget):
         for truck in itertools.chain(self.model.outbound_trucks.values(), self.model.compound_trucks.values()):
             truck.calculate_error()
 
+        if self.runtime_table:
+            self.runtime_table.update_tables()
+            self.runtime_table.activateWindow()
+
         #add reset
         self.model.finish = False
         self.algorithms.solution_sequence['error'] = self.add_errors()
-        self.model.reset_trucks()
+        self.model.reset()
         if self.current_iteration > 1:
             self.algorithms.calculate()
         self.current_iteration += 1

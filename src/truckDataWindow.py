@@ -20,7 +20,6 @@ class TruckDataWindow(QDialog):
         self.compoundView = []
         self.setWindowTitle('Truck Data Window')
 
-
         self.setupComponents()
         self.setGeometry(300, 400, 500, 500)
         self.setWindowModality(Qt.ApplicationModal)

@@ -64,6 +64,7 @@ class InboundTruck(Truck):
         self.receive_door = 0
         self.coming_goods = []
         self.coming_good_amounts = {}
+        self.going_good_amounts = {}
 
     def calculate_gdj(self):
         self.calculate_twogd()
@@ -127,6 +128,7 @@ class OutboundTruck(Truck):
         self.truck_type = 1
         self.state_list = ('coming', 'waiting_to_load', 'not_ready_to_load', 'ready_to_load', 'must_load', 'done')
         self.going_goods = []
+        self.coming_good_amounts = {}
         self.going_good_amounts = {}
         self.finish_time = 0
         self.outbound_gdj = 0
@@ -138,7 +140,7 @@ class OutboundTruck(Truck):
 
     def calculate_gdj(self):
         self.calculate_twogd()
-        self.outbound_gdj = uniform(self.arrival_time, self.two_gdj)
+        self.outbound_gdj = int(uniform(self.arrival_time, self.two_gdj))
         # hatali formul
         self.A = self.outbound_gdj + (self.mu - 1) * self.changeover_time + self.mu * self.product_per_truck * self.loading_time
         self.bounds = [self.A * self.alpha, self.A * self.gamma]
@@ -242,6 +244,7 @@ class OutboundTruck(Truck):
         else:
             self.error = self.finish_time - self.bounds[1]
         print('error', self.error)
+
 
 class CompoundTruck(Truck):
     """

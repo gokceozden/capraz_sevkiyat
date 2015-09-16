@@ -7,6 +7,8 @@ from src.data_store import DataStore
 from collections import OrderedDict
 from src.good import Good
 import logging
+import itertools
+
 
 class Solver(object):
     """
@@ -137,9 +139,7 @@ class Solver(object):
             self.outbound_trucks[name] = OutboundTruck(self.truck_data, self.outbound_data)
             going_goods = self.data.outbound_goods[i]
             for k, amount in enumerate(going_goods):
-                new_good = Good(k, amount)
                 self.outbound_trucks[name].going_good_amounts[k] = amount
-                self.outbound_trucks[name].going_goods.append(new_good)
 
         for i in range(self.data.number_of_compound_trucks):
             self.truck_data['number'] = i
@@ -154,8 +154,6 @@ class Solver(object):
                 self.compound_trucks[name].coming_goods.append(new_good)
                 self.compound_trucks[name].coming_good_amounts[k] = amount
             for k, amount in enumerate(going_goods):
-                new_good = Good(k, amount)
-                self.compound_trucks[name].going_goods.append(new_good)
                 self.compound_trucks[name].going_good_amounts[k] = amount
 
         # add doors
@@ -168,8 +166,7 @@ class Solver(object):
         self.all_trucks = dict(self.inbound_trucks, **self.outbound_trucks)
         self.all_trucks.update(self.compound_trucks)
 
-
-    def reset_trucks(self):
+    def reset(self):
         """
         reset truck goods, times and sequences
         :return:
@@ -205,6 +202,11 @@ class Solver(object):
 
         self.station.not_ready_goods = {}
         self.station.station_goods = {}
+        for door in self.station.shipping_doors.values():
+            door.status_number = 0
+        for door in self.station.receiving_doors.values():
+            door.status_number = 0
+
 
     def set_data(self):
         """
