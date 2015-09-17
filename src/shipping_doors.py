@@ -142,8 +142,8 @@ class ShippingDoor(object):
             return
         else:
             for good_name, needed_good_amount in good_amounts.items():
+                good_name = str(good_name)
                 if good_name in self.reserved_goods.keys():
-                    good_name = str(good_name)
                     for reserved_good in self.reserved_goods.values():
                         needed_good_amount = needed_good_amount - reserved_good.amount
                     if needed_good_amount == 0:
@@ -155,21 +155,23 @@ class ShippingDoor(object):
                     if needed_good_amount == 0:
                         break
 
-                    other_reserved_good = shipping_door.reserved_goods[good_name]
-                    if other_reserved_good.amount > needed_good_amount:
-                        other_reserved_good.amount = other_reserved_good.amount - needed_good_amount
-                        needed_good_amount = 0
-                        transfered_good_amount = needed_good_amount
+                    if good_name in shipping_door.reserved_goods.keys:
+                        other_reserved_goods = shipping_door.reserved_goods[good_name]
+                        for i, other_reserved_good in enumerate(other_reserved_goods):
+                            if other_reserved_good.amount > needed_good_amount:
+                                other_reserved_good.amount = other_reserved_good.amount - needed_good_amount
+                                needed_good_amount = 0
+                                transfered_good_amount = needed_good_amount
 
-                    elif other_reserved_good.amount == needed_good_amount:
-                        del other_reserved_good
-                        transfered_good_amount = needed_good_amount
-                        needed_good_amount = 0
+                            elif other_reserved_good.amount == needed_good_amount:
+                                transfered_good_amount = needed_good_amount
+                                needed_good_amount = 0
+                                other_reserved_goods.pop(i)
 
-                    elif other_reserved_good.amount < needed_good_amount:
-                        del other_reserved_good
-                        transfered_good_amount = other_reserved_good.amount
-                        needed_good_amount = needed_good_amount - other_reserved_good.amount
+                            elif other_reserved_good.amount < needed_good_amount:
+                                transfered_good_amount = other_reserved_good.amount
+                                needed_good_amount = needed_good_amount - other_reserved_good.amount
+                                other_reserved_goods.pop(i)
 
                 if transfered_good_amount == 0:
                     return

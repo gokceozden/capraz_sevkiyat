@@ -28,10 +28,19 @@ class TruckDataTable(QWidget):
         for i in range(self.model.number_of_goods):
             good_numbers.append(i)
             good_numbers.append('reserved')
-        self.good_header = ['truck name']
-        self.good_header.extend(good_numbers)
-        self.good_list = [[0, 0, 0]]
+        self.good_header = ['station']
+
+        door_name_base = 'ship'
+        for i in range(len(self.model.station.shipping_doors)):
+            door_name = door_name_base + str(i)
+            self.good_header.append(door_name)
+
         self.good_vertical = []
+        for good_name in range(self.model.number_of_goods):
+            self.good_vertical.append(str(good_name))
+
+        self.good_list = [[0, 0, 0], [0,0,0],[0,0,0]]
+
         self.good_table_view = RunTimeTruckTableModel(self, self.good_list, self.good_header, self.good_vertical)
         self.good_table.setModel(self.good_table_view)
 
@@ -58,6 +67,8 @@ class TruckDataTable(QWidget):
             list_item = [truck.truck_name, truck.state_list[truck.current_state], truck.finish_time, str(truck.coming_good_amounts.values()), str(truck.going_good_amounts.values()), str(truck.bounds)]
             temp_list.append(list_item)
         self.truck_table_view.truck_list = temp_list
+
+        # add update good table
 
         temp_list = []
         temp_list.append(self.algorithm.solution_sequence['inbound'])

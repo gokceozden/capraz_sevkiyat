@@ -27,7 +27,6 @@ class ReceivingDoor(object):
 
     def current_action(self, current_time):
         self.current_time = current_time
-        self.print_state()
         if self.status_number == 0:
             self.no_truck()
         if self.status_number == 1:
@@ -54,7 +53,6 @@ class ReceivingDoor(object):
             self.status_number = 0
 
     def deploy_goods(self, goods, current_time):
-        print('deploy goods')
         self.current_time = current_time
         self.station.add_goods(goods, current_time)
         self.finish_time = current_time + self.deploying_truck.changeover_time
@@ -62,8 +60,5 @@ class ReceivingDoor(object):
         self.sequence.pop(0)
 
     def deploying(self):
-        #self.print_state()
         pass # wait for truck
 
-    def print_state(self):
-        print('door number: ', self.door_number, 'state: ', self.status[self.status_number])

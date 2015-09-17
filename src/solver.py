@@ -218,7 +218,7 @@ class Solver(object):
         :return:
         """
         self.data.setup_data_set(self.current_data_set)
-        print(self.data.alpha, self.data.gamma)
+
 
         arrival_times = {}
         boundaries = {}
@@ -284,7 +284,7 @@ class Solver(object):
 
         for i, door_sequence in enumerate(self.door_sequences):
             door_name = 'recv' + str(i)
-#            print('door_sequence', door_sequence)
+
             for trucks in door_sequence:
                 if trucks in self.inbound_trucks:
                     #                    print('truck', trucks)
@@ -307,14 +307,13 @@ class Solver(object):
             self.door_sequences.append(door_sequence)
             prev_index = current_index + 1
         self.door_sequences.append(self.current_sequence[prev_index:])
-        print("door sequebnce", self.door_sequences)
 
         for i, door_sequence in enumerate(self.door_sequences):
             door_name = 'ship' + str(i)
-#            print('door_sequence', door_sequence)
+
             for trucks in door_sequence:
                 if trucks in self.outbound_trucks:
-                    #                    print('truck', trucks)
+
                     self.outbound_trucks[trucks].shipping_door_name = door_name
                     self.outbound_trucks[trucks].shipping_door = self.station.shipping_doors[door_name]
                     self.station.shipping_doors[door_name].sequence.append(self.outbound_trucks[trucks])
@@ -326,7 +325,7 @@ class Solver(object):
     def next_step(self):
         self.current_time += self.time_step
         logging.debug('Current time: {0}-------------------'.format(self.current_time))
-        # print('current time: ', self.current_time)
+
         self.check_state_changers()
 
     def check_state_changers(self):
@@ -352,7 +351,7 @@ class Solver(object):
         for truck_types in self.truck_dictionary.values():
             for truck in truck_types.values():
                 if truck.state_list[truck.current_state] == 'done':
-                    #print('done', truck.truck_name)
+
                     self.finish = self.finish and True
                 else:
                     self.finish = self.finish and False

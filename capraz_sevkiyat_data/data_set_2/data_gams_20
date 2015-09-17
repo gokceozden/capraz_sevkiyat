@@ -1,0 +1,175 @@
+option mip=cplex;
+option lp=cplex;
+option reslim=200000000;
+option iterlim=300000000;
+options limrow =32;
+
+Sets
+
+i  inbountrucks /1*5/
+j  outboundtrucks /1*5/
+w  compoundtrucks /1*2/
+m  receivingdocks /1*2/
+n  shippingdocks /1*2/
+
+k  producttypes /1*3/
+
+alias(i,l);
+alias(j,g);
+
+parameter GG(i)/
+ 1 9
+ 2 23
+ 3 31
+ 4 35
+ 5 8
+/;
+parameter GT(j)/
+ 1 29
+ 2 9
+ 3 19
+ 4 200
+ 5 173
+/;
+parameter dd(j)/
+ 1 182
+ 2 162
+ 3 172
+ 4 353
+ 5 326
+/;
+parameter D(j)/
+ 1 273
+ 2 243
+ 3 258
+ 4 882
+ 5 815
+/;
+
+table r(i,k)
+      1     2     3 
+1    40    30    30 
+2    20    50    10 
+3    10     0    40 
+4    10    30    10 
+5    20    40    20 
+;
+
+table  s(j,k)
+      1     2     3 
+1    30    10    20 
+2    10    50    10 
+3    20    20    20 
+4     0    40    30 
+5    40    30    30 
+;
+
+
+Positive variable TT;
+Positive variable TTT;
+Positive variable T(j);
+Positive variable EEE(j);
+Positive variable E(i);
+Positive variable ee(i);
+Positive variable F(j);
+Positive variable ff(j);
+integer variable x(i,j,k);
+Binary variable v(i,j);
+Binary variable u(j)
+Binary variable p(i,l,m);
+Binary variable q(j,g,n);
+Binary variable y(i,m);
+Binary variable z(j,n);
+variable h;
+
+equations
+
+*constraint1(j)
+
+constraint2
+
+constraint3 (i)
+constraint4 (i,l)
+constraint5 (i)
+constraint6 (m)
+constraint7 (i,m)
+constraint8 (i,m)
+constraint9 (j)
+constraint10 (j,g)
+constraint11 (j)
+constraint12 (n)
+constraint13 (g,n)
+constraint14 (g,n)
+constraint15 (i,k)
+constraint16 (j,k)
+constraint17 (i,j)
+constraint18 (i,j)
+*constraint19(i)
+*constraint20(j)
+constraint21(j)
+constraint22(j)
+constraint23(i)
+constraint24(i,j)
+constraint25(j)
+
+objective;
+
+
+
+*constraint1(j)..                                                   TT=g=F(j);
+
+constraint2..                                                   TT=e=sum(j,T(j))+sum(j,EEE(j));
+
+constraint3 (i)..                                               ee(i)+sum(k,r(i,k))=l=E(i);
+
+constraint4 (i,l)$(ord(i)<>ord(l))..                            E(i)+9=l=ee(l)+100000*(1-sum(m,p(i,l,m)));
+
+constraint5 (i)..                                              sum(m,y(i,m))=e=1;
+
+constraint6 (m)..                                              sum(i,p(i,i,m))=e=1;
+
+constraint7 (i,m)..                                            sum((l),p(l,i,m))=e=y(i,m);
+
+constraint8 (i,m)..                                            sum((l)$(ord(i)<>ord(l)),p(i,l,m))=l=y(i,m);
+
+constraint9 (j)..                                              ff(j)+sum(k,s(j,k))=l=F(j);
+
+constraint10 (j,g)$(ord(j)<>ord(g))..                         F(g)+9=l=ff(j)+100000*(1-sum(n,q(g,j,n)));
+
+constraint11 (j)..                                              sum(n,z(j,n))=e=1;
+
+constraint12 (n)..                                              sum(j,q(j,j,n))=e=1;
+
+constraint13 (j,n)..                                          sum((g),q(g,j,n))=e=z(j,n);
+
+constraint14 (j,n)..                                          sum((g)$(ord(j)<>ord(g)),q(j,g,n))=l=z(j,n);
+
+constraint15 (i,k)..                                           sum(j,x(i,j,k))=e=r(i,k);
+
+constraint16 (j,k)..                                           sum(i,x(i,j,k))=e=s(j,k);
+
+constraint17 (i,j)..                                           sum(k,x(i,j,k))=l=100000*v(i,j);
+
+constraint18 (i,j)..                                           E(i)+25=l=ff(j)+100000*(1-v(i,j));
+
+*constraint19(i)..                                              E(i)+100000*(1-sum(m,y(i,m)))=g=GG(i)+sum(k,r(i,k));
+
+*constraint20(j)$(ord(j)>3)..                                  F(j)+100000*(1-sum(n,z(j,n)))=g=GT(j)+sum(k,s(j,k));
+
+constraint21(j)..                                              EEE(j)=g= dd(j)-F(j);
+
+constraint22(j)..                                              T(j)=g=F(j)-D(j);
+
+constraint23(i)..                                              ee(i)=g=GG(i);
+
+constraint25(j)$(ord(j)>3)..                                   ff(j)=g=GT(j);
+
+constraint24(i,j)$(ord(i)=ord(j)and ord(i))..                ee(i)+sum(k,r(i,k))+9+12=l=ff(j);
+
+
+objective..                                                    TT=e=h;
+
+
+model crossdocking/all/;
+crossdocking.optcr=0;
+solve crossdocking using mip minimizing h;

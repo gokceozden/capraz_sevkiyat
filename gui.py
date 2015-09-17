@@ -284,21 +284,18 @@ class MainWindow(QWidget):
         :return:
         """
         if self.iteration_bool:
-            #print('one_iteration')
             if self.model.current_time == 0:
 
                 if self.current_iteration == 1:
-                    print('start')
                     self.algorithms.start()
-                    self.model.set_sequence(self.algorithms.solution_sequence)
-                    self.solve_whole_step()
-                    self.model.reset()
-                    self.algorithms.next()
+                    # self.model.set_sequence(self.algorithms.solution_sequence)
+                    # self.solve_whole_step()
+                    # self.model.reset()
+                    # self.algorithms.next()
                     self.model.set_sequence(self.algorithms.solution_sequence)
                 else:
                     self.algorithms.next()
                     self.model.set_sequence(self.algorithms.solution_sequence)
-                self.print_simulation_data()
             self.solve_step()
 
             if self.current_iteration == self.iteration_limit:
@@ -309,7 +306,6 @@ class MainWindow(QWidget):
                 if self.pause_bool:
                     break
 
-                self.print_simulation_data()
                 if self.model.current_time == 0:
                     if self.current_iteration == 1:
                         self.algorithms.start()
@@ -318,10 +314,8 @@ class MainWindow(QWidget):
                     self.model.set_sequence(self.algorithms.solution_sequence)
                 # next sequence
                 self.solve_step()
-            #print(self.current_iteration)
             self.current_iteration = 1
             self.log_results()
-            #print('whole_iteration')
 
     def solve_step(self):
         if self.step_bool:
@@ -358,7 +352,6 @@ class MainWindow(QWidget):
         if self.current_iteration > 1:
             self.algorithms.calculate()
         self.current_iteration += 1
-        #self.print_results()
 
     def solve_one_step(self):
         """
@@ -380,7 +373,6 @@ class MainWindow(QWidget):
             self.model.reset()
             # add reset
             self.add_errors()
-            #self.print_results()
             self.current_iteration += 1
             self.model.finish = False
             self.algorithms.solution_sequence['error'] = self.add_errors()

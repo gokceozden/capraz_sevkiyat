@@ -71,7 +71,7 @@ class Algorithms(object):
             unsorted_trucks.append(truck_times)
 
         sorted_trucks = [truck for (time, truck) in sorted(unsorted_trucks)]
-       # print(sorted_trucks)
+
         i = 0
         for truck in sorted_trucks:
             self.init_sequence[i].append(truck)
@@ -99,7 +99,7 @@ class Algorithms(object):
         for truck in self.model.compound_trucks.values():
             sorted_trucks.append(truck.truck_name)
 
-        # print(sorted_trucks)
+
 
         i = 0
         for truck in sorted_trucks:
@@ -115,7 +115,7 @@ class Algorithms(object):
             i += 1
 
         self.current_sequence['outbound'].pop()
-        # print('current', self.current_sequence)
+
         logging.info("Start sequence inbound: {0}".format(self.current_sequence['inbound']))
         logging.info("Start sequence outbound: {0}".format(self.current_sequence['outbound']))
         self.solution_sequence = copy.deepcopy(self.current_sequence)
@@ -163,13 +163,11 @@ class Algorithms(object):
             self.current_sequence = copy.deepcopy(self.solution_sequence)
             if self.solution_sequence['error'] < self.best_sequence['error']:
                 self.best_sequence = copy.deepcopy(self.current_sequence)
-            print('better solution')
         else:
             p_accept = math.exp((self.current_sequence['error'] - self.solution_sequence['error']) / self.temperature)
-            print('p', p_accept)
             if p_accept >= random.random():
                 self.current_sequence = copy.deepcopy(self.solution_sequence)
-                print('accept worse solution')
+
 
         self.temperature = self.temperature_reduction_rate * self.temperature
 

@@ -72,7 +72,6 @@ class Station(object):
     def add_goods(self, goods, current_time):
         for good in goods:
             good.transfer_time = current_time + self.good_transfer_time
-            print('tranfer_time', good.transfer_time)
             if good.type in self.not_ready_goods.keys():
                 self.not_ready_goods[good.type].append(good)
             else:
@@ -83,7 +82,6 @@ class Station(object):
         #     else:
         #         self.not_ready_goods[good.type] = []
         #         self.not_ready_goods[good.type].append(good)
-        # print(self.not_ready_goods)
 
     def check_good_transfer(self, current_time):
         """

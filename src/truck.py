@@ -79,7 +79,6 @@ class InboundTruck(Truck):
     def current_action(self, current_time):
         self.log_truck()
         self.current_time = current_time
-        #self.print_state()
         if self.current_state == 0:
             self.coming()
         if self.current_state == 1:
@@ -116,10 +115,6 @@ class InboundTruck(Truck):
         
     def waiting(self):
         pass
-
-    def print_state(self):
-        print('truck name: ', self.truck_name, ' current_state: ' , self.state_list[self.current_state])
-
 
 class OutboundTruck(Truck):
     """
@@ -177,7 +172,6 @@ class OutboundTruck(Truck):
             total += good.amount
             logging.debug("------{0}: {1}".format(good.type, good.amount))
         self.finish_time = int(self.current_time + total * self.loading_time)
-        print("deploy finish: {0} {1}".format(self.finish_time, self.truck_name))
         logging.debug("----Finish time: {0}".format(self.finish_time))
         if self.finish_time > self.bounds[0]:
             self.next_state()
@@ -248,15 +242,12 @@ class OutboundTruck(Truck):
         """
         calculate error values
         """
-        print('bounds', self.bounds, self.truck_name)
-        print('finish', self.finish_time, self.truck_name)
         if self.bounds[0] <= self.finish_time <= self.bounds[1]:
             self.error = 0
         elif self.finish_time < self.bounds[0]:
             self.error = self.finish_time - self.bounds[0]
         else:
             self.error = self.finish_time - self.bounds[1]
-        print('error', self.error)
 
 
 class CompoundTruck(Truck):
@@ -311,10 +302,8 @@ class CompoundTruck(Truck):
 
     def current_action(self, current_time):
         self.log_truck()
-        #print('truck name: ', self.truck_name, ' current_state: ' , self.state_list[self.current_state])
 
         self.current_time = current_time
-        # print('state', self.current_state)
         if self.current_state == 0:
             self.coming()
         if self.current_state == 1:
@@ -398,7 +387,7 @@ class CompoundTruck(Truck):
             logging.debug("------{0}: {1}".format(good.type, good.amount))
 
         self.finish_time = int(self.current_time + total * self.loading_time)
-        print("deploy finish: {0} {1}".format(self.finish_time, self.truck_name))
+
         logging.debug("----Finish time: {0}".format(self.finish_time))
         self.next_state()
 
@@ -429,13 +418,9 @@ class CompoundTruck(Truck):
         """
         calculate error values
         """
-        print('bounds', self.bounds, self.truck_name)
-        print('finish', self.finish_time, self.truck_name)
-
         if self.bounds[0] <= self.finish_time <= self.bounds[1]:
             self.error = 0
         elif self.finish_time < self.bounds[0]:
             self.error = self.finish_time - self.bounds[0]
         else:
             self.error = self.finish_time - self.bounds[1]
-        print('error', self.error)
