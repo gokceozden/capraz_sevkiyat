@@ -193,8 +193,8 @@ class OutboundTruck(Truck):
         check if loading time is later than lower bound
         """
         self.good_amounts = 0
-        for good in self.going_goods:
-            self.good_amounts += good.amount
+        for good_amount in self.going_good_amounts.values():
+            self.good_amounts += good_amount
 
         self.time_to_load = self.good_amounts * self.loading_time
         load_finish = self.current_time + self.time_to_load
@@ -217,11 +217,10 @@ class OutboundTruck(Truck):
         self.shipping_door.reserve_goods(self.going_good_amounts)
         load_finish = self.current_time + self.time_to_load
         logging.debug("Loading finish {0}: {1}".format(self.truck_name, load_finish))
+        self.finish_time = self.current_time + self.time_to_load
         if self.shipping_door.check_goods():
-            self.finish_time = self.current_time + self.time_to_load
             self.current_state = 5
         elif load_finish >= self.bounds[1]:
-            self.finish_time = self.current_time + self.time_to_load
             self.next_state()
 
     def must_load(self):
@@ -231,7 +230,6 @@ class OutboundTruck(Truck):
         logging.debug("Must to load: {0}".format(self.truck_name))
         self.shipping_door.reserve_critical_goods(self.going_good_amounts)
         self.finish_time = self.current_time + self.time_to_load
-        load_finish = self.current_time + self.time_to_load
         if self.shipping_door.check_goods():
             self.next_state()
 

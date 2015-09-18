@@ -35,6 +35,7 @@ class TruckInfo(QMessageBox):
                 good_text += 'Amount: %d\n' % goods.amount
             good_text += 'leaving goods:\n'
             for goods in truck.going_goods:
+
                 good_text += 'Type: %s, ' %str(goods.type)
                 good_text += 'Amount: %d\n' % goods.amount
 

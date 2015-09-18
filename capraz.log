@@ -1,1 +1,2426 @@
 INFO:Program Started
+INFO:Logger Started
+INFO:Data Set Number: 0
+INFO:Start sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Start sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 262.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 9.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound0', 'outbound0', 'outbound1', 'compound1']
+INFO:Error: 590.0
+
+INFO:Random1 next sequence inbound: [0, 'compound1', 'inbound2', 'compound0', 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound0', 'outbound2', 'outbound1', 'compound1']
+INFO:Error: 428.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound1', 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound0', 'outbound2', 'outbound1', 'compound1']
+INFO:Error: 534.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 'compound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound0', 0, 'outbound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'inbound2', 'compound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'outbound2', 0, 'outbound0', 'compound1']
+INFO:Error: 219.0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound2', 'compound0', 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound0', 'outbound1', 'outbound0', 'compound1']
+INFO:Error: 423.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'compound0', 'inbound2', 'inbound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 0, 'compound0', 'outbound0', 'compound1']
+INFO:Error: 151.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 'compound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'compound0', 0, 'outbound0', 'outbound1']
+INFO:Error: 253.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'compound0', 0, 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 0, 'outbound0', 'compound1']
+INFO:Error: 10.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 'compound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 0, 'compound0', 'outbound0', 'compound1']
+INFO:Error: 216.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'inbound2', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 0, 'compound0', 'outbound0', 'compound1']
+INFO:Error: 166.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'compound0', 'inbound2', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'outbound2', 'compound1']
+INFO:Error: 53.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'compound0', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 144.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 0, 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound1', 'outbound0', 0, 'outbound2', 'compound1']
+INFO:Error: 423.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'compound0', 0, 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'outbound1', 0, 'outbound2', 'compound1']
+INFO:Error: 273.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 0, 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound0', 0, 'outbound2', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'compound1', 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'outbound0', 0, 'outbound2', 'compound1']
+INFO:Error: 295.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound1', 0, 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'outbound2', 0, 'compound0', 'compound1']
+INFO:Error: 62.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 0, 'inbound1', 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound0', 0, 'outbound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 'inbound1', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 283.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'inbound0', 'inbound1', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'outbound2', 'compound1']
+INFO:Error: 114.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'inbound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 28.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'inbound2', 'inbound1', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'compound1', 'outbound1']
+INFO:Error: 173.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound1', 'inbound2', 'inbound0', 0, 'compound0']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound0', 'outbound0', 'outbound1', 'compound1']
+INFO:Error: 413.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'inbound1', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound0', 0, 'outbound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 0, 'compound0', 'outbound0', 'compound1']
+INFO:Error: 151.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 0, 'inbound1', 'compound0']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound0', 'outbound1', 'outbound0', 'compound1']
+INFO:Error: 423.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound1', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound0', 'compound1', 'outbound0', 0]
+INFO:Error: 286.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 'inbound1', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound0', 0, 'outbound2', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 0, 'compound0', 'outbound0', 'outbound2', 'compound1']
+INFO:Error: 538.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'compound0', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'compound0', 'outbound1', 'outbound2', 'compound1']
+INFO:Error: 438.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 'inbound0', 'inbound1', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'compound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 134.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['compound0', 'outbound0', 'outbound1', 0, 'outbound2', 'compound1']
+INFO:Error: 413.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'compound0', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'compound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 300.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 'compound0', 'inbound1', 0, 'inbound0']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound0', 'outbound1', 0, 'outbound2', 'compound1']
+INFO:Error: 413.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'compound0', 'inbound1', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 'inbound1', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'outbound2', 0, 'compound1', 'compound0']
+INFO:Error: 69.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'compound0', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'compound1', 'outbound1', 'outbound2', 'compound0']
+INFO:Error: 786.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 'inbound1', 0, 'compound1']
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'compound1', 'outbound1', 'outbound2', 'compound0']
+INFO:Error: 384.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'inbound1', 'compound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'compound0', 'outbound2', 0]
+INFO:Error: 261.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 'compound0', 'inbound2', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'compound0', 'outbound2']
+INFO:Error: 166.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'compound0', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'outbound0', 0, 'outbound2', 'compound0']
+INFO:Error: 325.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'compound0', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound2', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 788.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'compound0', 0, 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'compound0', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound2', 0, 'outbound1', 'outbound0']
+INFO:Error: 220.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'compound0', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound2', 0, 'outbound1', 'outbound0']
+INFO:Error: 220.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound1', 0, 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 20.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 0, 'compound0', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: [0, 'compound0', 'compound1', 'outbound2', 'outbound1', 'outbound0']
+INFO:Error: 1064.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound0', 0, 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 0, 'compound1', 'outbound1', 'outbound0']
+INFO:Error: 369.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'compound0', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound2', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 46.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'compound0', 0, 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'compound0', 'outbound2']
+INFO:Error: 200.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound1', 'compound0', 'inbound2', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'compound0', 'outbound2']
+INFO:Error: 255.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'inbound0', 'inbound1', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'outbound1', 0, 'compound1', 'outbound2']
+INFO:Error: 628.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 0, 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: [0, 'compound0', 'compound1', 'outbound0', 'outbound1', 'outbound2']
+INFO:Error: 1064.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound1', 'compound0', 'inbound2', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'compound0', 'outbound1', 'outbound2']
+INFO:Error: 976.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'compound1', 'inbound1', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound0', 'outbound2']
+INFO:Error: 1.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'inbound0', 'inbound1', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'compound0', 'outbound1', 'outbound2']
+INFO:Error: 992.0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound2', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'outbound2', 0, 'outbound1', 'compound1']
+INFO:Error: 177.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'compound0', 'inbound1', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'outbound1', 0, 'compound1', 'outbound2']
+INFO:Error: 536.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'inbound0', 'inbound1', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 21.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'compound0', 0, 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'compound0', 'outbound2']
+INFO:Error: 200.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'compound0', 'inbound0', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound0', 'outbound2']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'compound0', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'compound0', 'compound1', 'outbound1', 'outbound0', 'outbound2']
+INFO:Error: 1074.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound2', 'compound0', 'compound1', 'inbound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 20.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'compound0', 'inbound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'compound0', 'inbound0', 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound1', 0, 'outbound0', 'compound0']
+INFO:Error: 374.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 'compound0', 'inbound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'compound0', 'inbound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'outbound0', 0, 'outbound2', 'compound0']
+INFO:Error: 135.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'compound0', 'inbound2', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'compound0', 'outbound2', 0]
+INFO:Error: 286.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'compound0', 'inbound2', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 14.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'compound0', 'inbound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'outbound2', 0, 'compound0']
+INFO:Error: 241.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 'inbound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'outbound2', 0, 'compound1', 'compound0']
+INFO:Error: 76.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound1', 'compound0', 'inbound0', 'inbound2', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 0, 'compound1', 'outbound0', 'outbound2', 'compound0']
+INFO:Error: 446.0
+
+INFO:Random1 next sequence inbound: [0, 'compound1', 'compound0', 'inbound0', 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'outbound1', 0, 'outbound2', 'compound0']
+INFO:Error: 785.0
+
+INFO:Random1 next sequence inbound: [0, 'compound1', 'compound0', 'inbound0', 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'outbound2', 0, 'compound0']
+INFO:Error: 352.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound1', 'compound0', 'inbound0', 'inbound2', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'compound0', 'outbound2', 0]
+INFO:Error: 395.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 'compound1', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 6.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 'inbound1', 'inbound0', 'compound0', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound2', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound1', 'inbound2', 'inbound0', 'compound0', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound0', 'outbound2']
+INFO:Error: 103.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 0, 'inbound0', 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 0, 'inbound1', 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'compound0', 'outbound2', 0]
+INFO:Error: 254.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 0, 'inbound0', 'inbound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'compound0', 'outbound2', 0]
+INFO:Error: 254.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 0, 'inbound1', 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound2', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 0, 'inbound1', 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 0, 'inbound1', 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound2', 'outbound0']
+INFO:Error: 66.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'inbound1', 0, 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 20.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 0, 'inbound2', 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'inbound1', 'inbound2', 'compound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 227.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 0, 'inbound2', 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'compound0', 'outbound2', 'outbound1', 'compound1']
+INFO:Error: 428.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound1', 0, 'inbound2', 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound1', 'inbound0', 'inbound2', 'compound0', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 79.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound1', 'inbound2', 0, 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 0
+
+INFO:Best result:
+INFO:Inbound Sequence: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+
+INFO:Outbound Sequence: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+
+INFO:Error value: 0
+
+INFO:Data Set Number: 1
+INFO:Start sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Start sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 'outbound0', 'outbound1', 0]
+INFO:Error: 319.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'compound0', 'outbound1', 'outbound0']
+INFO:Error: 137.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 'inbound2', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound2', 0, 'outbound1', 'outbound0']
+INFO:Error: 55.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 'outbound1', 0, 'outbound0']
+INFO:Error: 42.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'compound1', 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'outbound1', 0, 'compound1', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound1', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'outbound1', 0, 'compound1', 'outbound0']
+INFO:Error: 39.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 0, 'outbound1', 'outbound2', 'compound1', 'outbound0']
+INFO:Error: 20.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound1', 'outbound2', 'compound0', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['compound1', 'outbound1', 0, 'outbound2', 'compound0', 'outbound0']
+INFO:Error: 312.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'compound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound1', 'outbound2', 0, 'outbound0']
+INFO:Error: 357.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 0, 'compound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'outbound1', 'compound1', 'compound0', 'outbound0']
+INFO:Error: 17.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: [0, 'compound1', 'outbound1', 'outbound2', 'compound0', 'outbound0']
+INFO:Error: 268.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'compound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound0', 'outbound2', 'compound0', 'outbound1']
+INFO:Error: 100.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound1', 'outbound2', 'outbound0', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound1', 'outbound2', 'outbound0', 0]
+INFO:Error: 137.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound0', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'inbound0', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 629.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'compound0', 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 0, 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'inbound0', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 1020.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound1', 0, 'compound0', 'inbound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 18.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'compound0', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 0, 'outbound2', 'compound0', 'outbound1']
+INFO:Error: 44.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'outbound1', 'outbound2', 0, 'compound0']
+INFO:Error: 135.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'inbound0', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['compound0', 'outbound0', 0, 'outbound2', 'outbound1', 'compound1']
+INFO:Error: 78.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'compound1', 'compound0', 0, 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound1', 0, 'outbound2', 'outbound0', 'compound0']
+INFO:Error: 49.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 261.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'compound1', 'compound0', 0, 'inbound0']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound0', 0, 'outbound2', 'outbound1', 'compound1']
+INFO:Error: 58.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'compound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 0, 'compound1', 'outbound2', 'compound0']
+INFO:Error: 45.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'outbound0', 'compound1', 'outbound1', 'compound0']
+INFO:Error: 46.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 0, 'compound0', 'outbound1', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 0, 'inbound2', 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 103.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 0, 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'outbound0', 'compound0', 'outbound1', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 0, 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'outbound0', 'outbound1', 'compound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 'compound0', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'outbound0', 0, 'compound0', 'compound1']
+INFO:Error: 14.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound1', 'inbound0', 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'outbound0', 'compound0', 'outbound1', 'compound1']
+INFO:Error: 253.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'outbound0', 'outbound1', 0, 'compound1']
+INFO:Error: 135.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 0, 'compound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'outbound2', 'outbound1', 'compound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 0, 'compound1', 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'outbound2', 'outbound1', 'compound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'compound1', 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'outbound1', 'outbound2', 'compound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound1', 'inbound2', 'compound1', 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'compound0', 'outbound2', 'outbound1', 'compound1']
+INFO:Error: 241.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'compound1', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'outbound1', 0, 'compound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound1', 0, 'inbound2', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound1', 'compound1', 'inbound2', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'outbound1', 0, 'outbound2', 'compound0']
+INFO:Error: 71.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound1', 'compound1', 'inbound2', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'outbound2', 0, 'compound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'compound1', 'inbound2', 'inbound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 0, 'outbound2', 'outbound0', 'compound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound1', 'inbound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'outbound2', 'outbound0', 0, 'compound0']
+INFO:Error: 171.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 0, 'inbound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 0, 'outbound0', 'compound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'compound1', 0, 'inbound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 0, 'outbound0', 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'compound1', 'compound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: [0, 'compound1', 'outbound1', 'outbound0', 'outbound2', 'compound0']
+INFO:Error: 438.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'compound1', 0, 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 0, 'compound1', 'outbound2', 'compound0']
+INFO:Error: 37.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'inbound1', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 0, 'compound1', 'outbound0', 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'inbound1', 0, 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 39.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound1', 'outbound0', 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'outbound1', 0, 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 0, 'compound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 'outbound2', 0, 'compound0']
+INFO:Error: 5.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 0, 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 0, 'compound1', 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 0, 'compound1', 'compound0', 'outbound2']
+INFO:Error: 69.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 0, 'outbound0', 'compound1', 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'compound0', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound0', 'outbound1', 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'inbound1', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound0', 'compound0', 'outbound2', 'outbound1']
+INFO:Error: 1.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'compound1', 'compound0', 0, 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound0', 'compound0', 'outbound2', 'outbound1']
+INFO:Error: 207.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'inbound1', 0, 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 0, 'outbound2', 'outbound1', 'outbound0', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'compound1', 'inbound1', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'outbound2', 'outbound1', 'compound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'compound0', 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 'outbound1', 0, 'compound0']
+INFO:Error: 361.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'inbound1', 'compound1', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'outbound2', 0, 'compound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'inbound1', 'compound0', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'outbound2', 0, 'compound1', 'outbound1']
+INFO:Error: 185.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 'inbound1', 'compound1', 'inbound0', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'outbound2', 'compound1', 0, 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 'inbound1', 'inbound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'outbound2', 'compound0', 0, 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'inbound1', 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 'compound0', 0, 'outbound1']
+INFO:Error: 87.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'outbound2', 'compound0', 'compound1', 0]
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'inbound1', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'outbound2', 'compound0', 'compound1', 0]
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'inbound1', 'compound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'outbound2', 'outbound0', 'compound1', 0]
+INFO:Error: 22.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'inbound1', 'compound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'outbound2', 'compound1', 'compound0', 0]
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'outbound0', 'compound1', 'compound0', 0]
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 0, 'outbound0', 'compound1', 'compound0', 'outbound2']
+INFO:Error: 70.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 'outbound0', 'compound0', 0]
+INFO:Error: 37.0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound1', 'inbound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 0, 'compound1', 'compound0', 'outbound0']
+INFO:Error: 229.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'outbound0', 'compound0', 'compound1', 0]
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'outbound0', 0, 'compound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'outbound0', 0, 'outbound2', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound0', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 140.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'outbound0', 'compound0', 'outbound2', 0]
+INFO:Error: 116.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'outbound0', 'outbound2', 0, 'compound0']
+INFO:Error: 157.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'outbound0', 0, 'outbound2', 'compound1']
+INFO:Error: 88.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'compound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound1', 'outbound0', 0, 'outbound2', 'compound0']
+INFO:Error: 387.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: [0, 'compound1', 'outbound0', 'outbound1', 'outbound2', 'compound0']
+INFO:Error: 1008.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'compound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound2', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound1', 0, 'outbound2', 'outbound0']
+INFO:Error: 306.0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound1', 'inbound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 'outbound2', 0, 'outbound0']
+INFO:Error: 214.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'compound0', 0, 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 0, 'compound0', 'outbound2', 'outbound0']
+INFO:Error: 279.0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound1', 'inbound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound1', 'inbound0', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 219.0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'inbound1', 'compound1', 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 108.0
+
+INFO:Random1 next sequence inbound: [0, 'compound0', 'compound1', 'inbound0', 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound2', 0, 'outbound1', 'outbound0']
+INFO:Error: 207.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound2', 0, 'outbound1', 'outbound0']
+INFO:Error: 39.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound1', 'compound0', 'inbound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 161.0
+
+INFO:Best result:
+INFO:Inbound Sequence: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+
+INFO:Outbound Sequence: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+
+INFO:Error value: 0
+
+INFO:Data Set Number: 2
+INFO:Start sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Start sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 57.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 216.0
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 46.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 57.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 25.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 62.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound1', 0, 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound0', 'compound1']
+INFO:Error: 150.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'outbound0', 0, 'outbound1', 'compound1']
+INFO:Error: 289.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound0', 'compound1']
+INFO:Error: 84.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 52.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 0, 'inbound1', 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 330.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound1', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 138.0
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound0', 'inbound1', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 'compound0', 'compound1', 0]
+INFO:Error: 150.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 0, 'inbound1', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'outbound1', 0, 'compound1', 'outbound0']
+INFO:Error: 433.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 0, 'compound0', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 85.5
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound1', 'compound0', 'inbound2', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 34.5
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound0', 'compound1', 'inbound2', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 126.5
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound1', 'inbound2', 'compound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 515.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 'inbound1', 'inbound2', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 149.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'compound1', 'compound0', 'inbound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 14.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'compound1', 'compound0', 'inbound0', 0]
+INFO:Random1 next sequence outbound: [0, 'outbound1', 'compound1', 'outbound2', 'outbound0', 'compound0']
+INFO:Error: 443.5
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'compound1', 'inbound0', 'compound0', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 122.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'inbound1', 'compound0', 'inbound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'compound0', 'inbound2', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 72.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'compound0', 'inbound1', 'inbound2', 'inbound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 210.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'compound0', 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'inbound1', 'compound0', 'inbound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound1', 'compound0', 'outbound1', 'outbound0']
+INFO:Error: 483.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'compound0', 'inbound1', 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound2', 0, 'outbound1', 'outbound0']
+INFO:Error: 229.5
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound1', 'compound1', 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: [0, 'compound0', 'compound1', 'outbound2', 'outbound1', 'outbound0']
+INFO:Error: 1010.0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound0', 'compound0', 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 0, 'compound1', 'outbound1', 'outbound0']
+INFO:Error: 263.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'compound0', 0, 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 'outbound0', 'outbound1', 0]
+INFO:Error: 767.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'compound0', 'inbound1', 0, 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound1', 'compound0', 'outbound1', 'outbound0']
+INFO:Error: 343.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'inbound1', 'compound0', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 123.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'compound0', 'inbound1', 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'outbound1', 0, 'compound1', 'outbound0']
+INFO:Error: 453.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'compound0', 'inbound2', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'compound0', 'outbound0']
+INFO:Error: 126.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'inbound1', 'compound0', 'inbound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 43.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'inbound1', 'compound0', 'inbound0', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 15.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'compound0', 'inbound2', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 62.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound0', 'compound0', 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 'outbound1', 0, 'outbound0']
+INFO:Error: 273.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound0', 'compound0', 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 'outbound1', 0, 'outbound0']
+INFO:Error: 273.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'compound0', 'inbound2', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'outbound1', 0, 'compound1', 'outbound0']
+INFO:Error: 228.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'inbound2', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'outbound0', 0, 'outbound1', 'compound1']
+INFO:Error: 224.0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'compound0', 'inbound2', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'inbound2', 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound2', 0, 'outbound0', 'outbound1']
+INFO:Error: 171.5
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound1', 'compound1', 'inbound2', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 168.0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'inbound0', 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound1', 0, 'compound1', 'inbound0', 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 'outbound1', 0, 'outbound0']
+INFO:Error: 328.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'inbound0', 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 62.5
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'inbound1', 'compound1', 'inbound2', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 14.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'inbound1', 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'outbound1', 0, 'compound1', 'outbound0']
+INFO:Error: 497.5
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'inbound0', 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'compound0', 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 101.5
+
+INFO:Random1 next sequence inbound: [0, 'compound1', 'inbound1', 'inbound0', 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: [0, 'outbound0', 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 346.0
+
+INFO:Random1 next sequence inbound: ['compound1', 0, 'inbound1', 'inbound2', 'compound0', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 115.5
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound1', 'inbound0', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 92.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound2', 'inbound1', 'inbound0', 'compound0', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound0', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 1.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'compound0', 'inbound1', 'inbound0', 0, 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 105.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound1', 0, 'inbound0', 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'inbound0', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound0', 'outbound2']
+INFO:Error: 6.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'compound0', 'inbound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 0, 'compound1', 'outbound0', 'outbound1']
+INFO:Error: 105.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'compound0', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'outbound1', 0, 'outbound0', 'compound1']
+INFO:Error: 103.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 0, 'inbound0', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound0', 'outbound2']
+INFO:Error: 6.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'inbound1', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound2', 'outbound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'inbound0', 'inbound1', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 351.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 0, 'inbound2', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'outbound2', 0, 'compound1', 'outbound1']
+INFO:Error: 253.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 'inbound1', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 119.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound1', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 268.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound1', 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 'outbound1', 'outbound2', 0]
+INFO:Error: 532.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'compound0', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'compound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 0, 'compound0', 'outbound2', 'outbound1']
+INFO:Error: 566.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 'compound0', 'inbound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'outbound2', 'compound1']
+INFO:Error: 8.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'compound0', 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 'outbound2', 0, 'outbound1']
+INFO:Error: 327.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'outbound2', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 'inbound2', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 'compound1', 'outbound2', 0]
+INFO:Error: 320.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 'inbound1', 'inbound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: [0, 'outbound1', 'compound0', 'outbound0', 'outbound2', 'compound1']
+INFO:Error: 207.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 0, 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 0, 'outbound0', 'compound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound1', 'outbound2', 0, 'outbound0', 'compound1']
+INFO:Error: 576.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'inbound1', 0, 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound1', 'outbound2', 0, 'outbound0', 'compound1']
+INFO:Error: 280.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'inbound2', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'outbound0', 0, 'compound0', 'compound1']
+INFO:Error: 29.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'inbound1', 0, 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound0', 'outbound1', 'outbound0', 'compound1']
+INFO:Error: 221.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 'inbound1', 0, 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound0', 0, 'outbound0', 'compound1']
+INFO:Error: 16.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 204.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 'inbound1', 0, 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 0, 'compound1', 'outbound0']
+INFO:Error: 110.5
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'inbound2', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'outbound0', 0, 'compound0', 'compound1']
+INFO:Error: 101.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound1', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound1', 'outbound2', 0, 'outbound0', 'compound1']
+INFO:Error: 108.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 'outbound0', 0, 'compound1']
+INFO:Error: 208.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'inbound2', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 'outbound0', 0, 'compound1']
+INFO:Error: 230.5
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'inbound1', 'compound0', 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound1', 'outbound2', 0, 'outbound0', 'compound1']
+INFO:Error: 264.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 'compound0', 0, 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'outbound0', 0, 'compound0', 'compound1']
+INFO:Error: 29.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 0, 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'compound0', 0, 'inbound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 0, 'compound1', 'outbound0', 'compound0']
+INFO:Error: 96.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound1', 'compound0', 0, 'inbound2']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound1', 'outbound2', 0, 'outbound0', 'compound0']
+INFO:Error: 174.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'inbound1', 0, 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 20.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 0, 'inbound1', 'compound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound1', 'outbound1', 'outbound0', 'compound0']
+INFO:Error: 337.5
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 'compound0', 'outbound0', 0]
+INFO:Error: 240.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'compound0', 'inbound1', 0, 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 'outbound1', 'outbound0', 0]
+INFO:Error: 439.5
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound1', 0, 'inbound0', 'inbound2']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 139.0
+
+INFO:Best result:
+INFO:Inbound Sequence: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+
+INFO:Outbound Sequence: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+
+INFO:Error value: 0
+
+INFO:Data Set Number: 3
+INFO:Start sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Start sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 54.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 101.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 77.0
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 244.2
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 91.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 76.8
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound0', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 'compound0', 'outbound2', 0]
+INFO:Error: 419.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'inbound0', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'outbound2', 0, 'compound1', 'compound0']
+INFO:Error: 243.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound1', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'outbound2', 'compound0']
+INFO:Error: 242.8
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound1', 'outbound2', 'compound0']
+INFO:Error: 529.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 'inbound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 'outbound2', 0, 'compound0']
+INFO:Error: 495.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound0', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'outbound2', 'compound0']
+INFO:Error: 242.8
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 'compound0', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound1', 'outbound0', 0, 'outbound2', 'compound0']
+INFO:Error: 523.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 91.8
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'outbound0', 0, 'compound1', 'compound0']
+INFO:Error: 221.0
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 'outbound0', 0, 'compound0']
+INFO:Error: 310.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'outbound0', 0, 'compound1', 'compound0']
+INFO:Error: 221.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 0, 'compound1', 'outbound0', 'compound0']
+INFO:Error: 271.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'compound0', 'outbound0']
+INFO:Error: 264.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 0, 'outbound0', 'compound1']
+INFO:Error: 91.8
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound0', 'outbound1', 'outbound0', 'compound1']
+INFO:Error: 839.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 'inbound0', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 0, 'compound1', 'outbound0']
+INFO:Error: 291.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound0', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: [0, 'outbound1', 'compound0', 'outbound2', 'outbound0', 'compound1']
+INFO:Error: 459.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 'outbound0', 0, 'compound1']
+INFO:Error: 540.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: [0, 'outbound1', 'compound0', 'outbound2', 'outbound0', 'compound1']
+INFO:Error: 442.2
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 213.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound0', 'outbound1', 'outbound0', 'compound1']
+INFO:Error: 697.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 'compound0', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 245.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'outbound2', 'compound1']
+INFO:Error: 152.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'inbound1', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 282.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 0, 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 0, 'outbound0', 'outbound1']
+INFO:Error: 76.8
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'compound0', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'outbound0', 0, 'compound0', 'outbound1']
+INFO:Error: 689.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 'outbound1', 'outbound0', 0]
+INFO:Error: 685.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 0, 'inbound1', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 0, 'outbound0', 'outbound1']
+INFO:Error: 76.8
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound1', 0, 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound0', 'compound1', 'outbound0', 0, 'outbound1']
+INFO:Error: 316.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 0, 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'compound1', 0, 'outbound0', 'outbound2']
+INFO:Error: 39.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound1', 0, 'inbound2', 'inbound0', 'compound0']
+INFO:Random1 next sequence outbound: [0, 'compound0', 'compound1', 'outbound1', 'outbound0', 'outbound2']
+INFO:Error: 1132.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 0, 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'outbound2', 0, 'outbound0', 'compound1']
+INFO:Error: 211.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound2', 0, 'inbound0', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 'compound0', 'outbound1', 0, 'outbound0', 'outbound2']
+INFO:Error: 386.0
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound1', 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound0', 'outbound2', 0, 'outbound0', 'compound1']
+INFO:Error: 392.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound0', 0, 'inbound2', 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 39.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 12.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 681.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'compound0', 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 0, 'compound0', 'outbound1', 'outbound2']
+INFO:Error: 475.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'compound0', 'outbound2']
+INFO:Error: 433.0
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 39.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 681.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 42.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 681.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound2', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'compound0', 'outbound2']
+INFO:Error: 427.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 0, 'inbound2', 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 681.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'compound1', 'inbound2', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 52.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 0, 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 71.8
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'compound1', 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'compound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 284.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'compound0', 'outbound2']
+INFO:Error: 437.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound1', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 172.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 0, 'inbound2', 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 71.8
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'compound0', 'outbound2']
+INFO:Error: 421.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 62.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound0', 'compound1', 'outbound1', 'outbound2']
+INFO:Error: 697.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 0, 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 205.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound2', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'compound0', 'outbound2']
+INFO:Error: 427.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 0, 'compound0', 'outbound1', 'outbound2']
+INFO:Error: 507.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound0', 0, 'inbound2', 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 205.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'compound1', 'inbound2', 0, 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'compound1', 'compound0', 'outbound0', 'outbound1', 'outbound2']
+INFO:Error: 1221.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'compound0', 'outbound2']
+INFO:Error: 421.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound1', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 491.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound2', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'compound1', 'outbound2']
+INFO:Error: 288.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'compound1', 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 0, 'compound0', 'outbound1', 'outbound2']
+INFO:Error: 475.0
+
+INFO:Random1 next sequence inbound: ['compound1', 'compound0', 0, 'inbound2', 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 0, 'compound0', 'outbound1', 'outbound2']
+INFO:Error: 475.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 83.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'compound1', 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound1', 0, 'compound0', 'outbound2']
+INFO:Error: 421.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 294.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'compound0', 0, 'inbound2', 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'compound1', 'outbound2']
+INFO:Error: 282.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound0', 'compound1', 'outbound1', 'outbound2']
+INFO:Error: 697.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound1', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 172.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 0, 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound0', 0, 'compound1', 'outbound2']
+INFO:Error: 282.0
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound0', 0, 'inbound2', 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 295.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound2', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 39.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'compound1', 'inbound2', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 753.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'compound1', 'inbound2', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 0, 'outbound2', 'outbound1']
+INFO:Error: 99.8
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound2', 0, 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 62.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'compound1', 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'compound0', 'outbound2', 'outbound1', 0]
+INFO:Error: 681.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 'compound0', 0, 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'compound1', 'compound0', 'outbound0', 'outbound1', 'outbound2']
+INFO:Error: 1113.2
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 0, 'compound0', 'outbound1', 'outbound2']
+INFO:Error: 475.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'inbound1', 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 62.2
+
+INFO:Random1 next sequence inbound: ['inbound1', 'compound0', 0, 'inbound2', 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound0', 'compound0', 0, 'outbound1', 'outbound2']
+INFO:Error: 211.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 0, 'compound1', 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 83.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound0', 'outbound2']
+INFO:Error: 83.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'compound1', 'inbound2', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 62.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'compound0', 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 5.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'compound0', 'inbound2', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound1', 'compound0', 0, 'compound1', 'outbound0']
+INFO:Error: 357.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'inbound1', 'compound0', 'inbound2', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'compound1', 'compound0', 0, 'outbound2', 'outbound0']
+INFO:Error: 166.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound1', 'compound0', 'inbound2', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 0, 'compound0', 'compound1', 'outbound1', 'outbound0']
+INFO:Error: 757.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'inbound1', 'inbound2', 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 0, 'outbound0', 'outbound1']
+INFO:Error: 76.8
+
+INFO:Random1 next sequence inbound: ['inbound1', 0, 'compound0', 'inbound2', 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 'outbound0', 'outbound1', 0]
+INFO:Error: 675.0
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'compound0', 'inbound2', 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'compound1', 'outbound2', 0, 'outbound1', 'outbound0']
+INFO:Error: 294.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 0, 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'compound1', 'compound0', 'outbound0', 'outbound1', 0]
+INFO:Error: 675.0
+
+INFO:Random1 next sequence inbound: ['inbound2', 0, 'compound0', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'compound0', 0, 'outbound1', 'outbound0']
+INFO:Error: 231.4
+
+INFO:Best result:
+INFO:Inbound Sequence: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+
+INFO:Outbound Sequence: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+
+INFO:Error value: 0
+
+INFO:Data Set Number: 3
+INFO:Start sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Start sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 195.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 334.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 243.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 243.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 343.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 177.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 540.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 359.2
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 215.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 282.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 151.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 346.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 516.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 374.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 311.4
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 906.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 573.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 445.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 283.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 640.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 428.2
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 195.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 282.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 392.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 439.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 418.2
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 696.2
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 883.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 151.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 215.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 639.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 255.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 540.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 305.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 233.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 550.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 280.4
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 397.4
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 157.4
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 151.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 362.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 151.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 195.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 395.4
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 157.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 374.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 395.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 476.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 284.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 367.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 392.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 305.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 171.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 177.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 476.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 445.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 445.4
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 299.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 243.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 313.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 311.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 379.4
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 281.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 882.2
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 280.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 306.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 233.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 235.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 195.4
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 423.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 349.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 757.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 243.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 460.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 476.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 195.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 517.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 516.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 476.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 177.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 305.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 1066.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 883.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 215.4
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 393.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 346.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 660.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 362.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 306.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 445.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 476.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 418.2
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 284.4
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 557.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 640.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 233.4
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 476.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 541.4
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 284.4
+
+INFO:Best result:
+INFO:Inbound Sequence: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+
+INFO:Outbound Sequence: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+
+INFO:Error value: 0
+
+INFO:Data Set Number: 3
+INFO:Start sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Start sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 637.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 776.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 935.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 1219.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 1070.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 717.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 1217.6
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 672.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 1110.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 1225.6
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 942.6
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 741.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 2311.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 636.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 665.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 727.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 687.6
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 641.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 727.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 1070.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 712.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 1170.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 1225.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 1241.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 962.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 705.6
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 790.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 1149.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 789.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 680.6
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 1022.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 717.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 1434.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 1679.6
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 741.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 768.6
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 701.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 1085.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 901.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 1217.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 1281.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 727.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 793.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 647.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 976.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 807.6
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 1189.6
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 769.6
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 684.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 2201.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound1', 0, 'compound1', 'inbound2']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 648.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 869.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 1110.6
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 1233.6
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 684.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound2', 'outbound0', 'compound1', 0, 'outbound1', 'compound0']
+INFO:Error: 636.6
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 1582.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 636.6
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 1149.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 1086.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 825.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 917.6
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: [0, 'outbound2', 'compound1', 'outbound0', 'outbound1', 'compound0']
+INFO:Error: 1582.6
+
+INFO:Random1 next sequence inbound: ['inbound1', 'inbound0', 'inbound2', 0, 'compound1', 'compound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 946.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 1083.6
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 1439.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'inbound1', 'compound1', 0]
+INFO:Random1 next sequence outbound: ['outbound1', 'outbound2', 'compound1', 0, 'outbound0', 'compound0']
+INFO:Error: 1219.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound1', 'inbound2', 0, 'compound1', 'inbound0']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 962.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 753.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 817.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 918.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 776.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'compound1', 'inbound2', 0, 'inbound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 793.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 807.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 895.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 680.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 735.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 927.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 759.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 676.6
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 972.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 0, 'inbound2', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 720.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'compound0', 'outbound1', 0]
+INFO:Error: 1445.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 'outbound1', 0, 'compound0']
+INFO:Error: 915.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 713.6
+
+INFO:Random1 next sequence inbound: ['inbound0', 'compound0', 'inbound2', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound0', 'compound1', 0, 'outbound1', 'outbound2']
+INFO:Error: 735.6
+
+INFO:Random1 next sequence inbound: ['compound0', 0, 'inbound2', 'inbound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 688.6
+
+INFO:Random1 next sequence inbound: ['inbound2', 'inbound0', 'compound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'compound1', 'outbound2', 0, 'outbound1', 'compound0']
+INFO:Error: 682.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 'compound1', 0, 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 0, 'compound1', 'outbound1', 'compound0']
+INFO:Error: 1445.6
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 1189.6
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound1', 0, 'compound0', 'outbound1']
+INFO:Error: 931.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound2', 'inbound0', 0, 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound1', 'compound1', 0, 'outbound2', 'compound0']
+INFO:Error: 637.6
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound0', 'outbound2', 'compound1', 0, 'outbound1', 'outbound0']
+INFO:Error: 994.6
+
+INFO:Random1 next sequence inbound: [0, 'inbound0', 'inbound2', 'compound0', 'compound1', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 1467.6
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 717.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'outbound1', 0, 'compound1', 'compound0']
+INFO:Error: 893.6
+
+INFO:Random1 next sequence inbound: ['compound1', 'inbound0', 'inbound2', 0, 'compound0', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 'outbound2', 'compound0', 0, 'outbound1', 'compound1']
+INFO:Error: 717.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'inbound2', 0, 'inbound1', 'compound1']
+INFO:Random1 next sequence outbound: ['compound1', 'outbound2', 'outbound0', 0, 'outbound1', 'compound0']
+INFO:Error: 1035.6
+
+INFO:Random1 next sequence inbound: ['compound0', 'inbound0', 'compound1', 0, 'inbound2', 'inbound1']
+INFO:Random1 next sequence outbound: ['outbound0', 0, 'compound1', 'outbound2', 'outbound1', 'compound0']
+INFO:Error: 1590.6
+
+INFO:Best result:
+INFO:Inbound Sequence: ['compound0', 'inbound0', 'inbound2', 0, 'compound1', 'inbound1']
+
+INFO:Outbound Sequence: ['outbound0', 'outbound2', 'compound1', 0, 'outbound1', 'compound0']
+
+INFO:Error value: 0
+

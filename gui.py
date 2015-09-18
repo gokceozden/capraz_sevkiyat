@@ -215,10 +215,10 @@ class MainWindow(QWidget):
     def show_logger(self):
         self.logger = LogData()
         root = logging.getLogger()
-        root.setLevel(logging.DEBUG)
+        root.setLevel(logging.INFO)
 
         ch = logging.StreamHandler(self.logger)
-        ch.setLevel(logging.DEBUG)
+        ch.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch.setFormatter(formatter)
         root.addHandler(ch)
@@ -288,10 +288,10 @@ class MainWindow(QWidget):
 
                 if self.current_iteration == 1:
                     self.algorithms.start()
-                    # self.model.set_sequence(self.algorithms.solution_sequence)
-                    # self.solve_whole_step()
-                    # self.model.reset()
-                    # self.algorithms.next()
+                    self.model.set_sequence(self.algorithms.solution_sequence)
+                    self.solve_whole_step()
+                    self.model.reset()
+                    self.algorithms.next()
                     self.model.set_sequence(self.algorithms.solution_sequence)
                 else:
                     self.algorithms.next()
