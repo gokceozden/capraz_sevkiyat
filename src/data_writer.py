@@ -1,18 +1,24 @@
-__author__ = 'mustafa'
-
 from src.data_store import DataStore
 from jinja2 import Template
 from itertools import chain
 
-def gams_writer(file_name, data_set_number, data = DataStore()):
+
+def gams_writer(file_name, data_set_number, data):
     f = open('gams_template.txt')
     src = Template(f.read())
     inbound_arrivals = []
     outbound_arrivals = []
     lower_boundaries = []
     upper_boundaries = []
-    inbound_goods = chain(data.inbound_goods, data.compound_coming_goods)
-    outbound_goods = chain(data.outbound_goods, data.compound_going_goods)
+    inbound_goods = chain(data.compound_coming_goods, data.inbound_goods)
+    outbound_goods = chain(data.compound_going_goods, data.outbound_goods)
+
+    for i in range(data.number_of_compound_trucks):
+        truck_name = 'compound' + str(i)
+        inbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name]))
+        outbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name]))
+        lower_boundaries.append(int(data.lower_boundaries[data_set_number][truck_name]))
+        upper_boundaries.append(int(data.upper_boundaries[data_set_number][truck_name]))
 
     for i in range(data.number_of_inbound_trucks):
         truck_name = 'inbound' + str(i)
@@ -21,15 +27,8 @@ def gams_writer(file_name, data_set_number, data = DataStore()):
     for i in range(data.number_of_outbound_trucks):
         truck_name = 'outbound' + str(i)
         outbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name]))
-        lower_boundaries.append(int(data.boundaries[data_set_number][truck_name][0]))
-        upper_boundaries.append(int(data.boundaries[data_set_number][truck_name][1]))
-
-    for i in range(data.number_of_compound_trucks):
-        truck_name = 'compound' + str(i)
-        inbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name][0]))
-        outbound_arrivals.append(int(data.arrival_times[data_set_number][truck_name][1]))
-        lower_boundaries.append(int(data.boundaries[data_set_number][truck_name][0]))
-        upper_boundaries.append(int(data.boundaries[data_set_number][truck_name][1]))
+        lower_boundaries.append(int(data.lower_boundaries[data_set_number][truck_name]))
+        upper_boundaries.append(int(data.upper_boundaries[data_set_number][truck_name]))
 
     d = {'number_of_inbound': data.number_of_inbound_trucks + data.number_of_compound_trucks,
          'number_of_outbound': data.number_of_outbound_trucks + data.number_of_compound_trucks,
@@ -37,7 +36,7 @@ def gams_writer(file_name, data_set_number, data = DataStore()):
          'compound_plus_one': data.number_of_compound_trucks + 1,
          'changeover_time': int(data.changeover_time),
          'product_transfer_time': int(data.good_transfer_time),
-         'transfer_time': int(data.transfer_time),
+         'transfer_time': int(data.truck_transfer_time),
          'number_of_goods': data.number_of_goods,
          'number_of_receiving_doors': data.number_of_receiving_doors,
          'number_of_shipping_doors': data.number_of_shipping_doors,
@@ -49,6 +48,7 @@ def gams_writer(file_name, data_set_number, data = DataStore()):
          'outbound_goods': outbound_goods,
          'good_numbers': range(0, data.number_of_goods)}
 
+    #
     result = src.render(d)
     s = open(file_name, 'w')
     s.write(result)

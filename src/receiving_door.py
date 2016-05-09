@@ -1,64 +1,47 @@
-__author__ = 'robotes'
+import copy
+from src.door import Door
 
-class ReceivingDoor(object):
-    """
-    Receiving doors of the station
-    """
-    def __init__(self,station, name):
+
+class ReceivingDoor(Door):
+    def __init__(self, name, station):
+        Door.__init__(self, name, station)
+        self.truck_list = []
+        self.behaviour_list = ['empty', 'waiting', 'loading', 'waiting2']
+        self.function_list = [self.empty, self.waiting, self.loading, self.waiting]
+        self.good_times = []
         self.door_name = name
-        self.type = 'Receiving'
-        self.door_number = 0
-        self.truck = 0
-        self.truck_sequence = 0
-        self.status = ['empty', 'deploying', 'waiting']
-        self.status_number = 0
-        self.good_list = []
-        self.sequence = []
-        self.station = station
-        self.waiting_trucks = 0
-        self.deploying_truck = None
-        self.finish_time = 0
-        self.current_time = 0
+        self.waiting_name = 'waiting_to_deploy'
 
-    def set_truck_doors(self):
-        for truck in self.sequence:
-            truck.receiving_door = self
-            truck.receiving_door_name = self.door_name
-
-    def current_action(self, current_time):
+    def run(self, current_time):
         self.current_time = current_time
-        if self.status_number == 0:
-            self.no_truck()
-        if self.status_number == 1:
-            self.deploying()
-        if self.status_number == 2:
-            self.wait_truck_change()
+        self.check_good_transfer()
+        self.function_list[self.current_state]()
 
-    def next_state(self):
-        self.status_number += 1
+    def empty(self):
+        try:
+            truck = self.truck_list[self.next_truck_number]
+            if truck.behaviour_list[truck.current_state] == self.waiting_name:
+                self.next_state()
+                self.next_truck_number += 1
+                truck.next_state()
+                truck.times['waiting_finish'] = self.current_time
+                truck.relevant_data = self.door_name
+                truck.next_state_time = self.current_time + truck.changeover_time
+                truck.current_door = self
+        except:
+            pass
 
-    def wait(self):
+    def waiting(self):
         pass
 
-    def no_truck(self):
-        if len(self.sequence) != 0:
-            next_truck = self.sequence[0]
-            self.deploying_truck = next_truck
-            if next_truck.state_list[next_truck.current_state] == 'waiting':
-                self.sequence[0].next_state()
-                self.next_state()
+    def loading(self):
+        pass
 
-    def wait_truck_change(self):
-        if self.current_time == self.finish_time:
-            self.status_number = 0
-
-    def deploy_goods(self, goods, current_time):
-        self.current_time = current_time
-        self.station.add_goods(goods, current_time)
-        self.finish_time = current_time + self.deploying_truck.changeover_time
-        self.next_state()
-        self.sequence.pop(0)
-
-    def deploying(self):
-        pass # wait for truck
-
+    def check_good_transfer(self):
+        if self.current_time in self.good_times:
+            good_store = self.goods_list[self.good_times.index(self.current_time)]
+            #print(goods.goods_list)
+            for goods in good_store.good_list.values():
+                for good in goods:
+                    self.station.goods_list.add_good(good.good_name, good.amount, good.coming_truck_name)
+            good_store.clear_goods()
