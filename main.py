@@ -551,7 +551,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if truck.truck_name in self.data.going_truck_name_list:
                     if truck.finish_time < float(self.time_limit_edit.text()):
                         total_goods += truck.good.total_good_amount()
-                        #self.current_result_data.times[truck.truck_name].append(['goods left', truck.goods.total_good_amount])
+                        self.current_result_data.times[truck.truck_name].append(['moved goods', truck.good.total_good_amount()])
 
             total_error = 1/total_goods * 100000
 

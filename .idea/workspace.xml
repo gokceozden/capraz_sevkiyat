@@ -5,94 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8362619-a591-4a87-b752-7ebfd4bace3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/main_window.ui" afterPath="$PROJECT_DIR$/windows/main_window.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitattributes" afterPath="$PROJECT_DIR$/.gitattributes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/capraz_sevkiyat.iml" afterPath="$PROJECT_DIR$/.idea/capraz_sevkiyat.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Readme.txt.txt" afterPath="$PROJECT_DIR$/Readme.txt.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/b" afterPath="$PROJECT_DIR$/b" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/capraz.log" afterPath="$PROJECT_DIR$/capraz.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_gams_20" afterPath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_gams_20" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_gams_21" afterPath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_gams_21" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_gams_22" afterPath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_gams_22" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_set_2" afterPath="$PROJECT_DIR$/capraz_sevkiyat_data/data_set_2/data_set_2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data1" afterPath="$PROJECT_DIR$/data1" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data2" afterPath="$PROJECT_DIR$/data2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data3" afterPath="$PROJECT_DIR$/data3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data4" afterPath="$PROJECT_DIR$/data4" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data5" afterPath="$PROJECT_DIR$/data5" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data6" afterPath="$PROJECT_DIR$/data6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_set1" afterPath="$PROJECT_DIR$/data_set1" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_set2" afterPath="$PROJECT_DIR$/data_set2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_set3" afterPath="$PROJECT_DIR$/data_set3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_set4" afterPath="$PROJECT_DIR$/data_set4" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deneme" afterPath="$PROJECT_DIR$/deneme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deneme.txt" afterPath="$PROJECT_DIR$/deneme.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deneme0" afterPath="$PROJECT_DIR$/deneme0" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deneme1" afterPath="$PROJECT_DIR$/deneme1" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deneme2" afterPath="$PROJECT_DIR$/deneme2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gams_template.txt" afterPath="$PROJECT_DIR$/gams_template.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui.py" afterPath="$PROJECT_DIR$/gui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/data_set_model.py" afterPath="$PROJECT_DIR$/models/data_set_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/error_table_model.py" afterPath="$PROJECT_DIR$/models/error_table_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/good_table_model.py" afterPath="$PROJECT_DIR$/models/good_table_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/result_good_table_model.py" afterPath="$PROJECT_DIR$/models/result_good_table_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/result_sequence_table_model.py" afterPath="$PROJECT_DIR$/models/result_sequence_table_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/result_time_table_model.py" afterPath="$PROJECT_DIR$/models/result_time_table_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/sequence_table_model.py" afterPath="$PROJECT_DIR$/models/sequence_table_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/time_table_model.py" afterPath="$PROJECT_DIR$/models/time_table_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/show_data_template.txt" afterPath="$PROJECT_DIR$/show_data_template.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/__init__.py" afterPath="$PROJECT_DIR$/src/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm_screen.py" afterPath="$PROJECT_DIR$/src/algorithm_screen.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithms.py" afterPath="$PROJECT_DIR$/src/algorithms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/annealing.py" afterPath="$PROJECT_DIR$/src/annealing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/clipboard_table_view.py" afterPath="$PROJECT_DIR$/src/clipboard_table_view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compound_truck.py" afterPath="$PROJECT_DIR$/src/compound_truck.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data_set.py" afterPath="$PROJECT_DIR$/src/data_set.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data_set_window.py" afterPath="$PROJECT_DIR$/src/data_set_window.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data_store.py" afterPath="$PROJECT_DIR$/src/data_store.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data_writer.py" afterPath="$PROJECT_DIR$/src/data_writer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/deneme" afterPath="$PROJECT_DIR$/src/deneme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/door.py" afterPath="$PROJECT_DIR$/src/door.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/door_info.py" afterPath="$PROJECT_DIR$/src/door_info.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gams_yedek" afterPath="$PROJECT_DIR$/src/gams_yedek" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/general_info.py" afterPath="$PROJECT_DIR$/src/general_info.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/good.py" afterPath="$PROJECT_DIR$/src/good.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/good_store.py" afterPath="$PROJECT_DIR$/src/good_store.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphview.py" afterPath="$PROJECT_DIR$/src/graphview.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/greeting_screen.py" afterPath="$PROJECT_DIR$/src/greeting_screen.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inbound_truck.py" afterPath="$PROJECT_DIR$/src/inbound_truck.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/iteration_info.py" afterPath="$PROJECT_DIR$/src/iteration_info.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/logger_output.py" afterPath="$PROJECT_DIR$/src/logger_output.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/outbound_truck.py" afterPath="$PROJECT_DIR$/src/outbound_truck.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/output_data.py" afterPath="$PROJECT_DIR$/src/output_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/receiving_door.py" afterPath="$PROJECT_DIR$/src/receiving_door.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/result_data.py" afterPath="$PROJECT_DIR$/src/result_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sequence.py" afterPath="$PROJECT_DIR$/src/sequence.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shipping_door.py" afterPath="$PROJECT_DIR$/src/shipping_door.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shipping_doors.py" afterPath="$PROJECT_DIR$/src/shipping_doors.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/show_data.py" afterPath="$PROJECT_DIR$/src/show_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/simulator.py" afterPath="$PROJECT_DIR$/src/simulator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/solver.py" afterPath="$PROJECT_DIR$/src/solver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/station.py" afterPath="$PROJECT_DIR$/src/station.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/station_info.py" afterPath="$PROJECT_DIR$/src/station_info.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tabu.py" afterPath="$PROJECT_DIR$/src/tabu.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tavlama.py" afterPath="$PROJECT_DIR$/src/tavlama.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/truck.py" afterPath="$PROJECT_DIR$/src/truck.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/truckDataWindow.py" afterPath="$PROJECT_DIR$/src/truckDataWindow.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/truck_data_table.py" afterPath="$PROJECT_DIR$/src/truck_data_table.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/truck_info.py" afterPath="$PROJECT_DIR$/src/truck_info.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/truck_list.py" afterPath="$PROJECT_DIR$/src/truck_list.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/truck_widget.py" afterPath="$PROJECT_DIR$/src/truck_widget.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/main_window.p" afterPath="$PROJECT_DIR$/windows/main_window.p" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/main_window.py" afterPath="$PROJECT_DIR$/windows/main_window.py" />
     </list>
     <ignored path="capraz_sevkiyat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,7 +22,7 @@
     <SUITE FILE_PATH="coverage/capraz_sevkiyat$data_writer.coverage" NAME="data_writer Coverage Results" MODIFIED="1440701552190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/capraz_sevkiyat$gui.coverage" NAME="gui Coverage Results" MODIFIED="1442488464254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/capraz_sevkiyat$data_store.coverage" NAME="data_store Coverage Results" MODIFIED="1437727605468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/capraz_sevkiyat$main.coverage" NAME="main Coverage Results" MODIFIED="1465125786323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/capraz_sevkiyat$main.coverage" NAME="main Coverage Results" MODIFIED="1465136264293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -120,16 +33,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="station.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/station.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="solver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/solver.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,12 +43,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35879946">
-              <caret line="558" column="41" selection-start-line="558" selection-start-column="36" selection-end-line="558" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="539" column="42" selection-start-line="539" selection-start-column="42" selection-end-line="539" selection-end-column="42" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="result_time_table_model.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/result_time_table_model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -295,6 +210,30 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="capraz_sevkiyat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="capraz_sevkiyat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="capcaz_son" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="capraz_sevkiyat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="capcaz_son" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -707,20 +646,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/station.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/good.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1080,11 +1005,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/time_table_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35879946">
-          <caret line="558" column="41" selection-start-line="558" selection-start-column="36" selection-end-line="558" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="539" column="42" selection-start-line="539" selection-start-column="42" selection-end-line="539" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/result_time_table_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
