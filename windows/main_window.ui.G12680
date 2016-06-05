@@ -27,7 +27,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideLeft</enum>
@@ -737,7 +737,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="2,0,0,0,0,0">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
            <widget class="QComboBox" name="result_names_combo_box">
             <property name="minimumSize">
@@ -766,42 +766,6 @@
            <widget class="QPushButton" name="show_results_button">
             <property name="text">
              <string>Show Results</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="multiSolveCombo">
-            <item>
-             <property name="text">
-              <string>normal</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>number_of_goods</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>total_tardiness</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>cmax</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>late_truck</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="multiSolveButton">
-            <property name="text">
-             <string>MultiSolve</string>
             </property>
            </widget>
           </item>

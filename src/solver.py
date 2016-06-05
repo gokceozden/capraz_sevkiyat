@@ -106,9 +106,10 @@ class Solver(QThread):
         self.start_time = time.time()
         while self.not_finished:
             if not self.pause:
-                # if self.time_step:
-                #     time.sleep(self.time_constant)
+                if self.time_step:
+                    time.sleep(self.time_constant)
                 self.step()
+                print(self.current_time)
                 self.check_finish()
 
     def step(self):
@@ -124,12 +125,12 @@ class Solver(QThread):
 
     def time_step_change(self, value):
         try:
-            if value == 0:
-                self.time_constant = 0.1
+            if float(value) < 0.01:
+                self.time_constant = 1
             else:
                 self.time_constant = float(value)
         except:
-            self.time_constant = 0.1
+            self.time_constant = 1
 
     def check_finish(self):
         finished = True

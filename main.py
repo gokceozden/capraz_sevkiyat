@@ -48,6 +48,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.showing_result = []
         self.result_times = {}
         self.function_type = 'normal'
+        self.best_sequences = {}
+        self.function_list = ['normal', 'number_of_goods', 'total_tardiness', 'cmax', 'late_truck']
 
     def setup_data(self):
         self.data_set_model = DataSetModel(self.data)
@@ -174,6 +176,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.result_names_combo_box.currentTextChanged.connect(self.change_result_name)
         self.show_results_button.clicked.connect(self.show_results)
+        self.multiSolveButton.clicked.connect(self.show_multi_solve)
+
+    def show_multi_solve(self):
+        self.multiScreen = QTextEdit()
+        function_name = str(self.result_names_combo_box.currentText().split('_')[4])
+        data_set = int(self.result_names_combo_box.currentText().split('_')[2]) - 1
+        if self.result_names_combo_box.currentText() in self.best_sequences:
+            sequence = self.best_sequences[self.result_names_combo_box.currentText()]
+            print(data_set)
+            self.multisolve = True
+            self.solve_multi_solve(data_set, self.multiSolveCombo.currentText(), sequence)
+            while(self.solver.not_finished):
+                pass
+
 
     def new_data(self):
         self.data = DataStore()
@@ -346,6 +362,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tabu = Tabu(self.data, int(self.number_of_tabu_line_edit.text()), int(self.number_of_tabu_neighbours_line_edit.text()))
         self.algorithms = {'annealing': self.annealing, 'tabu': self.tabu}
         self.algorithm_name = str(self.solverComboBox.currentText())
+        self.best_sequences[self.algorithm_name] = Sequence()
         self.function_type = str(self.function_combo_box.currentText())
         self.algorithm = self.algorithms[self.algorithm_name]
         self.update_truck_numbers()
@@ -420,6 +437,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if self.algorithm_name == 'annealing':
 
                     new_sequence = self.algorithm.next_iteration(self.sequence, self.iteration_number)
+                    self.best_sequences[self.solution_name] = self.algorithm.best_sequence
                     if self.slow_solution:
                         self.current_result_data.sequence = copy.deepcopy(self.sequence)
                     self.iteration_number += 1
@@ -440,6 +458,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         self.next_iteration()
                     else:
                         new_sequence = self.algorithm.next_iteration(self.iteration_number)
+                        self.best_sequences[self.solution_name] = self.algorithm.best_sequence
                         self.sequence = new_sequence
                         self.algorithm.generated_neighbour_number += 1
                         if self.algorithm.check_tabu(self.sequence):
@@ -530,9 +549,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             total_goods = 0
             for truck in self.solver.truck_list.values():
                 if truck.truck_name in self.data.going_truck_name_list:
-                    if truck.finish_time < float(self.time_limit_edit.text):
-                        total_goods += truck.goods.total_good_amount
-            total_error = 1/total_goods * 100
+                    if truck.finish_time < float(self.time_limit_edit.text()):
+                        total_goods += truck.good.total_good_amount()
+                        #self.current_result_data.times[truck.truck_name].append(['goods left', truck.goods.total_good_amount])
+
+            total_error = 1/total_goods * 100000
 
 
         elif self.function_type == 'late_truck':
@@ -555,6 +576,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.solver.done_signal.disconnect()
         except:
             pass
+
+    def solve_multi_solve(self, data_set, function, sequence):
+        print("multi solve")
+        self.function_type = function
+        self.data_set_number = data_set
+        self.solution_name = self.result_names_combo_box.currentText() + '_multisolve_{0}'.format(function)
+        self.results[self.solution_name] = []
+        self.result_names_combo_box.addItem(self.solution_name)
+
+        self.setup_truck_names()
+        self.solver = Solver(self.data_set_number, self.data)
+        self.solver.time_signal.connect(self.time.display)
+        self.solver.value_signal.connect(self.solver_truck_signal)
+        self.solver.value_signal.connect(self.time_saver)
+        self.time_constant.textChanged.connect(self.solver.time_step_change)
+        self.solver.done_signal.connect(self.finished)
+        self.sequence = sequence
+        self.solver.set_sequence(self.sequence)
+        self.solver.solve()
 
     def solve_one_sequence(self):
         self.data_set_number = self.data_set_spin_box.value() - 1
@@ -611,6 +651,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.current_result_data = ResultData(self.data)
         self.current_result_data.times = copy.deepcopy(self.result_times)
         self.sequence.error = self.calculate_error()
+        if(self.multisolve):
+            self.multiScreen.append(self.multiSolveCombo.currentText() + 'Error: ' + str(self.sequence.error))
+            self.multiScreen.show()
+            self.multisolve = False
         self.current_result_data.sequence = copy.deepcopy(self.sequence)
         self.current_result_data.goods = self.solver.return_goods()
         self.results[self.solution_name].append(self.current_result_data)
