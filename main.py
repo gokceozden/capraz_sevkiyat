@@ -47,9 +47,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.graphicsView.parent = self
         self.showing_result = []
         self.result_times = {}
-        self.function_type = 'normal'
+        self.function_type = 'earliness+tardiness'
         self.best_sequences = {}
-        self.function_list = ['normal', 'number_of_goods', 'total_tardiness', 'cmax', 'late_truck']
+        self.function_list = ['earliness+tardiness', 'number_of_goods', 'total_tardiness', 'cmax', 'late_truck']
 
     def setup_data(self):
         self.data_set_model = DataSetModel(self.data)
@@ -360,7 +360,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.annealing = Annealing(self.data, int(self.tempereature_line_edit.text()), float(self.decav_factor_line_edit.text()))
         self.tabu = Tabu(self.data, int(self.number_of_tabu_line_edit.text()), int(self.number_of_tabu_neighbours_line_edit.text()))
-        self.algorithms = {'annealing': self.annealing, 'tabu': self.tabu}
+        self.algorithms = {'SA': self.annealing, 'TS': self.tabu}
         self.algorithm_name = str(self.solverComboBox.currentText())
         self.best_sequences[self.algorithm_name] = Sequence()
         self.function_type = str(self.function_combo_box.currentText())
@@ -372,7 +372,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.number_of_iterations = int(self.numberOfIterationsLineEdit.text())
         self.setup_truck_names()
 
-        self.slow_solution = not self.fast_solve_check_box.isChecked()
+        self.slow_solution = True
 
         if self.slow_solution:
             self.solution_name = 'data_set_{0}_{1}_{2}_{3}'.format(self.data_set_number + 1, self.solverComboBox.currentText(), self.function_combo_box.currentText(), len(self.results) + 1)
@@ -385,11 +385,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.going_sequence_table_model = SequenceTableModel(self.results[self.solution_name], 1, self.data)
             self.going_sequence_table.setModel(self.going_sequence_table_model)
 
-            if self.algorithm_name == 'annealing':
+            if self.algorithm_name == 'SA':
                 self.error_sequence_table_model = AnnealingErrorTableModel(self.results[self.solution_name], self.data)
                 self.sequence_error_table.setModel(self.error_sequence_table_model)
 
-            elif self.algorithm_name == 'tabu':
+            elif self.algorithm_name == 'TS':
                 self.error_sequence_table_model = TabuErrorTableModel(self.results[self.solution_name], self.data)
                 self.sequence_error_table.setModel(self.error_sequence_table_model)
 
@@ -434,7 +434,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.solver.solve()
 
             elif self.iteration_number < self.number_of_iterations + 1:
-                if self.algorithm_name == 'annealing':
+                if self.algorithm_name == 'SA':
 
                     new_sequence = self.algorithm.next_iteration(self.sequence, self.iteration_number)
                     self.best_sequences[self.solution_name] = self.algorithm.best_sequence
@@ -445,8 +445,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.solver.set_sequence(self.sequence)
                     self.solver.solve()
 
-                elif self.algorithm_name == 'tabu':
-                    print('tabu')
+                elif self.algorithm_name == 'TS':
+                    print('TS')
                     if self.algorithm.generated_neighbour_number == self.algorithm.number_of_neighbours:
                         print('if')
                         self.algorithm.generated_neighbour_number = 0
@@ -483,12 +483,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print('end')
         try:
             self.save_results()
-            if self.algorithm_name == 'annealing':
+            if self.algorithm_name == 'SA':
                 self.solver.not_finished = False
                 self.solver.quit()
                 self.solver.done_signal.disconnect()
 
-            elif self.algorithm_name == 'tabu':
+            elif self.algorithm_name == 'TS':
                 if self.algorithm.iteration_finish:
                     self.algorithm.iteration_finish = False
                 else:
@@ -502,7 +502,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def calculate_error(self):
         total_error = 0
-        if self.function_type == 'normal':
+        if self.function_type == 'earliness+tardiness':
             for truck in self.solver.truck_list.values():
                 if truck.truck_name in self.data.going_truck_name_list:
                     if truck.behaviour_list[truck.current_state] == 'done':
@@ -581,7 +581,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print("multi solve")
         self.function_type = function
         self.data_set_number = data_set
-        self.solution_name = self.result_names_combo_box.currentText() + '_multisolve_{0}'.format(function)
+        self.solution_name = self.result_names_combo_box.currentText() + '_solvefor_{0}'.format(function)
         self.results[self.solution_name] = []
         self.result_names_combo_box.addItem(self.solution_name)
 
