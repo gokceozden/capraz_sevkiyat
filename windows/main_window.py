@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\main_window.ui'
+# Form implementation generated from reading ui file 'main_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.5.1
+# Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -29,6 +29,7 @@ class Ui_MainWindow(object):
         self.tab_1 = QtWidgets.QWidget()
         self.tab_1.setObjectName("tab_1")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tab_1)
+        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
@@ -165,6 +166,7 @@ class Ui_MainWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.tab)
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -215,6 +217,7 @@ class Ui_MainWindow(object):
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.gridLayout_7 = QtWidgets.QGridLayout(self.tab_2)
+        self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
@@ -243,6 +246,7 @@ class Ui_MainWindow(object):
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.page)
+        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -263,6 +267,7 @@ class Ui_MainWindow(object):
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.page_2)
+        self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
@@ -344,6 +349,7 @@ class Ui_MainWindow(object):
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.tab_4)
+        self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.frame = QtWidgets.QFrame(self.tab_4)
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -395,6 +401,7 @@ class Ui_MainWindow(object):
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
         self.gridLayout = QtWidgets.QGridLayout(self.tab_3)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
@@ -493,7 +500,7 @@ class Ui_MainWindow(object):
         self.gridLayout_9.addWidget(self.tab_view, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1274, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1274, 30))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -523,7 +530,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Cross Docking Solver"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "DSS for Cross Docking"))
         self.numberOfInboundTrucksLabel.setText(_translate("MainWindow", "Number of Inbound Trucks"))
         self.numberOfOutboundTrucksLabel.setText(_translate("MainWindow", "Number of Outbound Trucks"))
         self.numberOfCompoundTrucksLabel.setText(_translate("MainWindow", "Number of Compound Trucks"))
@@ -547,8 +554,8 @@ class Ui_MainWindow(object):
         self.generate_times_button.setText(_translate("MainWindow", "Generate"))
         self.label.setText(_translate("MainWindow", "Arrival Times"))
         self.generate_new_boundaries_button.setText(_translate("MainWindow", "Generate New Boundaries"))
-        self.tab_view.setTabText(self.tab_view.indexOf(self.tab), _translate("MainWindow", "Generate Times"))
-        self.solverLabel.setText(_translate("MainWindow", "Solver"))
+        self.tab_view.setTabText(self.tab_view.indexOf(self.tab), _translate("MainWindow", "AT-TW"))
+        self.solverLabel.setText(_translate("MainWindow", "Algorithm"))
         self.solverComboBox.setItemText(0, _translate("MainWindow", "SA"))
         self.solverComboBox.setItemText(1, _translate("MainWindow", "TS"))
         self.numberOfIterationsLabel.setText(_translate("MainWindow", "Number of Iterations"))
@@ -557,7 +564,7 @@ class Ui_MainWindow(object):
         self.solution_time_label.setText(_translate("MainWindow", "0"))
         self.label_7.setText(_translate("MainWindow", "Temperature"))
         self.tempereature_line_edit.setText(_translate("MainWindow", "100"))
-        self.label_9.setText(_translate("MainWindow", "Decay Factor"))
+        self.label_9.setText(_translate("MainWindow", "Cooling Ratio"))
         self.decav_factor_line_edit.setText(_translate("MainWindow", "0.9"))
         self.label_10.setText(_translate("MainWindow", "# of Neighbours "))
         self.number_of_tabu_neighbours_line_edit.setText(_translate("MainWindow", "5"))
@@ -569,11 +576,11 @@ class Ui_MainWindow(object):
         self.function_combo_box.setItemText(2, _translate("MainWindow", "total_tardiness"))
         self.function_combo_box.setItemText(3, _translate("MainWindow", "cmax"))
         self.function_combo_box.setItemText(4, _translate("MainWindow", "late_truck"))
-        self.solve_data_set_button.setText(_translate("MainWindow", "Solve Data Set"))
+        self.solve_data_set_button.setText(_translate("MainWindow", "Run"))
         self.stop_data_set_solve_button.setText(_translate("MainWindow", "Stop"))
         self.label_4.setText(_translate("MainWindow", "Coming Truck Sequences"))
         self.label_5.setText(_translate("MainWindow", "Going Truck Sequences"))
-        self.label_6.setText(_translate("MainWindow", "Erros"))
+        self.label_6.setText(_translate("MainWindow", "Objective Function Value"))
         self.tab_view.setTabText(self.tab_view.indexOf(self.tab_2), _translate("MainWindow", "Solve Data Set"))
         self.solve_one_sequence_button.setText(_translate("MainWindow", "Run"))
         self.label_8.setText(_translate("MainWindow", "Time"))
@@ -598,11 +605,11 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "Outbound Time Table"))
         self.label_15.setText(_translate("MainWindow", "Compound Time Table"))
         self.tab_view.setTabText(self.tab_view.indexOf(self.tab_3), _translate("MainWindow", "Show Results"))
-        self.menuFile.setTitle(_translate("MainWindow", "File"))
-        self.actionNew_Data.setText(_translate("MainWindow", "New Data"))
-        self.actionLoad_Data.setText(_translate("MainWindow", "Load Data"))
-        self.actionSave_Data.setText(_translate("MainWindow", "Save Data"))
-        self.actionQuit.setText(_translate("MainWindow", "Quit"))
+        self.menuFile.setTitle(_translate("MainWindow", "Fi&le"))
+        self.actionNew_Data.setText(_translate("MainWindow", "&New Data"))
+        self.actionLoad_Data.setText(_translate("MainWindow", "&Load Data"))
+        self.actionSave_Data.setText(_translate("MainWindow", "&Save Data"))
+        self.actionQuit.setText(_translate("MainWindow", "&Quit"))
 
 from src.clipboard_table_view import ClipboardTableView
 from src.simulator import Simulator
